@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title id="title">物流状态</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			
+			* {
+				font-family: "微软雅黑";
+			}
+			
+			#header {
+				margin: 0;
+				padding: 0;
+				padding-top: 4px;
+				width: 100%;
+				height: 44px;
+				margin-bottom: 12px;
+				text-align: center;
+				vertical-align: middle;
+				position: relative;
+				border-bottom: 1px solid lightgrey;
+			}
+			
+			#left-span {
+				margin: 0;
+				padding: 0;
+				display: inline-block;
+				vertical-align: middle;
+				float: left;
+				position: absolute;
+				left: 3%;
+			}
+			
+			#head {
+				margin: 0;
+				padding: 0;
+				width: 100px;
+				line-height: 44px;
+				font-size: 16px;
+			}
+			
+			ul.timeline {
+				list-style-type: none;
+				background: url("../source/img/11111.png") repeat-y scroll 17.5px 0 transparent;
+				margin: 20px 0;
+				font-size: 20px;
+			}
+			
+			ul.timeline li {
+				position: relative;
+				margin-bottom: 0px;
+				margin-left: 10px;
+				margin-right: 15px;
+			}
+			
+			ul.timeline li .number {
+				position: absolute;
+				background: url("../source/img/version_dot2.png") no-repeat scroll 0 0 transparent;
+				width: 30px;
+				height: 30px;
+				left: -42px;
+				top: 0px;
+				line-height: 35px;
+				text-align: center;
+				color: #fff;
+				font-size: 18px;
+			}
+			
+			ul.timeline li {
+				padding: 20px;
+				color: #333333;
+				font-size: 14px;
+				line-height: 20px;
+				padding-left: 0;
+				padding-right: 10px;
+				margin-right: 0px;
+				word-break: break-word;
+				padding-bottom: 5px;
+			}
+		</style>
+		<script>
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var mailNum = href.split("mailNum=")[1];
+			mailNum = decodeURI(mailNum);
+		</script>
+	</head>
+
+	<body style="background-color: #FFFFFF;">
+		<div id="headmsg" style=" padding-left: 20px;padding-bottom: 5px; margin: 0; margin-bottom: 15px;border-bottom: 1px solid lightgrey; font-size: 13px; line-height: 14px;margin-top: 20px;display: none;">
+			<p><span>承运来源：</span><span>EMS</span></p>
+			<p><span>运单编号：</span><span id="mailNum"></span></p>
+		</div>
+		<ul class="timeline" id="parent" style="display: none;">
+			<li v-for="item in items">
+				<div>
+					<p style="word-break: break-word;margin-bottom: 10px;">
+						[<span class="location">{{item.location}}</span>] <span class="context">{{item.context}}</span>
+					</p>
+					<div class="number"></div>
+					<p style="word-break: break-word;" class="time">
+						{{item.time}}
+					</p>
+				</div>
+			</li>
+		</ul>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;	position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-100px; display: block;">
+			<div id="food" style="background-color: #000000; width: 70px; height: 70px;border-radius: 10px ;margin: 0 auto;margin-top:10px;"></div>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">努力加载中...</p>
+		</div>
+		<div id="badmessage" style="opacity: 0.6;border-radius: 10px;position: absolute;left: 50%;top: 50%;width:160px;height:160px;margin-left:-80px;margin-top:-100px;display: none;">
+			<img style="width: 160px; height: 160px;" src="../source/img/yw_message_bad.png" />
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无物流数据</p>
+		</div>
+		<script type="text/javascript" src="../../../js/util.js"></script>
+		<script type="text/javascript" src="../../onlineoder/source/js/spin.js"></script>
+		<script type="text/javascript" src="../../../source/js/vue.min.js"></script>
+		<script type="text/javascript" src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script type="text/javascript" src="../controller/MyDosEms.js"></script>
+		<script type="text/javascript" src="../../../source/js/md5.js"></script>
+		<script type="text/javascript" src="../../BaseConfig/source/js/base64.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script>
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			var storage = window.localStorage;
+			var userInfo;
+			//判断容器类型，浏览器还是APP
+			var container = containerT();
+			if(container == "web") {
+				var wxuserInfo = storage.wxuserInfo;
+				userInfo = JSON.parse(wxuserInfo);
+
+			} else { //app 使用jssdk获取用户信息
+				var wxuserInfo = storage.userInfo;
+				userInfo = JSON.parse(wxuserInfo);
+
+			}
+			requestEmsState(mailNum);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>异地死亡人员运回原籍火化审批表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">死者信息</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="BGAE0002" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">身份证号码</span>
+                <input id="BGAE0003" class="info_input item_input" type="text" placeholder="请输入身份证号码" @blur='sfzyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">户籍所在地</span>
+                <input id="BGAE0004" class="info_input item_input" type="text" placeholder="请输入户籍所在地">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">死亡地点</span>
+                <input id="BGAE0005" class="info_input item_input" type="text" placeholder="请输入死亡地点">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">死亡原因</span>
+                <input id="BGAE0006" class="info_input item_input" type="text" placeholder="请输入死亡原因">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">出示单位</span>
+                <input id="BGAE0007" class="info_input item_input" type="text" placeholder="请输入死亡证明出示单位">
+            </div>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">申请人信息</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="BGAE0008" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">身份证号码</span>
+                <input id="BGAE0009" class="info_input item_input" type="text" placeholder="请输入身份证号码" @blur='sfzyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">与死者关系</span>
+                <input id="BGAE00010" class="info_input item_input" type="text" placeholder="请输入与死者关系">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="BGAE00011" class="info_input item_input" type="text" placeholder="请输入联系电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系地址</span>
+                <input id="BGAE00012" class="info_input item_input" type="text" placeholder="请输入联系地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">运送目的地</span>
+                <input id="txt_ysmdd" class="info_input item_input" type="text" placeholder="请输入运送目的地">
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click="saveGo">
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/ydswryyhyjhhspb.js"></script>
+</body>
+</html>

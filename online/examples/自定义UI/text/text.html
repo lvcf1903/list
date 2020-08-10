@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			.mui-icon-left-nav:before {
+			    color: white;
+			}
+			.mui-icon-speech:before {
+			    content: "\e301";
+			}
+			.title{
+			  	margin: 25px 15px 10px;
+			  	font-size: 20px;
+			  	color: #000;
+			  }
+			.content{
+			  	margin: 0px 15px 20px;
+			  	color: #333;
+			  	text-indent: 1em;
+			  	font-size: 16px;
+			  	line-height: 24px;
+			 }
+			 .mui-h5{
+			    margin: 10px 15px 35px;
+			 }
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header" class="mui-bar mui-bar-nav" style="background: #232736;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color: white;">正文页</h1>
+		</header>
+		
+		<div class="mui-content">
+		    <p class="title" >标题标题标题标题标题标题标题标题标题标题标题标题标题</p>
+			<span class="mui-h5">2015-10-09 12:25</span>
+			<div style="padding: 20px 15px;">
+			    <img  src="../images/Lighthouse.jpg" style="min-width: 100%;max-width: 100%; vertical-align: bottom;margin-bottom: 1px;" >
+			</div>
+			<p class="content" >文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</p>
+			<p class="content" >文本内容文本内容文本内容文本内容</p>
+			<p class="content" >文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容</p>
+			<p class="content" ><a href="http://www.baidu.com" style="color: #00aaff;">链接文字链接文字</a></p>
+		</div>
+		
+
+
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+		</script>
+
+	</body>
+
+</html>

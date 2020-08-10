@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>蚕种生产许可（设立）申请表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请单位或个人</span>
+                <input id="txt_sqdwhgr" class="info_input item_input" type="text" placeholder="请输入申请单位或个人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">法定代表人</span>
+                <input id="txt_fddbr" class="info_input item_input" type="text" placeholder="请输入法定代表人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">注册地址</span>
+                <input id="txt_zcdz" class="info_input item_input" type="text" placeholder="请输入注册地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">电话</span>
+                <input id="txt_dh" class="info_input item_input" type="text" placeholder="请输入电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">生产地点</span>
+                <input id="txt_scdd" class="info_input item_input" type="text" placeholder="请输入生产地点">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">生产类别</span>
+                <input id="txt_sclb" class="info_input item_input" type="text" placeholder="请输入生产类别">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">生产规模</span>
+                <input id="txt_scgm" class="info_input item_input" type="text" placeholder="请输入生产规模">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">注册资本</span>
+                <input id="txt_zczb" class="info_input item_input" type="text" placeholder="请输入注册资本" style="width: 120px;">&nbsp;万元
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">蚕（蔟）室</span>
+                <input id="txt_cs" class="info_input item_input" type="text" placeholder="请输入蚕（蔟）室" style="width: 104px;">&nbsp;平方米
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">技术人员</span>
+                <input id="txt_jsry" class="info_input item_input" type="text" placeholder="请输入技术人员" style="width: 136px;">&nbsp;人
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">催青室</span>
+                <input id="txt_cqs" class="info_input item_input" type="text" placeholder="请输入催青室" style="width: 104px;">&nbsp;平方米
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">检验人员</span>
+                <input id="txt_jyry" class="info_input item_input" type="text" placeholder="请输入检验人员" style="width: 136px;">&nbsp;人
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">低温室</span>
+                <input id="txt_dws" class="info_input item_input" type="text" placeholder="请输入低温室" style="width: 104px;">&nbsp;平方米
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">桑园面积</span>
+                <input id="txt_symj" class="info_input item_input" type="text" placeholder="请输入桑园面积" style="width: 136px;">&nbsp;亩
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">保护室</span>
+                <input id="txt_bhs" class="info_input item_input" type="text" placeholder="请输入保护室" style="width: 104px;">&nbsp;平方米
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">贮桑室</span>
+                <input id="txt_css" class="info_input item_input" type="text" placeholder="请输入贮桑室" style="width: 104px;">&nbsp;平方米
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">检验室</span>
+                <input id="txt_jys" class="info_input item_input" type="text" placeholder="请输入检验室" style="width: 104px;">&nbsp;平方米
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">冷藏库房</span>
+                <input id="txt_lckf" class="info_input item_input" type="text" placeholder="请输入冷藏库房" style="width: 104px;">&nbsp;平方米
+            </div>
+            
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">单位概况</span>
+                <textarea name="dwgk" placeholder="单位基本概况及申请理由等。" id="txt_dwgk"></textarea>
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+                <button class="nextep-right" @click='saveGo'> 
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/czscxkslsqb.js"></script>
+</body>
+</html>

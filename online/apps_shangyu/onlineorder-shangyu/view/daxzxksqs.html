@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>档案行政许可申请书（携带、运输、邮寄档案出境的许可）</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">申请人基本情况</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">个人申请人姓名</span>
+                <input id="txt_grsqrxm" class="info_input item_input" type="text" placeholder="请输入个人申请人姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">性别</span>
+                <input id="txt_xb" class="info_input item_input" type="text" placeholder="请输入性别">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">出生年月</span>
+                <input id="txt_csny" class="info_input item_input" type="text"  @click='csny' readonly>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">单位申请人名称</span>
+                <input id="txt_dwsqrmc" class="info_input item_input" type="text" placeholder="请输入单位申请人名称">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">法定代表人</span>
+                <input id="txt_fddbr" class="info_input item_input" type="text" placeholder="请输入法定代表人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系人</span>
+                <input id="txt_lxr" class="info_input item_input" type="text" placeholder="请输入联系人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">住（地）址</span>
+                <input id="txt_zz" class="info_input item_input" type="text" placeholder="请输入住（地）址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">邮政编码</span>
+                <input id="txt_yzbm" class="info_input item_input" type="text" placeholder="请输入邮政编码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_lxdh" class="info_input item_input" type="text" placeholder="请输入联系电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">送达方式</span>
+                <input id="txt_sdfs" class="info_input item_input" type="text" placeholder="请输入送达方式">
+            </div>
+            <div class="infolist miaoshu" style="height: 80px; line-height: 80px;">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 16px;margin-top: 30px;">申请事项</span>
+                <textarea name="sqsx" placeholder="请输入申请事项" id="txt_sqsx"></textarea>
+            </div>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">申请内容和条件</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">档案或档案复制件名称</span>
+                <input id="txt_dahdafzjmc" class="info_input item_input" type="text" placeholder="请输入档案或档案复制件名称">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">内容</span>
+                <input id="txt_nr" class="info_input item_input" type="text" placeholder="请输入内容">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">规格</span>
+                <input id="txt_gg" class="info_input item_input" type="text" placeholder="请输入规格">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">数量</span>
+                <input id="txt_sl" class="info_input item_input" type="text" placeholder="请输入数量">
+            </div>
+            <div class="infolist miaoshu" style="height: 80px; line-height: 80px;">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 16px;margin-top: 30px;">出境方式和事由</span>
+                <textarea name="cjfshsy" placeholder="请输入出境方式和事由" id="txt_cjfshsy"></textarea>
+            </div>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">申请材料目录</span>
+            </div>
+            <div class="clList" v-for="(val,index) in noshuju" :key="index">
+                <div class="infolist">
+                   <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">序号</span>
+                    <input :id="'txt_xh'+index" class="info_input item_input" type="text" placeholder="请输入序号">
+                </div>
+                <div class="infolist">
+                   <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">档号</span>
+                    <input :id="'txt_dh'+index" class="info_input item_input" type="text" placeholder="请输入档号">
+                </div>
+                <div class="infolist">
+                   <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">立档单位</span>
+                    <input :id="'txt_lddw'+index" class="info_input item_input" type="text" placeholder="请输入立档单位">
+                </div>
+                <div class="infolist">
+                   <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">案卷题名</span>
+                    <input :id="'txt_ajtm'+index" class="info_input item_input" type="text" placeholder="请输入案卷题名">
+                </div>
+                <div class="infolist">
+                   <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">起止日期</span>
+                    <input :id="'txt_qzrqbegin'+index" class="info_input item_input" type="text"  @click='qzrqbegin' readonly style="width: 60px;">至
+                    <input :id="'txt_qzrqend'+index" class="info_input item_input" type="text"  @click='qzrqend' readonly style="width: 60px;">
+                </div>
+                <div class="infolist">
+                   <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">页数</span>
+                    <input :id="'txt_ys'+index" class="info_input item_input" type="text" placeholder="请输入页数" style="width:110px;margin-right: 6px;">页
+                </div>
+                <div class="infolist">
+                   <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">保管期限</span>
+                    <input :id="'txt_bgqx'+index" class="info_input item_input" type="text" placeholder="请输入保管期限">
+                </div>
+                <div class="infolist miaoshu">
+                   <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a" style="line-height: 16px;margin-top: 20px;">拟携带、运输、邮寄档案或者其复制件出境的事由</span>
+                    <textarea name="cjfshsy" placeholder="请输入出境方式和事由" :id="'txt_cjfshsy'+index"></textarea>
+                </div>
+            </div>
+            <div class="footer">
+                <button class="nextep-right" @click='zjgzjl' style="height: 40px;">
+                    增加申请材料
+                </button>
+            </div>
+        </div>
+        <label class="chengruo"> 
+            <input type="checkbox" style="margin-bottom: 42px; margin-right: 20px;">  
+            <div style="width: 224px;display: inline-block;">我（单位）知晓申请该许可应当具备的条件以及提交虚假材料应当承担的法律责任，以上提交的申请材料内容真实。</div> 
+        </label>
+        <div class="footer" style="margin-top: 68px;">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/plugins/mui.picker.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/daxzxksqs.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>市县级文物保护单位修缮许可申请表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 18px;margin-top: 6px;">市县级文物保护单位名称</span>
+                <input id="txt_sxjwwbhdwmc" class="info_input item_input" type="text" placeholder="请输入产权人姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">年代</span>
+                <input id="txt_nd" class="info_input item_input" type="text" placeholder="请输入年代">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">公布批次</span>
+                <input id="txt_gbpc" class="info_input item_input" type="text" placeholder="请输入公布批次">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">地址</span>
+                <input id="txt_dz" class="info_input item_input" type="text" placeholder="请输入地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">工程名称</span>
+                <input id="txt_gcmc" class="info_input item_input" type="text" placeholder="请输入工程名称">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">工程类型</span>
+                <input id="txt_gclx" class="info_input item_input" type="text" placeholder="请输入工程类型">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">工程业主单位</span>
+                <input id="txt_gcyzdw" class="info_input item_input" type="text" placeholder="请输入工程业主单位">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">上级主管部门</span>
+                <input id="txt_sjzgbm" class="info_input item_input" type="text" placeholder="请输入上级主管部门">
+            </div>
+            <div style="display: flex; padding-bottom: 5px;margin-top: 14px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">维修面积（M²）</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">占地面积</span>
+                <input id="txt_zdmj" class="info_input item_input" type="text" placeholder="请输入占地面积">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">建筑面积</span>
+                <input id="txt_jzmj" class="info_input item_input" type="text" placeholder="请输入建筑面积">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">经费估算（万元）</span>
+                <input id="txt_jfgs" class="info_input item_input" type="text" placeholder="请输入经费估算">
+            </div>
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">修缮必要性阐述</span>
+                <textarea name="xsbyxcs" placeholder="请输入修缮必要性阐述" id="txt_xsbyxcs"></textarea>
+            </div>
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">工程范围及内容</span>
+                <textarea name="gcfwjnr" placeholder="请输入工程范围及内容" id="txt_gcfwjnr"></textarea>
+            </div>
+            <div class="infolist miaoshu">
+                <span class="a" style="margin-left: 28px;">备注</span>
+                <textarea name="bz" placeholder="请输入备注" id="txt_bz"></textarea>
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/sxjwwbhdwxsxksqb.js"></script>
+</body>
+</html>

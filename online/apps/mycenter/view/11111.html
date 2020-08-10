@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="../../OfficeHall/controller/jquery.cookie.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+				<script src="https://app.zjzwfw.gov.cn/client/jssdkJS/wechatjs/index.js"></script>
+
+		<script type="text/javascript">
+		var a = $.cookie('userInfo');
+		alert(a);
+			mui.init()
+			 getUserInfo({
+         success:function(data){
+                alert(data);
+            
+         },
+         fail:function(data){
+                alert(data);
+         }
+         });
+
+		</script>
+	</body>
+
+</html>

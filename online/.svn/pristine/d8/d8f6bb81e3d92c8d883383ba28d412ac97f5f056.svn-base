@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>内河个体普通货船运输业务经营许可申请书</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">申请人的基本情况</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请事项</span>
+                <select name="sqss" class="selectStyle info_input item_input" id="txt_sqss">
+                    <option value="1">新申请</option>
+                    <option value="2">变更经营范围</option>
+                    <option value="3">延续申请</option>
+                </select>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="txt_xm" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">公民身份号码</span>
+                <input id="txt_gmsfhm" class="info_input item_input" type="text" placeholder="请输入公民身份号码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">经办人</span>
+                <input id="txt_jbr" class="info_input item_input" type="text" placeholder="请输入经办人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_lxdh" class="info_input item_input" type="text" placeholder="请输入联系电话"  @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">地址</span>
+                <input id="txt_dz" class="info_input item_input" type="text" placeholder="请输入地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">邮政编码</span>
+                <input id="txt_yzbm" class="info_input item_input" type="text" placeholder="请输入邮政编码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">经济类型</span>
+                <input id="txt_jjlx" class="info_input item_input" type="text" placeholder="请输入经济类型">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">社会信用代码</span>
+                <input id="txt_shxydm" class="info_input item_input" type="text" placeholder="请输入社会信用代码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">经营范围</span>
+                <input id="txt_jyfw" class="info_input item_input" type="text" placeholder="请输入经营范围">
+            </div>
+
+
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">运力规模</span>
+            </div>
+            
+            <div class="ylgmList" v-for="(val,index) in noshuju" :key='index'>
+                <div class="infolist">
+                    <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">总数量</span>
+                    <input :id="'txt_num'+index" class="info_input item_input" type="text" placeholder="请输入总吨数" style="width: 126px;">&nbsp;艘
+                </div>
+                <div class="infolist">
+                    <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">总吨数</span>
+                    <input :id="'txt_zds'+index" class="info_input item_input" type="text" placeholder="请输入总吨数" style="width: 126px;">&nbsp;吨
+                </div>
+                <div class="infolist">
+                    <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">载重吨</span>
+                    <input :id="'txt_zzd'+index" class="info_input item_input" type="text" placeholder="请输入载重吨" style="width: 126px;">&nbsp;吨
+                </div>
+                <div class="infolist">
+                    <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">标准箱</span>
+                    <input :id="'txt_bzx'+index" class="info_input item_input" type="text" placeholder="请输入标准箱" style="width: 118px;">TEU
+                </div>
+                <div class="infolist">
+                    <div class="img" style="width: 28px;">
+                        <img src="../images/must.png" alt="" v-if='index==0'>
+                    </div>
+                    <span class="a">船舶来源</span>
+                    <select name="cbly" class="selectStyle info_input item_input" :id="'txt_cbly'+index">
+                        <option value="1">新建</option>
+                        <option value="2">购买</option>
+                        <option value="3">光租</option>
+                        <option value="4">转让</option>
+                        <option value="5">赠与</option>
+                        <option value="6">继承</option>
+                    </select>
+                </div>
+            </div>
+            <div class="footer">
+                <button class="nextep-right" @click='zjylgm' style="height: 40px;line-height: 30px;">
+                    增加运力规模
+                </button>
+            </div>
+            <div class="infolist" style="border: none;margin-left: 28px;">
+                <span class="a">主要安全管理制度</span>
+                <label><input type="checkbox" name="zyaqglzd" value="安全管理责任制度" style="margin-top: 20px;margin-left: 10px;    margin-right: 8px;">安全管理责任制度</label>
+            </div>
+            <div class="infolist" style="margin-left: 168px;border: none">
+                <label><input type="checkbox" name="zyaqglzd" value="安全监督检查制度" style="margin-top: 20px;margin-left: 10px;    margin-right: 8px;">安全监督检查制度</label>
+            </div>
+            <div class="infolist" style="margin-left: 168px;border: none">
+                <label><input type="checkbox" name="zyaqglzd" value="事故应急处置制度" style="margin-top: 20px;margin-left: 10px;    margin-right: 8px;">事故应急处置制度</label>
+            </div>
+            <div class="infolist" style="margin-left: 168px;border: none">
+                <label><input type="checkbox" name="zyaqglzd" value="岗位安全操作规程" style="margin-top: 20px;margin-left: 10px;    margin-right: 8px;">岗位安全操作规程</label>
+            </div>
+            <div class="infolist" style="border-top: 1px solid #F8F8F8;">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">安全管理措施是否落实</span>
+                <select name="aqglcssfls" class="selectStyle info_input item_input" id="txt_aqglcssfls">
+                    <option value="1">否</option>
+                    <option value="2">是</option>
+                </select>
+            </div>
+        </div>
+
+        <label class="chengruo"> <input type="checkbox"> 本申请人保证上述填表内容及提供的申请材料均真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/nhgtpthcysywjyxksqs.js"></script>
+</body>
+</html>

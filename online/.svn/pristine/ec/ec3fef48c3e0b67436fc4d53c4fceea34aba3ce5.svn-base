@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网上申报</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+
+		<style type="text/css">
+		* {
+				border: 0;
+				padding: 0;
+				margin: 0;
+				font-family: "微软雅黑";
+			}
+			
+			#div_main {
+				width: 96%;
+				margin-left: 2%;
+				margin-top: 5px;
+				/*border: 1px solid #e8e8e8;
+				border-radius: 10px;*/
+			}
+			
+			.mui-table-view:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc
+			}
+			
+			.mui-table-view:before {
+				position: absolute;
+				right: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+				top: -1px
+			}
+			
+			.mui-table-view-cell:after {
+				left: 100%;
+			}
+			
+			#centerbtn {
+				z-index: 10000000;
+				background-color: #338dff;
+				margin-top: 140px;
+				font-size: 18px;
+				height: 30px;
+				width: 150px;
+				position: fixed;
+				_position: absolute;
+				top: 0px;
+				_top: 0px;
+				opacity: 0.8;
+				border-radius: 15px;
+			}
+			
+			.licss {
+				float: left;
+				width: 50%;
+				border-bottom: 1px solid #e8e8e8;
+				text-align: center;
+			}
+			/*.mui-table-view-cell>a:not(.mui-btn){
+				margin: 0px  -15px 10px -15px;
+				padding-bottom: 5px;
+			}*/
+		}
+		</style>
+	</head>
+
+	<body style="background-color: #ffffff;">
+
+		<script type="text/javascript">
+			var href = location.href;
+			var vsiteid = href.split("siteid=")[1];
+			vsiteid = decodeURI(vsiteid);
+		</script>
+		<div id="centerbtn" style="display: none;" onclick="window.location.href='../../mycenter/view/personalcenter.html?siteid=' + vsiteid">
+			<img src="../source/images/personcenter.png" style="background-color: #338dff;width: 15px;margin-left: 10px;margin-top: 8px;" />
+			<div style="font-size: 12px;color: #FFFFFF;background-color: #338dff;float: right;margin-right: 70px;margin-top: 6px;">个人中心</div>
+		</div>
+		<div class="mui-content" style="background-color: #FFFFFF;margin-bottom: 70px;">
+			<img id="headimg" src="../source/images/oderhome_banner.png" width="100%" />
+			<ul id="div_main" class="mui-table-view">
+				<li style="border-bottom: 1px solid #e8e8e8;">
+				</li>
+				<li class="mui-table-view-cell licss" style="border-right: 1px solid #e8e8e8;">
+					<a id="a1">
+						<img class="" src="../source/images/oderhome1.png" width="60px" height="60px">
+						<div class="mui-media-body" style="">网上办事</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell licss" style="">
+					<a id="a2">
+						<img class="" src="../source/images/oderhome2.png" width="60px" height="60px">
+						<div class="mui-media-body">网上预约</div>
+					</a>
+				</li>
+			</ul>
+			<ul style="width: 96%;margin-left: 2%;">
+				<li class="mui-table-view-cell" style="border-bottom: 1px solid #e8e8e8;padding-bottom: 0px;line-height: 40px;">
+					<div id="a3" class="mui-navigate-right" style="margin-bottom: 0px;">
+						<img class="mui-pull-left" style="margin-right: 10px;margin-top: 10px;" src="../source/images/oderhome3.png" width="20px" height="20px">
+						<div class="" style="padding-bottom: 10px;">我的办件</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell" style="border-bottom: 1px solid #e8e8e8;padding-bottom: 0px;line-height: 40px;">
+					<div id="a4" class="mui-navigate-right" style="margin-bottom: 0px;">
+						<img class="mui-media-object mui-pull-left" style="margin-right: 10px;margin-top: 10px;" src="../source/images/oderhome4.png" width="20px" height="20px">
+						<div class="mui-media-body" style="padding-bottom: 10px;">我的预约</div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell" style="border-bottom: 1px solid #e8e8e8;padding-bottom: 0px;line-height: 40px;">
+					<div id="a5" class="mui-navigate-right" style="margin-bottom: 0px;">
+						<img class="mui-media-object mui-pull-left" style="margin-right: 10px;margin-top: 10px;" src="../source/images/oderhome5.png" width="20px" height="20px">
+						<div class="mui-media-body" style="padding-bottom: 10px;">我的草稿</div>
+					</div>
+				</li>
+			</ul>
+			<div style="bottom: 0px; width: 100%;height: 60px;position: fixed;background-color: #FFFFFF;">
+				<p style="font-size: 15px;text-align: center;margin-bottom: 0px;">本服务由浙江政务服务网提供</p>
+				<p style="font-size: 15px;text-align: center;">服务咨询热线： <span style="color: #1B95FF;">0571-88808880</span></p>
+			</div>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../source/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+			var width = document.body.clientWidth - 100 + "px";
+			document.getElementById("centerbtn").style.marginLeft = width;
+			$(function() {
+				document.getElementById('a1').href = "oderclassify.html?type=02&siteid=" + vsiteid;
+				document.getElementById('a2').href = "oderclassify.html?type=01&siteid=" + vsiteid;
+				$("#a3").click(function() {
+					window.location.href = "../../OfficeHall/view/MyDoList.html?siteid=" + vsiteid;
+				});
+				$("#a4").click(function() {
+					window.location.href = "../../OfficeHall/view/MyOderList.html?siteid=" + vsiteid;
+				});
+				$("#a5").click(function() {
+					window.location.href = "../../OfficeHall/view/MyDraftList.html?siteid=" + vsiteid;
+				});
+			})
+		</script>
+	</body>
+
+</html>

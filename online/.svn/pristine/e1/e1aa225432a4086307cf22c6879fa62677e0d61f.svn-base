@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			.mui-icon-left-nav:before {
+			    color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header" class="mui-bar mui-bar-nav" style="background: #232736;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color: white;">数据状态为空</h1>
+		</header>
+		<img src="../images/image.png"  style="margin-top: 100px; padding-left: 25%;padding-right: 25%;min-width: 100%;width: 100%;"/>
+        <div style="margin-top: 10px;margin-left: auto;margin-right: auto; text-align: center;line-height: 30px;font-size: 16px;">
+        	<p style="color: gray; padding: 10px 40px;">说明文本说明文本说明文本说明文本说明文本说明文本</p>
+        </div>
+        <div style="text-align: center; margin-top: 50px; padding:0 20px 0 20px; ">
+        	<button type="button" id="primary" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" style="background-color: #3EA3FE; color: #ffffff;font-size: 20px;border: #3EA3FE; padding: 10px 0;">主按钮</button>
+        </div>
+        <footer class="mui-bar-footer" style="color: #cccccc;text-align: center;	background-color: #efeff4;vertical-align: middle; position: fixed;line-height: 30px; left: 0;right: 0;font-size: 12px;margin-bottom: 20px;">
+        	———— 本服务有XXX提供 ————	
+        </footer>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			window.onload = function() {
+			    var primary = document.getElementById("primary");
+			    // 触摸
+			    primary.onclick = function() {
+			        // 背景变绿
+			        this.style.backgroundColor = "#2284DD";
+			        setTimeout(aaa,"1000");
+			    };
+			    function aaa() {
+			        // 背景变绿
+			       primary.style.backgroundColor = "#3EA3FE";
+			    };
+			};
+			
+		</script>
+
+	</body>
+
+</html>

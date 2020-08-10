@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网上预约</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+		<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">
+
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<link href="../source/css/foundation.min.css" rel="stylesheet" type="text/css">
+		<link href="../source/css/foundation-datepicker.css" rel="stylesheet" type="text/css">
+
+		<style>
+		.container {
+				margin: 0 auto;
+				max-width: 960px;
+				padding: 20px;
+			}
+			
+			.list-block ul:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				height: 0px;
+				width: 100%;
+				background-color: #e7e7e7;
+				display: block;
+				z-index: 15;
+				-webkit-transform-origin: 50% 0;
+				transform-origin: 50% 0
+			}
+			
+			.list-block ul:after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				top: 0;
+				height: 0px;
+				width: 100%;
+				background-color: #e7e7e7;
+				display: block;
+				z-index: 15;
+				-webkit-transform-origin: 50% 100%;
+				transform-origin: 50% 100%
+			}
+			
+			.fa {
+				/*display: none;*/
+				color: #F0EEEE;
+			}
+		}
+		</style>
+
+	</head>
+	<script>
+		var href = location.href;
+		var foruser = href.split("dUserType=")[1].split("&")[0];
+		//获取个人用户信息
+		if(foruser == "puser" && href.indexOf("&again=") == -1) { //个人用户
+			sessionStorage.linkurl = decodeURI(href);
+			var areacode = href.indexOf("Customized") != -1;
+			var sUserAgent = navigator.userAgent.toLowerCase();
+			var dtdream = sUserAgent.match(/dtdreamweb/i) == "dtdreamweb";
+			var hanweb = sUserAgent.match(/hamweb/i) == "hanweb";
+			if(hanweb && !dtdream && areacode) {
+				window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=nbgr-zjzwfwsb&isfrom=app";
+			} else {
+				window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=zjzwfwsb&isfrom=app";
+			}
+		}
+		//获取法人用户信息
+		if(foruser == "uuser" && href.indexOf("&again=") == -1) {
+			window.location.href = "https://esso.zjzwfw.gov.cn/opensso/spsaehandler/metaAlias/sp?spappurl=https://app.zjzwfw.gov.cn/zjwssb/division.jsp?goto=" + href;
+		}
+	</script>
+
+	<body>
+		<!-- 这里是页面内容区 -->
+		<div class="content" style="margin-top: 0px;margin-bottom: 50px;" id="contentArea">
+			<div style="background-color: #FFFFFF;margin: 0px;color: #333333;font-size: 16px;padding: 7px;line-height: 30px;display: block;" id="itemname"></div>
+
+			<div style="color: #FFFFFF;background-color: #338dff;padding: 12px;font-size: 16px;text-align: left;">预约日期</div>
+			<div id="my-input2" data-date-format="yyyy-mm-dd" data-date="" /></div>
+		<div style="color: #FFFFFF;background-color: #338dff;padding: 12px;font-size: 16px;text-align: left;">预约时段</div>
+		<div class="list-block media-list content-padded grid-demo" style="margin-left: 3%;width: 94%;display: block;">
+			<ul class="row" id="parent" style="background: white;display: block;">
+			</ul>
+		</div>
+		</div>
+		<div style="bottom: 0px; width: 100%;height: 50px;position: fixed; background-color: #FFFFFF;color: #FFFFFF;line-height: 40px;font-size: 18px;border-top: 1px solid #DDDDDD;margin-bottom: 0px;" align="center" id="sureBtn">
+			<button id="submitbtn0" style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 85%;margin-top: 7px;line-height: 23px;border-width: 0px;padding: 0px;border-radius: 23px 23px 23px 23px;" onclick="clickToOrder()">确定</button>
+		</div>
+		<div id="loading1" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: none;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 70px; 
+				height: 70px;border-radius: 10px ;
+				margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+
+		<div style="bottom: 0px; width: 100%;height: 35px;position: fixed;background-color: #FFFFFF;display: none;" id="sourceApp">
+			<p style="margin-top: 8px;margin-bottom: 0px; line-height: 20px;font-size: 12px;text-align: center;">——本服务由浙江政务服务网提供——</p>
+		</div>
+		<!--</div>-->
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../source/js/vue.min.js"></script>
+		<script src="../../../source/js/jquery-2.2.3.min.js"></script>
+		<script src="../../../js/util.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../../BaseConfig/controller/base64.js"></script>
+		<script src="../controller/handleoder.controller.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../source/js/foundation-datepicker.js"></script>
+		<script src="../source/js/locales/foundation-datepicker.zh-CN.js"></script>
+
+		<script type="text/javascript">
+			//判断容器类型，浏览器还是APP
+			var container = containerT();
+			if(container == "web") { //微信
+				document.getElementById("sourceApp").style.display = "none";
+				document.getElementById("sureBtn").style.marginBottom = "0px";
+				document.getElementById("contentArea").style.marginBottom = "50px";
+			} else { //浙江政务app
+				//				本来以为每个页面都要加来自浙江政务服务 囧
+
+				document.getElementById("sourceApp").style.display = "none";
+				document.getElementById("sureBtn").style.marginBottom = "0px";
+				document.getElementById("contentArea").style.marginBottom = "50px";
+			}
+
+			//依据href获得传来的参数截取传来的事项信息
+			var itemname;
+			var itemcode = href.split("dQlInnerCode=")[1].split("&")[0];
+			itemcode = decodeURI(itemcode);
+			var vsiteid ;
+			var cityName ;
+
+			var selectDate;
+			mui.init()
+			requestItemInfo();
+			requestTimeInterval();
+			var now = new Date();
+
+			now = now.valueOf();
+			now = now + 24 * 60 * 60 * 1000 * 2;
+			now = new Date(now);
+
+			var year = now.getFullYear(); //年
+			var month = now.getMonth() + 1; //月
+			var day = now.getDate() + 2; //日
+			var minDate = year + "-" + month + "-" + day;
+		</script>
+		<script>
+			$(".next").attr('disabled', false);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+	<meta charset="UTF-8">
+	<title>消息详情</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="../../../css/mui.min.css" rel="stylesheet" />
+
+	<head>
+		<style type="text/css">
+			body {
+				text-align: justify;
+				text-justify: inter-word;
+				background-color: transparent;
+				/*font-family: 'LTHYSZK';*/
+				margin-top: 10px;
+				margin-left: 10px;
+				margin-right: 10px;
+				line-height: 27px;
+				font-color: #ff0000;
+				font-size: 15px;
+				word-wrap: break-word;
+				/*overflow: hidden;*/
+			}
+			
+			img {
+				border: 1px solid #eee;
+				max-width: 290px;
+				width: expression(this.width> 270 ? '270px': this.width+'px');
+				overflow: hidden;
+			}
+			
+			a {
+				color: #0E89E1;
+				text-decoration: none;
+				font-size: 15;
+			}
+			
+			table {
+				table-layout: fixed;
+			}
+			
+			td {
+				word-break: break-all;
+				word-wrap: break-word;
+			}
+			
+			p {
+				color: #333333;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #1c1b1f;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">消息详情
+			</h1>
+		</header>-->
+		<script>
+			var href = location.href;
+			//依据href获得传来的参数截取传来的站点名称
+			var webid = href.split("webid=")[1].split("&")[0];
+			webid = decodeURI(webid);
+
+			var columnid = href.split("columnid=")[1].split("&")[0];
+			columnid = decodeURI(columnid);
+
+			var infoid = href.split("infoid=")[1].split("&")[0];
+			infoid = decodeURI(infoid);
+
+			var source = href.split("source=")[1];
+			source = decodeURI(source);
+		</script>
+		<div class="mui-content" style="background-color: #FFFFFF;">
+			<div style="padding-top:15px;padding-left:15px;padding-right:15px; background-color: #FFFFFF;">
+				<span style="font-size:20px; " id="title"></span>
+				<div style="margin-top:10px;">
+					<span style="font-size:12px;color:gray; " id="time"></span>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+				</div>
+
+				<div id="content"></div>
+
+			</div>
+		</div>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../source/js/jquery-1.8.3.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../source/js/vue.min.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/mymessage.controller.js"></script>
+		<script src="../controller/mymessagearticle.controller.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script type="text/javascript">
+			mui.init()
+
+			//菊花
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+		</script>
+	</body>
+
+</html>

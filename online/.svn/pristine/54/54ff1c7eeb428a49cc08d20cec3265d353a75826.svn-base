@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="pragma" content="no-cache" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<title>我的办件</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../../source/css/bootstrap.css" />
+	<style type="text/css">
+		* {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			font-family: "微软雅黑";
+		}
+		
+		#head {
+			width: 100%;
+		}
+		
+		td {
+			width: 119px;
+			text-align: center;
+		}
+		
+		#bt1,
+		#bt2,
+		#bt3 {
+			height: 33px;
+			width: 100%;
+			border: 1px solid #0A87FF;
+		}
+		
+		#bt1 {
+			color: white;
+			background-color: #0a87ff;
+			border-radius: 5px 0 0 5px;
+			border-right: 0;
+		}
+		
+		#bt2 {
+			color: #666;
+			border-radius: 0 0 0 0;
+			background-color: white;
+			border-right: 0;
+		}
+		
+		#bt3 {
+			color: #666;
+			border-radius: 0px 5px 5px 0;
+			background-color: white;
+		}
+		
+		.tab-pane {
+			border-top: thin solid #DDDDDD;
+			width: 100%;
+			margin: 0 auto;
+			margin-top: 10px;
+		}
+		
+		.nr {
+			margin: 0 auto;
+			/*padding-top: 10px;*/
+			border-bottom: thin solid #e8e8e8;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			/*background-image: url('../source/img/item_arrow.png');
+			background-repeat: no-repeat;
+			background-position: right 0px center;
+			background-size: 6px 12px;*/
+			/*background-color: #007AFF;*/
+		}
+		
+		.sj {
+			color: #999999;
+			font-size: 14px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		
+		.zh {
+			width: 100%;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			color: #222222;
+			font-size: 17px;
+		}
+		
+		.mui-table-view {
+			background-color: #ffffff;
+			border: 0px;
+			list-style-type: none
+		}
+		
+		.mui-table-view:after {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: 0px;
+			content: '';
+			-webkit-transform: scaleY(.5);
+			transform: scaleY(.5);
+			background-color: #c8c7cc
+		}
+		
+		.mui-table-view:before {
+			position: absolute;
+			right: 0;
+			left: 0;
+			height: 0px;
+			content: '';
+			-webkit-transform: scaleY(.5);
+			transform: scaleY(.5);
+			background-color: #c8c7cc;
+			top: -1px
+		}
+		
+		.mui-table-view-cell:after {
+			left: 100%;
+		}
+		
+		.mui-table-view-cell {
+			padding: 6px 15px 0px 15px;
+		}
+		
+		.mui-table-view {
+			width: 100%;
+		}
+		
+		.mui-scroll-wrapper {
+			/*top: 50px;*/
+		}
+		
+		#badmessage {
+			opacity: 0.6;
+			border-radius: 10px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 160px;
+			height: 160px;
+			margin-left: -80px;
+			margin-top: -120px;
+			display: none;
+		}
+		
+		#main {
+			margin: 0 auto;
+			/*padding-right: 10px;*/
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			/*background-image: url('../source/img/item_arrow.png');
+			background-repeat: no-repeat;
+			background-position: right 0px center;
+			background-size: 6px 12px;*/
+		}
+	</style>
+
+	<body>
+		<div class="mui-content">
+			<div id="content">
+				<div id="list" class="mui-scroll" style="display: none;">
+					<ul class="mui-table-view" id="parent" style="">
+						<li v-for="item in items" class="mui-table-view-cell" id="{{item.index}}">
+							<div id="main">
+								<div id="itemid{{item.index}}" style="display: none;">{{item.itemid}}</div>
+								<div id="servicename{{item.index}}" style="display: none;">{{item.servicename}}</div>
+								<div id="projpwd{{item.index}}" style="display: none;">{{item.projpwd}}</div>
+								<div id="transact_time{{item.index}}" style="display: none;">{{item.transact_time}}</div>
+								<div id="create_time{{item.index}}" style="display: none;">{{item.create_time}}</div>
+								<div id="accept_time{{item.index}}" style="display: none;">{{item.accept_time}}</div>
+								<div id="handlestate{{item.index}}" style="display: none;">{{item.handlestate}}</div>
+								<div id="deptname{{item.index}}" style="display: none;">{{item.deptname}}</div>
+								<div class="nr">
+									<p id="itemname{{item.index}}" class="mui-ellipsis-2" style="color: #333333;font-size: 16px;">{{item.itemname}}</p>
+									<span class="sj" style="float: left;">{{item.time.substring(0, 10)}}</span>
+									<span class="sj" style="float: right;color: {{item.color}};">{{item.handlestate}}</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+					<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+					<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+				</div>
+				<div id="badmessage" style="">
+					<img style="width: 160px; height: 160px;" src="../source/img/yw_message_bad.png" />
+					<p style="width: 160px;margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+				</div>
+			</div>
+		</div>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../../js/util.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/MyDosList.controller.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/mui.pullToRefresh.js"></script>
+		<script src="../../../js/mui.pullToRefresh.material.js"></script>
+		<script src="../../BaseConfig/source/js/function.js"></script>
+		<script>
+			//判断容器类型，浏览器还是APP
+			var container = containerT();
+			if(container != "web") {
+				onGetUserInfoDos();
+			}
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			mui.init();
+			if(container == "web") {
+				requestDosListData();
+			}
+
+			//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+			mui('.mui-table-view').on('tap', '.mui-table-view-cell', function() {
+				var itemidindex = "itemid" + this.id;
+				var servicenameindex = "servicename" + this.id;
+				var projpwdindex = "projpwd" + this.id;
+				var transact_timeindex = "transact_time" + this.id;
+				var create_timeindex = "create_time" + this.id;
+				var accept_timeindex = "accept_time" + this.id;
+				var handlestateindex = "handlestate" + this.id;
+				var itemnameindex = "itemname" + this.id;
+				var deptnameindex = "deptname" + this.id;
+				var itemid = document.getElementById(itemidindex).innerHTML;
+				var servicename = document.getElementById(servicenameindex).innerHTML;
+				var projpwd = document.getElementById(projpwdindex).innerHTML;
+				var transact_time = document.getElementById(transact_timeindex).innerHTML;
+				var create_time = document.getElementById(create_timeindex).innerHTML;
+				var accept_time = document.getElementById(accept_timeindex).innerHTML;
+				var handlestate = document.getElementById(handlestateindex).innerHTML;
+				var itemname = document.getElementById(itemnameindex).innerHTML;
+				var deptname = document.getElementById(deptnameindex).innerHTML;
+				mui.openWindow({
+					url: "MyDosContent.html?itemid=" + itemid + "&servicename=" + servicename +
+						"&projpwd=" + projpwd + "&transact_time=" + transact_time + "&create_time=" + create_time +
+						"&accept_time=" + accept_time + "&handlestate=" + handlestate +
+						"&itemname=" + itemname + "&deptname=" + deptname
+				})
+			})
+		</script>
+	</body>
+
+</html>

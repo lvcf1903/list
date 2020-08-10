@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>网上办事</title>
+		<link rel="stylesheet" type="text/css" href="../source/css/mui.min.css" />
+	</head>
+
+	<style type="text/css">
+		body {
+			border: 0;
+			margin: 0;
+			padding: 0;
+			background-color: white;
+		}
+		
+		span {
+			color: red;
+		}
+		
+		#content {
+			padding-right: 10px;
+			padding-left: 10px;
+			margin-top: 5px;
+			background-color: #FFFFFF;
+		}
+		
+		#sureBtn {
+			text-align: center;
+		}
+		
+		#submitBtn3 {
+			background-color: #338dff;
+			color: #FFFFFF;
+			height: 36px;
+			width: 40%;
+			margin-top: 30px;
+			margin-bottom: 15px;
+			border-width: 0px;
+		}
+		
+		#loading {
+			background-color: #000000;
+			opacity: 0.6;
+			border-radius: 10px;
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			width: 120px;
+			height: 120px;
+			margin-left: -60px;
+			text-align: center;
+			display: none;
+		}
+		
+		.radio {
+			margin-left: 30px;
+		}
+		
+		.div-radio {
+			height: 40px;
+			line-height: 40px;
+		}
+		
+		input[type="date"]:before {
+			content: attr(placeholder);
+			color: #999999;
+		}
+		
+		input,
+		select {
+			vertical-align: middle;
+		}
+		
+		.checkbox_span {
+			vertical-align: middle;
+			font-size: 15px;
+			color: #333333
+		}
+	</style>
+
+	<body>
+		<div class="mui-content" id="content">
+			<div style="margin: 0px;color: #000000;font-size: 16px;padding: 7px;line-height: 30px;text-align: center;font-family: '微软雅黑';" id="formname"></div>
+			<p style="font-size: 16px;color:#080808;">请完善中华人民共和国残疾人证申请表</p>
+			<form class="mui-input-group">
+				<p>带<span>*</span>为必填项，请完善信息</p>
+				<div class="mui-input-row">
+					<label>残疾类型	<span>*</span></label>
+					<select id="deformity_type" class="necessity">
+						<option value="">请选择</option>
+						<option value="精神">精神</option>
+						<option value="视力">视力</option>
+						<option value="听力">听力</option>
+						<option value="语言">语言</option>
+						<option value="肢体">肢体</option>
+						<option value="智力">智力</option>
+					</select>
+				</div>
+				<p>申请人基本情况</p>
+				<div class="mui-input-row">
+					<label>姓名	<span>*</span></label>
+					<input id="name" type="text" class="mui-input-clear necessity" placeholder="请输入姓名">
+				</div>
+				<div class="mui-input-row">
+					<label>性别	<span>*</span></label>
+					<div class="div-radio">
+						<input type="radio" name="sex" value="男" checked/>男
+						<input type="radio" name="sex" value="女" class="radio" />女
+					</div>
+				</div>
+				<div class="mui-input-row">
+					<label>民族	<span>*</span></label>
+					<input id="nation" type="text" class="mui-input-clear necessity" placeholder="请输入民族">
+				</div>
+				<div class="mui-input-row">
+					<label>婚否	<span>*</span></label>
+					<div class="div-radio">
+						<input type="radio" name="marriage" value="未婚" checked/>未婚
+						<input type="radio" name="marriage" value="已婚" class="radio" />已婚
+					</div>
+				</div>
+				<div class="mui-input-row">
+					<label>出生年月	<span>*</span></label>
+					<!--<input type="date" name="birthday" id="birthday" placeholder="请选择出生日期" class="necessity" />-->
+					<input class="necessity" type="date" name="birthday" id="birthday" placeholder="请选择出生日期" onblur="if(this.value == '')this.setAttribute('placeholder', '请选择出生日期')" onfocus="this.removeAttribute('placeholder')">
+
+				</div>
+				<div class="mui-input-row">
+					<label>居住地址	<span>*</span></label>
+					<input id="address" type="text" class="mui-input-clear necessity" placeholder="请输入居住地址">
+				</div>
+				<div class="mui-input-row">
+					<label>邮编</label>
+					<input id="postcode" type="text" class="mui-input-clear" placeholder="请输入邮编">
+				</div>
+				<div class="mui-input-row">
+					<label>联系电话</label>
+					<input id="phone" type="text" class="mui-input-clear" placeholder="请输入联系电话">
+				</div>
+				<p>户口类别</p>
+				<div class="mui-input-row">
+					<label>户口类型	<span>*</span></label>
+					<div class="div-radio">
+						<input type="radio" name="housetype" value="农业" checked/>农业
+						<input type="radio" name="housetype" value="非农业" class="radio" />非农业
+					</div>
+				</div>
+				<p>监护人信息</p>
+				<div class="mui-input-row">
+					<label>姓名	<span>*</span></label>
+					<input id="guardian_name" type="text" class="mui-input-clear necessity" placeholder="请输入监护人姓名">
+				</div>
+				<div class="mui-input-row">
+					<label>与其关系	<span>*</span></label>
+					<input id="guardian_relation" type="text" class="mui-input-clear necessity" placeholder="请输入与申请人关系">
+				</div>
+				<div class="mui-input-row">
+					<label>联系电话</label>
+					<input id="guardian_phone" type="text" class="mui-input-clear" placeholder="请输入监护人联系电话">
+				</div>
+				<div class="mui-input-row">
+					<label>身份证号	<span>*</span></label>
+					<input id="guardian_idcard" type="text" class="mui-input-clear necessity" placeholder="请输入监护人身份证号">
+				</div>
+				<p>申请类型</p>
+				<div class="mui-input-row">
+					<label>申请类型	<span>*</span></label>
+					<select id="apply_type" class="necessity">
+						<option value="">请选择</option>
+						<option value="新申请">新申请</option>
+						<option value="换领申请">换领申请</option>
+						<option value="补办申请">补办申请</option>
+					</select>
+				</div>
+			</form>
+			<div style="margin-top: 10px; padding: 10px 10px 10px 10px;">
+				<input id="issure" type="checkbox" /><span class="checkbox_span"> 我承诺填写的信息和提交的材料真实有效。</span>
+			</div>
+			<div id="sureBtn">
+				<input type="button" value="提交" onclick="submitForm()" id="submitBtn3" />
+			</div>
+		</div>
+		<div id="loading">
+			<img id="food" src="../../../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+		<script src="../source/js/vue.min.js"></script>
+		<script src="../../../../../js/util.js"></script>
+		<script src="../../../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../../../../BaseConfig/source/js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../../../js/mui.min.js"></script>
+		<script src="../controller/oderform.controller.js"></script>
+		<script type="text/javascript">
+			var container = containerT();
+			var userInfo;
+			//判断容器类型，浏览器还是APP
+			var containerType = "";
+
+			if(container == "web") {
+				//				requestToken();
+				userInfo = window.localStorage.wxuserInfo;
+				if(userInfo) {
+					userInfo = JSON.parse(userInfo);
+				}
+				containerType = "0"; //微信 
+			} else { //app 使用jssdk获取用户信息
+				userInfo = window.localStorage.userInfo;
+				if(userInfo) {
+					userInfo = JSON.parse(userInfo);
+				}
+				containerType = "1"; //浙江app中 URL
+			}
+			var idcard;
+			var type;
+			var userid;
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var cityName1 = href.split("cityname=")[1].split("&")[0];
+			cityName1 = decodeURI(cityName1);
+			var vsiteid = href.split("siteid=")[1].split("&")[0];
+			vsiteid = decodeURI(vsiteid);
+			var validitykey = href.split("validitykey=")[1].split("&")[0];
+			validitykey = decodeURI(validitykey);
+			var prama = href.split("prama=")[1].split("&")[0];
+			prama = decodeURI(prama);
+
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			/*	var birth = document.getElementById("birthday");
+				birth.onfocus = function() {
+					this.removeAttribute('placeholder');
+				};
+				birth.onblur = function() {
+					if(this.value == '') this.setAttribute('placeholder', '请选择出生日期');
+				};*/
+		</script>
+	</body>
+
+</html>

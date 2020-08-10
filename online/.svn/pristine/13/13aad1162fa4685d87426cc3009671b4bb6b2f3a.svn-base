@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var vsiteid = href.split("siteid=")[1];
+			vsiteid = decodeURI(vsiteid);
+			var storage = window.localStorage;
+			storage.vsid = vsiteid;
+		</script>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+				<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+				<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+			</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script type="text/javascript" src="../../../source/js/util.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../source/js/function.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			//菊花
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			//判断容器类型，浏览器还是APP
+			var container = containerT();
+			if(container == "web") {
+				var storage = window.localStorage;
+				var wxuserInfo = storage.wxuserInfo;
+				if(typeof(wxuserInfo) == "undefined" || wxuserInfo == "") {
+					//跳转到登录页
+					window.location.href = "../../OfficeHall/view/UserLogin.html?siteid=" + vsiteid;
+				} else {
+					window.location.href = "personalcenter.html?siteid=" + vsiteid;
+				}
+			} else {
+				onGetUserInfo();
+			}
+		</script>
+	</body>
+
+</html>

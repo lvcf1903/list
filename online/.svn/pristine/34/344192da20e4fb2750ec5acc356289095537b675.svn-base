@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>失业人员生育补助金申领表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="txt_xm" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">性别</span>
+                <input id="txt_xb" class="info_input item_input" type="text" placeholder="请输入性别">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_lxdh" class="info_input item_input" type="text" placeholder="请输入联系电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">社会保障号码</span>
+                <input id="txt_shbzhm" class="info_input item_input" type="text" placeholder="请输入社会保障号码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">就业创业证编号</span>
+                <input id="txt_jycyzbh" class="info_input item_input" type="text" placeholder="请输入就业创业证编号">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">失业保险待遇期限</span>
+                <input id="txt_xssybxdyqxbegin" class="info_input item_input" type="text" style="width: 70px;font-size: 14px; margin-right: 4px;" @click='begin' readonly placeholder="开始时间">至
+                <input id="txt_xssybxdyqxend" class="info_input item_input" type="text" style="width: 70px;font-size: 14px;margin-left: 4px;" @click="end" readonly placeholder="结束时间">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">生育登记服务卡编号</span>
+                <input id="txt_sydjfwkbh" class="info_input item_input" type="text" placeholder="请输入生育登记服务卡编号">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">登记机关</span>
+                <input id="txt_djjg" class="info_input item_input" type="text" placeholder="请输入登记机关">
+            </div>
+
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">子女姓名</span>
+                <input id="txt_znxm" class="info_input item_input" type="text" placeholder="请输入子女姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">性别</span>
+                <input id="txt_xb2" class="info_input item_input" type="text" placeholder="请输入性别">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">出生日期</span>
+                <input id="txt_csrq" class="info_input item_input" type="text" @click='csrq' readonly placeholder="点击选择出生日期">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">出生证编号</span>
+                <input id="txt_cszbh" class="info_input item_input" type="text" placeholder="请输入出生证编号">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">签证机构</span>
+                <input id="txt_qzjg" class="info_input item_input" type="text" placeholder="请输入签证机构">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">银行账号</span>
+                <input id="txt_yhzh" class="info_input item_input" type="text" placeholder="请输入银行账号">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">开户银行</span>
+                <input id="txt_khyh" class="info_input item_input" type="text" placeholder="请输入开户银行">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">户名</span>
+                <input id="txt_hm" class="info_input item_input" type="text" placeholder="请输入户名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">结果告知方式</span>
+                <select name="gaozhifangshi" class="selectStyle info_input item_input" @change="changeFunction">
+                    <option value="1">短信通知</option>
+                    <option value="2">纸质邮寄</option>
+                </select>
+            </div>
+            <div class="infolist" v-show='isFunction==1'>
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">请填写手机号码</span>
+                <input id="txt_jggzfs" class="info_input item_input" type="text" placeholder="请输入手机号码" @blur='sjyz'>
+            </div>
+            <div class="infolist" v-show='isFunction==2'>
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">请填写地址</span>
+                <input id="txt_jggzfs2" class="info_input item_input" type="text" placeholder="请输入地址">
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 以上内容经本人确认无误。</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/plugins/mui.picker.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/syrysybzjslb.js"></script>
+</body>
+</html>

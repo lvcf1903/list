@@ -1,0 +1,8 @@
+//var overallInterface = "http://ywszwfw.yw.gov.cn/yyxt/ywzw/interface/";
+//var overallInterface = "http://192.168.89.107:8080/yiwu/ywzw/interface/";
+
+//var overallInterface = "http://220.191.238.214:8090/quzhou/ywzw/interface/";
+var overallInterface = "ydd2.service.gov.cn/zhongzhuan/zz/interface/";
+
+
+//var overallInterface = "http://118.178.118.120:8080/zhongzhuan/zz/interface/

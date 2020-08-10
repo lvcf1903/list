@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/layer.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			.mui-icon-left-nav:before {
+			    color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header" class="mui-bar mui-bar-nav" style="background: #232736;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color: white;">弹出框</h1>
+		</header>
+		<div class="mui-content" style="margin-top: 50px; width: 94%;margin-left: 3%;">
+			<!--弹出提示  自定义 -->
+			<button type="button" id="primary" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" style="background-color: #3EA3FE; color: #ffffff;font-size: 20px;border: #3EA3FE; padding: 10px 0;" onclick="layerout();">自定义弹出框</button>
+			
+	        <!--弹出提示  调用容器-->
+	        <button type="button" id="primary" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" style="background-color: #3EA3FE; color: #ffffff;font-size: 20px;border: #3EA3FE; padding: 10px 0;" onclick="layerout1();">调用容器弹出框1</button>
+	        <button type="button" id="primary" class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" style="background-color: #3EA3FE; color: #ffffff;font-size: 20px;border: #3EA3FE; padding: 10px 0;" onclick="layerout2();">调用容器弹出框2</button>
+        </div>
+        
+		<footer class="mui-bar-footer" style="color: #cccccc;text-align: center;	background-color: #efeff4;vertical-align: middle; position: fixed;line-height: 30px; left: 0;right: 0;font-size: 12px;margin-bottom: 20px;">
+        	———— 本服务有XXX提供 ————	
+        </footer>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/layer.m.js"></script>
+		<script src="../js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			function layerout() {
+				var html = " <img src=\"../images/image.png\"  style=\"margin-top: 10px; padding-left: 25%;padding-right: 25%;min-width: 100%;width: 100%;\"/> "
+					       +"<div> <span style=\"color: gray;\">　　为了确保安全请做好防护措施，放置警示标志，开始处理前请开启双闪灯，注意过往车辆</span> </div>"
+					       +"<button type=\"button\" id=\"primary\" class=\"mui-btn mui-btn-primary mui-btn-block mui-btn-outlined\" style=\"background-color: #3EA3FE;height: 30px; color: #ffffff;font-size: 20px;border: #3EA3FE; margin-top: 20px;padding: 0 0;\" onclick=\"layer.closeAll();\">确　定</button> ";
+				layer.open({
+				    type: 1,
+				    content: html,
+				    style: 'width:70%; height:auto; padding:10px; background-color:#F2F2F2; color:#999999; border:none;border-radius: 5px;'
+				});
+			}
+
+			function layerout1() {
+				layer.open({
+				    content: '该业务暂时不可用，请稍后再试',
+				    btn: ['确定']
+				});
+			}
+			function layerout2() {
+				layer.open({
+				    content: '你是想确认呢，还是想取消呢？',
+				    btn: ['确认', '取消'],
+				    shadeClose: false,
+				    yes: function(){
+				        layer.open({content: '你点了确认', time: 1});
+				    }, no: function(){
+				        layer.open({content: '你选择了取消', time: 1});
+				    }
+				});
+
+			}
+		</script>
+
+	</body>
+
+</html>

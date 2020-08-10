@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<title>我的收藏</title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="../../../source/css/bootstrap.css" />
+	<style type="text/css">
+		* {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			font-family: "微软雅黑";
+		}
+		
+		#head {
+			width: 100%;
+		}
+		
+		td {
+			width: 119px;
+			text-align: center;
+		}
+		
+		#bt1,
+		#bt2,
+		#bt3 {
+			height: 33px;
+			width: 100%;
+			border: 1px solid #0A87FF;
+		}
+		
+		#bt1 {
+			color: white;
+			background-color: #0a87ff;
+			border-radius: 5px 0 0 5px;
+			border-right: 0;
+		}
+		
+		#bt2 {
+			color: #666;
+			border-radius: 0 0 0 0;
+			background-color: white;
+			border-right: 0;
+		}
+		
+		#bt3 {
+			color: #666;
+			border-radius: 0px 5px 5px 0;
+			background-color: white;
+		}
+		
+		.tab-pane {
+			border-top: thin solid #DDDDDD;
+			width: 100%;
+			margin: 0 auto;
+			margin-top: 10px;
+		}
+		
+		.nr {
+			/*height: 70px;*/
+			margin: 0 auto;
+			padding-top: 10px;
+			padding-left: 20px;
+			padding-right: 40px;
+			/*border-bottom: thin solid #DDDDDD;*/
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			background-image: url('../source/img/item_arrow.png');
+			background-repeat: no-repeat;
+			background-position: right 20px center;
+			background-size: 6px 12px;
+			/*background-color: #007AFF;*/
+		}
+		
+		.sj {
+			font-size: 16px;
+			color: #999;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		
+		.zh {
+			width: 100%;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			font-size: 16px;
+			color: #333;
+		}
+		
+		.mui-table-view {
+			width: 100%;
+		}
+		
+		.mui-scroll-wrapper {
+			/*top: 50px;*/
+		}
+	</style>
+
+	<body>
+		<div class="mui-content">
+			<!--下拉刷新容器-->
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view" id="parent" style="float: left;">
+						<li v-for="item in items" class="mui-table-view-cell" id="{{item.index}}">
+							<div id=" main">
+								<div id="itemid{{item.index}}" style="display: none;">{{item.itemid}}</div>
+								<div class="nr">
+									<p id="itemname{{item.index}}" class="zh">{{item.itemname}}</p>
+									<p id="time{{item.index}}" class="sj">{{item.time}}</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+					<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+					<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+				</div>
+			</div>
+
+		</div>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/CollectList.controller.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/mui.pullToRefresh.js"></script>
+		<script src="../../../js/mui.pullToRefresh.material.js"></script>
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					requestListData(0);
+				}, 1500);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					requestListData(1);
+				}, 1500);
+			}
+
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			requestListData(0);
+
+			//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+			mui('.mui-table-view').on('tap', '.mui-table-view-cell', function() {
+				//					alert("source" + this.id);
+				//				var webidindex ="webid"+this.id;
+				//				var columnidindex ="columnid"+this.id;
+				//				var infoidindex ="infoid"+this.id; 
+				//				var sourceindex ="source"+this.id;
+				//				var webid = document.getElementById(webidindex).innerHTML;
+				//				var columnid = document.getElementById(columnidindex).innerHTML;
+				//				var infoid = document.getElementById(infoidindex).innerHTML;
+				//				var soucre = document.getElementById(sourceindex).innerHTML;
+				mui.openWindow({
+					//						url: "mymessagearticle.html?webid=" + webid + " &columnid=" + columnid + " &infoid=" + infoid + " &source=" + soucre
+					//					url: "WokContent.html"
+					url: "WokContent.html?vtype=" + vtype + "&vid=" + vid + "&vname=" + vname
+				})
+			})
+		</script>
+	</body>
+
+</html>

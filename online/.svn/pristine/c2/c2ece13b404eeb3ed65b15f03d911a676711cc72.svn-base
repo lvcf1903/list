@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>网上查询</title>
+	</head>
+	<link rel="stylesheet" href="../../../css/mui.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../source/css/bootstrap.css" />
+	<style type="text/css">
+		body {
+			text-align: center;
+		}
+		
+		* {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			font-family: "微软雅黑";
+		}
+		
+		table {
+			height: 33px;
+			border-collapse: collapse;
+			margin: 0 auto;
+			margin-top: 10px;
+			padding-bottom: 30px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		
+		#head {
+			width: 100%;
+		}
+		
+		td {
+			width: 50%;
+			text-align: center;
+		}
+		
+		#bt1,
+		#bt2 {
+			height: 40px;
+			width: 100%;
+			border: 1px solid #199efd;
+			font-size: 16px;
+		}
+		
+		#bt1 {
+			color: white;
+			background-color: #199efd;
+			border-radius: 5px 0 0 5px;
+			border-right: 0;
+		}
+		
+		#bt2 {
+			color: #666;
+			border-radius: 0 5px 5px 0;
+			background-color: white;
+		}
+		
+		span {
+			display: inline-block;
+			line-height: 40px;
+			font-size: 16px;
+		}
+		
+		#grkey,
+		#frkey {
+			width: 92%;
+			height: 36px;
+			font-size: 16px;
+			color: #999999;
+		}
+		
+		.dropdown-menu> li:hover,
+		.dropdown-menu> li:focus {
+			color: #FFFFFF;
+			text-decoration: none;
+			background-color: #0A87FF;
+		}
+		
+		li {
+			text-align: center;
+			height: 40px;
+		}
+		
+		.dropdown-toggle {
+			width: 92%;
+			text-align: left;
+			font-size: 14px;
+			border: 1px solid gainsboro;
+			margin-bottom: 15px;
+			border-radius: 0;
+			padding-top: 0;
+			padding-bottom: 0;
+			height: 40px;
+			background-image: url(img/down.png);
+			background-repeat: no-repeat;
+			background-position: right 10px center;
+		}
+		
+		.dropdown-menu .divider {
+			height: 1px;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			background-color: #e5e5e5;
+			box-shadow: 0 0 0 0;
+			border-radius: 0;
+		}
+		
+		.dropdown-menu {
+			width: 80%;
+			padding: 0;
+			box-shadow: 0 0 0 0;
+			border-radius: 0;
+			position: absolute;
+			top: 37px;
+			left: 10%;
+		}
+		
+		button {
+			height: 40px;
+			width: 92%;
+			background-color: #0A87FF;
+			font-size: 16px;
+			color: white;
+			border-radius: 5px;
+		}
+		
+		.other {
+			margin-top: 20px;
+			font-size: 14px;
+		}
+		
+		.logindiv {
+			margin: 20px auto;
+			margin-bottom: 0;
+			text-align: center;
+			width: 100%;
+		}
+		
+		#grsearch,
+		#frsearch {
+			font-size: 16px;
+			width: 100%;
+			background-color: #199efd;
+			height: 44px;
+			color: white;
+		}
+	</style>
+
+	<body>
+		<div id="head">
+			<table border="" cellspacing="" cellpadding="">
+				<tr>
+					<td id="t1">
+						<a href="#content"><input type="button" name="" id="bt1" value="个人办事" onclick="changeColor1()" /></a>
+					</td>
+					<td id="t2">
+						<a href="#content2"><input type="button" name="" id="bt2" value="法人办事" onclick="changeColor2()" /></a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div style="margin: 0 auto; width: 100%;padding: 5%;">
+			<form id="grpicker" action="" method="post" style="display: block;">
+				<div class="dropdown" id="grbm">
+					<div class="btn dropdown-toggle" id="" data-toggle="dropdown">
+						<span style="line-height: 30px;">部门：</span>
+						<span id="grbmname">全部</span>
+						<span id="grbmid" style="display: none;"></span>
+					</div>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="height: 400px;overflow: scroll;">
+						<li role="presentation" onclick="document.getElementById('grbmname').innerHTML = '全部'">
+							<span>----全部----</span>
+						</li>
+						<li id="{{item1.index}}" role="presentation" v-for="item1 in items1" onclick="document.getElementById('grbmname').innerHTML = '{{item1.name}}';
+							document.getElementById('grbmid').innerHTML = '{{item1.id}}'">
+							<span id="">{{item1.name}}</span>
+							<span id="" style="display: none;">{{item1.id}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="dropdown" id="grzt">
+					<div class="btn dropdown-toggle" id="" data-toggle="dropdown">
+						<span>主题：</span>
+						<span id="grztname" style="line-height: 30px;">全部</span>
+						<span id="grztid" style="display: none;"></span>
+					</div>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="height: 400px;overflow: scroll;">
+						<li role="presentation" onclick="document.getElementById('grztname').innerHTML = '全部'">
+							<span>----全部----</span>
+						</li>
+						<li id="{{item3.index}}" role="presentation" v-for="item3 in items3" onclick="document.getElementById('grztname').innerHTML = '{{item3.name}}';
+							document.getElementById('grztid').innerHTML = '{{item3.id}}'">
+							<span id="">{{item3.name}}</span>
+							<span id="" style="display: none;">{{item3.id}}</span>
+						</li>
+					</ul>
+				</div>
+				<input id="grkey" type="text" name="" id="" placeholder="关键字" value="" />
+				<div class="logindiv">
+					<input id="grsearch" type="button" name="" value="搜索" onclick="GRSearchClick();" />
+				</div>
+
+				<div class="other">
+					<p>
+						<a id="GrSearchAll" style="color: #199efd;font-size: 16px;">查看全部事项 ></a>
+					</p>
+				</div>
+			</form>
+
+			<form id="frpicker" action="" method="post" style="display: none;">
+				<div class="dropdown" id="frbm">
+					<div class="btn dropdown-toggle" id="" data-toggle="dropdown">
+						<span style="line-height: 30px;">部门：</span>
+						<span id="frbmname">全部</span>
+						<span id="frbmid" style="display: none;"></span>
+					</div>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="height: 400px;overflow: scroll;">
+						<li role="presentation" onclick="document.getElementById('frbmname').innerHTML = '全部'">
+							<span>----全部----</span>
+						</li>
+						<li id="{{item2.index}}" role="presentation" v-for="item2 in items2" onclick="document.getElementById('frbmname').innerHTML = '{{item2.name}}';
+							document.getElementById('frbmid').innerHTML = '{{item2.id}}'">
+							<span id="">{{item2.name}}</span>
+							<span id="" style="display: none;">{{item2}}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="dropdown" id="frzt">
+					<div class="btn dropdown-toggle" id="" data-toggle="dropdown">
+						<span>主题：</span>
+						<span id="frztname" style="line-height: 30px;">全部</span>
+						<span id="frztid" style="display: none;"></span>
+					</div>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="height: 400px;overflow: scroll;">
+						<li role="presentation" onclick="document.getElementById('frztname').innerHTML = '全部'">
+							<span>----全部----</span>
+						</li>
+						<li id="{{item4.index}}" role="presentation" v-for="item4 in items4" onclick="document.getElementById('frztname').innerHTML = '{{item4.name}}';
+							document.getElementById('frztid').innerHTML = '{{item4.id}}'">
+							<span id="">{{item4.name}}</span>
+							<span id="" style="display: none;">{{item4.id}}</span>
+						</li>
+					</ul>
+				</div>
+
+				<input id="frkey" type="text" name="" id="" placeholder="关键字" value="" />
+				<div class="logindiv">
+					<input id="frsearch" type="button" name="" value="搜索" onclick="FRSearchClick();" />
+				</div>
+
+				<div class="other">
+					<p>
+						<a id="FrSearchAll" style="color: #199efd;font-size: 16px;">查看全部事项 ></a>
+					</p>
+				</div>
+			</form>
+		</div>
+
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		var storage = window.localStorage;
+			function changeColor1() {
+				document.getElementById("bt1").style.background = "#199efd";
+				document.getElementById("bt2").style.background = "white";
+				document.getElementById("bt1").style.color = "white";
+				document.getElementById("bt2").style.color = "#666";
+				document.getElementById("grpicker").style.display = "block";
+				document.getElementById("frpicker").style.display = "none";
+			}
+
+			function changeColor2() {
+				document.getElementById("bt2").style.background = "#199efd";
+				document.getElementById("bt2").style.color = "white";
+				document.getElementById("bt1").style.background = "white";
+				document.getElementById("bt1").style.color = "#666";
+				document.getElementById("grpicker").style.display = "none";
+				document.getElementById("frpicker").style.display = "block";
+			}
+
+			function GRSearchClick() {
+				var bmid1 = document.getElementById('grbmid').innerHTML;
+				var ztid1 = document.getElementById('grztid').innerHTML;
+				var grkeyword = document.getElementById('grkey').value;
+				storage.word = grkeyword;
+				window.location.href = "WorkList.html?themid=" + ztid1 + "&deptid=" + bmid1 + "&word=" + "&type=1";
+			}
+
+			function FRSearchClick() {
+				var bmid2 = document.getElementById('frbmid').innerHTML;
+				var ztid2 = document.getElementById('frztid').innerHTML;
+				var frkeyword = document.getElementById('frkey').value;
+				storage.word = frkeyword;
+				window.location.href = "WorkList.html?themid=" + ztid2 + "&deptid=" + bmid2 + "&word=" + "&type=2";
+			}
+
+			$(function() {
+				$('table').width($('#head').width() - 20);
+				$('#qb').on('click', function() {
+					document.getElementById('bm').innerHTML = document.getElementById('qb').innerHTML;
+				});
+				$('#GrSearchAll').on('click', function() {
+					storage.word = '';
+					window.location.href = "WorkList.html?themid=&deptid=&word=&type=1";
+				});
+				$('#FrSearchAll').on('click', function() {
+					storage.word = '';
+					window.location.href = "WorkList.html?themid=&deptid=&word=&type=2";
+				});
+			});
+		</script>
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="../../BaseConfig/source/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+        <script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/workquery.controller.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			getGRZTData();
+			getFRZTData();
+			getDeptData(1);
+			getDeptData(2);
+		</script>
+	</body>
+
+</html>

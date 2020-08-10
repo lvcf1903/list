@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>市县级文物保护单位（点）迁移方案许可申请表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请单位或个人</span>
+                <input id="txt_sqdwhgr" class="info_input item_input" type="text" placeholder="请输入申请单位或个人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">机构代码</span>
+                <input id="txt_jgdm" class="info_input item_input" type="text" placeholder="请输入机构代码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">法人代表</span>
+                <input id="txt_frdb" class="info_input item_input" type="text" placeholder="请输入法人代表">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系人</span>
+                <input id="txt_lxr" class="info_input item_input" type="text" placeholder="请输入联系人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_lxdh" class="info_input item_input" type="text" placeholder="请输入联系电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">通讯地址</span>
+                <input id="txt_txdz" class="info_input item_input" type="text" placeholder="请输入通讯地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">E-mail</span>
+                <input id="txt_email" class="info_input item_input" type="text" placeholder="请输入E-mail" @blur='yxyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 16px;margin-top: 8px;">拟迁移的文物保护单位（点）名称</span>
+                <input id="txt_nqydwwbhdwmc" class="info_input item_input" type="text" placeholder="请输入拟迁移的文物保护单位（点）名称">
+            </div>
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 16px;margin-top: 32px;">拟迁移的文物保护单位（点）现状</span>
+                <textarea name="nqydwwbhdwxz" placeholder="请输入拟迁移的文物保护单位（点）现状" id="txt_nqydwwbhdwxz"></textarea>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">迁移项目许可文件批号</span>
+                <input id="txt_qyxmxkwjph" class="info_input item_input" type="text" placeholder="请输入现标准地名地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 1rem;">方案是否符合《文物保护工程设计方案编制深度要求》</span>
+                <select name="yesorno" class="selectStyle info_input item_input" id="txt_fasffhwwbhgcsjfabzsdyq">
+                    <option value="1">是</option>
+                    <option value="2">否</option>
+                </select>
+            </div>
+            <div class="infolist miaoshu">
+                <span class="a" style="margin-left: 28px;">需补充说明的情况</span>
+                <textarea name="dwgk" placeholder="请输入现标准地名地址" id="txt_xbcsmdqk"></textarea>
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/sxjwwbhdwqyfaxksqb.js"></script>
+</body>
+</html>

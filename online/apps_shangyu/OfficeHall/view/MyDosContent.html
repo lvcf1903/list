@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>办件详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #FFFFFF;
+			}
+			
+			.tr1 {
+				/*border-bottom: 1px solid;
+				border-color: #e9e9e9;*/
+				height: 40px;
+				line-height: 40px;
+				padding-left: 10px;
+				width: 100%;
+			}
+			
+			.lefttd {
+				color: #222222;
+				padding-left: 10px;
+				width: 40%;
+				font-size: 17px;
+			}
+			
+			.righttd {
+				color: #999999;
+				width: 100%;
+				font-size: 16px;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+		</style>
+	</head>
+
+	<body style="background-color: #FFFFFF;">
+		<div id="cont" style="display: block;">
+			<p style="text-align:center">
+				<img id="zzpic" style="width: 200px;height: 284px;margin-top: 10px;display: none;" onclick="funzzpic();" />
+			</p>
+			<table width="100%" align="center" style="background-color: #FFFFFF;line-height:40px; height:50px; font-size:14px; color:#676767;font-family:'微软雅黑';">
+				<tr class="tr1">
+					<!--<td align="left" class="lefttd">事项名称：</td>-->
+					<td align="left" class="righttd" id="sxmc"></td>
+				</tr>
+				<tr class="tr1">
+					<!--<td align="left" class="lefttd">申报号：</td>-->
+					<td align="left" class="righttd" id="sbh"></td>
+				</tr>
+				<tr class="tr1">
+					<!--<td align="left" class="lefttd">查询密码：</td>-->
+					<td align="left" class="righttd" id="cxmm"></td>
+				</tr>
+				<tr class="tr1">
+					<!--<td align="left" class="lefttd">办件名称：</td>-->
+					<td align="left" class="righttd" id="bjmc"></td>
+				</tr>
+				<tr class="tr1">
+					<!--<td align="left" class="lefttd">承诺办结时间：</td>-->
+					<td align="left" class="righttd" id="cnbjsj"></td>
+				</tr>
+				<tr class="tr1">
+					<!--<td align="left" class="lefttd">处理部门：</td>-->
+					<td align="left" class="righttd" id="clbm"></td>
+				</tr>
+				<tr class="tr1">
+					<!--<td align="left" class="lefttd">申报时间：</td>-->
+					<td align="left" class="righttd" id="sbsj"></td>
+				</tr>
+				<tr class="tr1">
+					<!--<td align="left" class="lefttd">受理时间：</td>-->
+					<td align="left" class="righttd" id="slsj"></td>
+				</tr>
+				<tr class="tr1">
+					<!--<td align="left" class="lefttd">办理状态：</td>-->
+					<td align="left" class="righttd" id="blzt"></td>
+				</tr>
+			</table>
+			<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+				<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+				<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/MyDosList.controller.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script>
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			mui.init();
+			var thisURL = document.URL;
+			var getval1 = thisURL.split('itemid=')[1];
+			var itemid = getval1.split("&")[0];
+			var getval2 = thisURL.split('servicename=')[1];
+			var servicename = decodeURI(getval2.split("&")[0]);
+			var getval3 = thisURL.split('projpwd=')[1];
+			var projpwd = getval3.split("&")[0];
+			var getval4 = thisURL.split('transact_time=')[1];
+			var transact_time = getval4.split("&")[0];
+			var getval5 = thisURL.split('create_time=')[1];
+			var create_time = decodeURI(getval5.split("&")[0]);
+			var getval6 = thisURL.split('accept_time=')[1];
+			var accept_time = getval6.split("&")[0];
+			var getval7 = thisURL.split('handlestate=')[1];
+			var handlestate = decodeURI(getval7.split("&")[0]);
+			var getval8 = thisURL.split('itemname=')[1];
+			var itemname = decodeURI(getval8.split("&")[0]);
+			var getval9 = thisURL.split('deptname=')[1];
+			var deptname = decodeURI(getval9.split("&")[0]);
+
+			document.getElementById('sxmc').innerHTML = "<span style='color: #222222;'>事项名称：</span>" + servicename;
+			document.getElementById('sbh').innerHTML = "<span style='color: #222222;'>申报号：</span>" + itemid;
+			document.getElementById('cxmm').innerHTML = "<span style='color: #222222;'>查询密码：</span>" + projpwd;
+			document.getElementById('bjmc').innerHTML = "<span style='color: #222222;'>办件名称：</span>" + itemname;
+			document.getElementById('cnbjsj').innerHTML = "<span style='color: #222222;'>承诺办结时间：</span>" + transact_time;
+			document.getElementById('clbm').innerHTML = "<span style='color: #222222;'>处理部门：</span>" + deptname;
+			document.getElementById('sbsj').innerHTML = "<span style='color: #222222;'>申报时间：</span>" + create_time;
+			document.getElementById('slsj').innerHTML = "<span style='color: #222222;'>受理时间：</span>" + accept_time;
+			document.getElementById('blzt').innerHTML = "<span style='color: #222222;'>办理状态：</span>" + handlestate;
+
+			requestDosPic(itemid, projpwd);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<title>公共资源</title>
+	</head>
+	<style type="text/css">
+		* {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			font-family: "微软雅黑";
+		}
+		
+		#head {
+			width: 100%;
+		}
+		
+		td {
+			/*height: 60px;*/
+		}
+		
+		.title {
+			font-size: 16px;
+			color: #333333;
+		}
+		
+		img {
+			width: 30px;
+			height: 24px;
+			padding-right: 10px;
+		}
+		
+		.mui-table-view {
+			display: none;
+			background-color: #EFEFF4;
+			border: 0px;
+			width: 50%;
+			list-style-type: none
+		}
+		
+		li {
+			padding: 10px 3% 10px 10px;
+			background: #FFFFFF;
+		}
+		
+		.mui-table-view-cell:after {
+			left: 100%;
+		}
+		
+		#badmessage {
+			opacity: 0.6;
+			border-radius: 10px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 160px;
+			height: 160px;
+			margin-left: -80px;
+			margin-top: -120px;
+			display: none;
+		}
+		
+		.borderli {
+			height: 60px;
+			border-right: 1px solid #e8e8e8;
+			border-bottom: 1px solid #e8e8e8;
+		}
+		
+		.item_left {}
+	</style>
+
+	<body style="background-color: #fff;">
+		<div class="mui-content">
+			<div id="list">
+				<ul class="mui-table-view" id="parent" style="width: 100%;display: none;">
+					<li v-for="item in items" id="{{item.index}}" class="mui-table-view-cell borderli" style="margin-bottom: 1px;float: left;width: 50%;padding: 11px 10px">
+						<table>
+							<tr class="item_left">
+								<div id="columnid{{item.index}}" style="display: none;">{{item.columnid}}</div>
+								<td style="">
+									<img src="../source/img/PublicResClassifyItem.png" />
+								</td>
+								<td id="t1" style="">
+									<span id="columnname{{item.index}}" class="title">{{item.columnname}}</span>
+								</td>
+							</tr>
+						</table>
+					</li>
+				</ul>
+			</div>
+			<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+				<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+				<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+			</div>
+			<div id="badmessage" style="">
+				<img style="width: 170px; height: 160px;" src="../source/img/yw_message_bad.png" />
+				<p style="width: 160px;margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+			</div>
+		</div>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/PublicResClassify.controller.js"></script>
+		<script type="text/javascript">
+			mui.init();
+
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			getClassifyData();
+
+			//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+			mui('.mui-table-view').on('tap', '.mui-table-view-cell', function() {
+				var columnidindex = "columnid" + this.id;
+				var resnameindex = "columnname" + this.id;
+				var resid = document.getElementById(columnidindex).innerHTML;
+				var resname = document.getElementById(resnameindex).innerHTML;
+				mui.openWindow({
+					url: "PublicResList.html?resid=" + resid + "&resname=" + resname
+				})
+			})
+		</script>
+	</body>
+
+</html>

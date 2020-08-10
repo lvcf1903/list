@@ -1,0 +1,105 @@
+<html>
+	<meta charset="UTF-8">
+	<meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>
+	<title>正文</title>
+
+	<head>
+		<meta charset="UTF-8" />
+		<script type="text/javascript">
+			function doZoom(fontSize) {
+				var divNode = document.getElementById('zoom');
+				divNode.style.fontSize = fontSize;
+			}
+		</script>
+		<style type="text/css">
+			body {
+				margin: 0px;
+				line-height: 30px;
+				font-family: KannadaSangamMN;
+				font-color: #333333;
+				word-wrap: break-word;
+				overflow: auto;
+				background: #F6F6F6;
+			}
+			
+			img {
+				padding: 0px;
+				border: 0px solid #eee;
+				max-width: 330;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			* {
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			}
+		</style>
+	</head>
+
+	<body>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+			<tr>
+				<td width="4" valign="middle" bgcolor=""></td>
+				<td valign="middle">
+					<div id="title" style="padding-left:10px;padding-right:10px;font-size: 25px;color: #333333;">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="4"></td>
+				<td valign="middle">
+					<div id="date" style="padding:10px;font-size: 12px;color: #808080;"></div>
+				</td>
+			</tr>
+		</table>
+		<center style='padding-right: 15px; padding-left: 15px;'><input style="width:100%; outline: none;BORDER-BOTTOM: 0px; BORDER-LEFT: 0px;BORDER-TOP: 0px; BORDER-RIGHT: 0px" type="image" src="../source/img/yw_content_line.png" /></center>
+		<div id='zoom' style='color: #222222;position: relative;width: inherit;font-size: 18px; padding-right:8px; padding-left: 8px; position: relative;  width: inherit;'>
+			<p id="content"></p>
+		</div>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+
+		<script src="../../../source/js/util.js"></script>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../../onlineoder/controller/windowguideContent.controller.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script type="text/javascript">
+			var thisURL = document.URL;
+			var getval = thisURL.split('?')[1];
+			var showval1 = getval.split("&")[0];
+			var showval2 = getval.split("&")[1];
+			var resourceid = showval1.split("=")[1];
+			var titleid = showval2.split("=")[1];
+
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			getGovernContentData(resourceid, titleid);
+		</script>
+	</body>
+
+</html>

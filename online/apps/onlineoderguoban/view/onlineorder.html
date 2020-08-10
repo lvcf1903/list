@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script type="text/javascript" src="https://unibase.zjzwfw.gov.cn/DTHybirdEngine/DtDream/hybridapi.js">
+	</script>
+	<script language="javascript" type="text/javascript">
+//		sessionStorage.type = "01";
+//		sessionStorage.cityname = "浙江省本级";
+//		sessionStorage.siteid = "1";
+//		window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=zjzwfwsb";
+
+		dd.biz.util.selectLocalCity({
+			onSuccess: function(data) {
+				alert(data.webId);
+				sessionStorage.type = "01";
+				sessionStorage.cityname = data.cityName;
+				sessionStorage.siteid = data.webId;
+				window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=zjzwfwsb";
+			},
+			    onFail: function() {}
+		});
+	</script>
+
+	<body>
+	</body>
+
+</html>

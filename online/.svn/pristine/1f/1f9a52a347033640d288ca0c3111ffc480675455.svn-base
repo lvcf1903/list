@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网上预约</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../source/mui_css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+		<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">
+
+		<!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
+		<link href="../source/css/foundation.min.css" rel="stylesheet" type="text/css">
+		<link href="../source/css/foundation-datepicker.css" rel="stylesheet" type="text/css">
+
+		<style>
+		.container {
+				margin: 0 auto;
+				max-width: 960px;
+				padding: 20px;
+			}
+			
+			.list-block ul:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom: 0;
+				right: 0;
+				height: 0px;
+				width: 100%;
+				background-color: #e7e7e7;
+				display: block;
+				z-index: 15;
+				-webkit-transform-origin: 50% 0;
+				transform-origin: 50% 0
+			}
+			
+			.list-block ul:after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				top: 0;
+				height: 0px;
+				width: 100%;
+				background-color: #e7e7e7;
+				display: block;
+				z-index: 15;
+				-webkit-transform-origin: 50% 100%;
+				transform-origin: 50% 100%
+			}
+		}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="content" style="margin-top: 0px;margin-bottom: 50px;" id="contentArea">
+			<div style="background-color: #FFFFFF;margin: 0px;color: #333333;font-size: 16px;padding: 7px;line-height: 30px;display: none;" id="itemname"></div>
+
+			<div style="color: #FFFFFF;background-color: #338dff;padding: 12px;font-size: 16px;text-align: center;">预约日期</div>
+		<div id="my-input2" data-date-format="yyyy-mm-dd" data-date="" /></div>
+		<div style="color: #FFFFFF;background-color: #338dff;padding: 12px;font-size: 16px;text-align: center;">预约时段</div>
+		<div class="list-block media-list content-padded grid-demo" style="margin-left: 3%;width: 94%;display: block;">
+			<ul class="row" id="parent" style="background: white;display: block;">
+                   <li id="1" class="col-50 timeli" style="vertical-align:middle;height:40px;margin-bottom: 10px;background: #ffffff;width: 92%;" onclick="clickTime(1)"><div class="timediv" id="div1"  align="center" style="color:#333333;height: 40px;line-height: 40px;text-align: center;">9:00-9:30</div></li>
+                   <li id="2" class="col-50 timeli" style="vertical-align:middle;height:40px;margin-bottom: 10px;background: #ffffff;width: 92%;" onclick="clickTime(2)"><div class="timediv" id="div2"  align="center" style="color:#333333;height: 40px;line-height: 40px;text-align: center;">9:30-10:00</div></li>
+                   <li id="3" class="col-50 timeli" style="vertical-align:middle;height:40px;margin-bottom: 10px;background: #ffffff;width: 92%;" onclick="clickTime(3)"><div class="timediv" id="div3"  align="center" style="color:#333333;height: 40px;line-height: 40px;text-align: center;">10:00-10:30</div></li>
+                   <li id="4" class="col-50 timeli" style="vertical-align:middle;height:40px;margin-bottom: 10px;background: #ffffff;width: 92%;" onclick="clickTime(4)"><div class="timediv" id="div4"  align="center" style="color:#333333;height: 40px;line-height: 40px;text-align: center;">10:30-11:00</div></li>
+                   <li id="5" class="col-50 timeli" style="vertical-align:middle;height:40px;margin-bottom: 10px;background: #ffffff;width: 92%;" onclick="clickTime(5)"><div class="timediv" id="div5"  align="center" style="color:#333333;height: 40px;line-height: 40px;text-align: center;">11:00-11:30</div></li>
+                   <li id="6" class="col-50 timeli" style="vertical-align:middle;height:40px;margin-bottom: 10px;background: #ffffff;width: 92%;" onclick="clickTime(6)"><div class="timediv" id="div6"  align="center" style="color:#333333;height: 40px;line-height: 40px;text-align: center;">13:00-14:00</div></li>
+                   <li id="7" class="col-50 timeli" style="vertical-align:middle;height:40px;margin-bottom: 10px;background: #ffffff;width: 92%;" onclick="clickTime(7)"><div class="timediv" id="div7"  align="center" style="color:#333333;height: 40px;line-height: 40px;text-align: center;">14:00-15:00</div></li>
+                   <li id="8" class="col-50 timeli" style="vertical-align:middle;height:40px;margin-bottom: 10px;background: #ffffff;width: 92%;" onclick="clickTime(8)"><div class="timediv" id="div8"  align="center" style="color:#333333;height: 40px;line-height: 40px;text-align: center;">15:00-16:00</div></li>
+                   <li id="9" class="col-50 timeli" style="vertical-align:middle;height:40px;margin-bottom: 10px;background: #ffffff;width: 92%;" onclick="clickTime(9)"><div class="timediv" id="div9"  align="center" style="color:#333333;height: 40px;line-height: 40px;text-align: center;">16:00-17:00</div></li>
+			</ul>
+		</div>
+
+		</div>
+
+		<div style="bottom: 0px; width: 100%;height: 50px;position: fixed; background-color: #FFFFFF;color: #FFFFFF;line-height: 40px;font-size: 18px;border-top: 1px solid #DDDDDD;margin-bottom: 0px;" align="center" id="sureBtn">
+			<button style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 85%;margin-top: 7px;line-height: 23px;border-width: 0px;padding: 0px;border-radius: 23px 23px 23px 23px;" onclick="clickToOrder()">确定</button>
+		</div>
+		<!--<div id="loading1" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;	position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-100px; display: none;">
+			<div id="food1" style="background-color: #000000; width: 70px; height: 70px;border-radius: 10px ;margin: 0 auto;margin-top:10px;"></div>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">努力加载中...</p>
+		</div>-->
+		<div id="loading1" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: none;">
+			<img id="food" src="../source/images/loading.gif" style="background-color: #000000; width: 70px; 
+				height: 70px;border-radius: 10px ;
+				margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+
+		<div style="bottom: 0px; width: 100%;height: 35px;position: fixed;background-color: #FFFFFF;display: none;" id="sourceApp">
+			<p style="margin-top: 8px;margin-bottom: 0px; line-height: 20px;font-size: 12px;text-align: center;">——本服务由浙江政务服务网提供——</p>
+		</div>
+		<!--</div>-->
+		<script src="../source/mui_widget/mui.min.js"></script>
+		<script src="../source/js/vue.min.js"></script>
+		<script src="../source/mui_widget/util.js"></script>
+		<script src="../source/js/interface.js"></script>
+		<script src="../controller/handleorder.controller.js"></script>
+		<!--<script type="text/javascript" src="https://www.jszwfw.gov.cn/jmopen/jssdk/index.js"></script>-->
+		<script type="text/javascript" src="https://open.zjzwfw.gov.cn/open/jssdk/index.js"></script>
+        <!--<script  src="https://service.media.gov.cn/jmopen/jssdk/index.js"></script>-->
+		<!--<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>-->
+		<!--<script type="text/javascript" src="../../BaseConfig/controller/BaseConfig.js" ></script>-->
+		<script src="../../BaseConfig/controller/base64.js"></script>
+		<script src="../source/js/jquery-1.11.3.min.js"></script>
+		<script src="../source/js/foundation-datepicker.js"></script>
+		<script src="../source/js/locales/foundation-datepicker.zh-CN.js"></script>
+
+		<script type="text/javascript">
+			//判断容器类型，浏览器还是APP
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			/*var itemname = href.split("itemname=")[1].split("&")[0];
+			itemname = decodeURI(itemname);
+			document.getElementById("itemname").innerHTML = "预约事项：  " + itemname;
+			var itemcode = href.split("itemcode=")[1].split("&")[0];
+			itemcode = decodeURI(itemcode);
+			var departid = href.split("departid=")[1].split("&")[0];
+			departid = decodeURI(departid);
+			var windowname = href.split("windowname=")[1].split("&")[0];
+			windowname = decodeURI(windowname);
+			var token = href.split("token=")[1].split("&")[0];
+			token = decodeURI(token);
+			*/
+			var selectDate;
+			mui.init()
+			requestTime();
+//			requestTimeInterval();
+			var now = new Date();
+			
+			 now = now.valueOf();  
+    now = now +  24 * 60 * 60 * 1000 * 2;  
+    now = new Date(now);  
+			
+			
+			
+			var year = now.getFullYear(); //年
+			var month = now.getMonth() + 1; //月
+			var day = now.getDate()+2; //日
+			var minDate = year + "-" + month + "-" + day;
+
+			//			$("#my-input").calendar({
+			//				minDate: minDate,
+			//				maxDate: minDate,
+			//				dateFormat: 'yyyymmdd',
+			//				onChange: function(p, values, displayValues) {
+			//					selectDate = displayValues;
+			//				}
+			//			});
+
+			//var nowTemp = new Date();
+			//		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+//			check.update(now);
+//			document.getElementById("my-input").value="2017-05-30"
+		</script>
+		<script>
+		</script>
+	</body>
+
+</html>

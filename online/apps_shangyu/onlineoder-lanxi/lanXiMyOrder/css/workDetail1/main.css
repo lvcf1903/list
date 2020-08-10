@@ -1,0 +1,257 @@
+/*index页面css*/
+.top-container {
+	width: 100%;
+	background: #fff;
+	margin: 0.5rem 0;
+	padding: 0.3rem 0.5rem;
+}
+.top-container:after {
+	content: '';
+	display: block;
+	height: 0;
+	clear: both;
+}
+.area {
+	float: left;
+	line-height: 1.7rem;
+}
+.select-position {
+	right: 0.5rem;
+}
+.form-container {
+	padding: 0.3rem 0.5rem 0;
+}
+.form-container:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.id-container {
+	width: 100%;
+}
+.id-container:after {
+	content: '';
+	display: block;
+	height: 1px;
+	background: #e7e7e7;
+	clear: both;
+}
+.id-label {
+	float: left;
+	line-height: 1.8rem;
+	margin-right: 0.8rem;
+}
+.id-num {
+	float: left;
+	border: none;
+}
+.id-num:active,
+.id-num:hover {
+	border: none;
+}
+.password-container {
+	width: 100%;
+}
+.password-container:after {
+	content: '';
+	display: block;
+	height: 1px;
+	background: #e7e7e7;
+	clear: both;
+}
+.password-label {
+	float: left;
+	line-height: 1.8rem;
+	margin-right: 0.8rem;
+}
+.password {
+	float: left;
+	border: none;
+}
+.password:active,
+.password:hover {
+	border: none;
+}
+
+/*information页面css*/
+.info-header {
+	width: 100%;
+	padding-bottom: 2.5rem;
+	background: url(../img/af-bg.png) no-repeat;
+	background-size: 100%;
+}
+.header-title {
+	width: 100%;
+	height: 2rem;
+	line-height: 2rem;
+	text-align: center;
+	padding: 0.9rem 0 1.5rem;
+	box-sizing: content-box;
+}
+.total-container {
+	width: 100%;
+}
+.total-container:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.left-container {
+	padding-left: 11%;
+	width: 50%;
+	border-right: 1px solid rgba(255, 255, 255, .7);
+	float: left;
+	position: relative;
+}
+.int-result {
+	font-size: 1.2rem;
+	line-height: 1.9rem;
+	float: left;
+}
+.float-result {
+	font-size: 0.8rem;
+	line-height: 1.2rem;
+	float: left;
+	margin-top: 0.4rem;
+}
+.show-img {
+	cursor: pointer;
+	position: absolute;
+	right: 8%;
+	top: 13%;
+}
+.hide-img {
+	display: none;
+	cursor: pointer;
+	position: absolute;
+	right: 8%;
+	top: 13%;
+}
+.balance-text {
+	width: 100%;
+	text-indent: 0.5rem;
+	color: rgba(255, 255, 255, .7);
+	float: left;
+}
+.pay-container {
+	padding-left: 11%;
+	width: 50%;
+	float: left;
+}
+.pay-container:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.int-pay {
+	font-size: 1.2rem;
+	line-height: 1.9rem;
+	float: left;
+}
+.float-pay {
+	font-size: 0.8rem;
+	line-height: 1.2rem;
+	float: left;
+	margin-top: 0.4rem;
+}
+.pay-text {
+	width: 50%;
+	text-indent: 0.5rem;
+	color: rgba(255, 255, 255, .7);
+	margin-left: 50%;
+	padding-left: 8%;
+}
+.hide {
+	display: none;
+	font-size: 2rem;
+	line-height: 1.9rem;
+	margin-left: 10%;
+	letter-spacing: 0.4rem;
+}
+.info-title {
+	width: 100%;
+	position: relative;
+	padding-left: 3%;
+}
+.info-title:before {
+	content: '';
+	display: inline-block;
+	width: 0.15rem;
+	height: 0.8rem;
+	background: #00558E;
+	position: absolute;
+	top: 0.2rem;
+	left: 0;
+}
+.normal {
+	position: absolute;
+	right: 3%;
+	top: 0.4rem;
+	padding: 0.1rem 0.2rem;
+	border: 0.05rem solid #00558e;
+	border-radius: 0.15rem;
+}
+.hr {
+	width: 100%;
+	height: 1px;
+	background: #e7e7e7;
+	margin-top: 0.5rem;
+}
+.basic-item {
+	width: 100%;
+	padding-top: 0.5rem;
+}
+.go-detail {
+	position: absolute;
+	right: 3%;
+	top: 0.4rem;
+	padding: 0.1rem 0.8rem;
+	background: url(../img/right.png) no-repeat right center;
+	background-size: 0.6rem 0.6rem;
+	cursor: pointer;
+}
+.memo-text {
+	width: 100%;
+	height: 1.5rem;
+	padding: 0.25rem 0 0 0.5rem;
+}
+.detail-header {
+	width: 100%;
+}
+.accum-account {
+	width: 100%;
+	position: relative;
+}
+.accum-account:after {
+	content: '';
+	display: inline-block;
+	width: 100%;
+	height: 0.05rem;
+	position: absolute;
+	background: #e7e7e7;
+	bottom: -0.5rem;
+	left: 0;
+}
+.color-green {
+	color: #259b24;
+}
+#detail tr:nth-child(odd) {
+	background: #fff;
+}
+.tip {
+	width: 100%;
+	font-size: 0.6rem;
+	padding: 0 0.5rem 0.5rem;
+	color: #999999;
+	vertical-align: middle;
+}
+
+.star {
+	color: red;
+}
+
+#div{
+	margin-bottom:10px;
+	margin-top:10px
+	
+}

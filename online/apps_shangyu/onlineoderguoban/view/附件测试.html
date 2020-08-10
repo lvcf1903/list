@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			date = {
+			siteid: '1',
+			keyword: '',
+			pid: '0'
+		}
+			myRequest({
+				url: 'http://192.168.89.142:8080/zjwssb/ywzw/interface/getMatterCol.do',
+				data: date,
+				header: '',
+				dataType: 'json',
+				async: false,
+				success: function(data) {
+					alert('1天气~~~~~~~' + JSON.stringify(data));
+				},
+				fail: function(data) {
+					alert('fail~~~~~~~' + data);
+				}
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网上申报</title>
+	</head>
+
+	<body>
+		<script type="text/javascript" src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script language='javascript'>
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var siteid = href.split("siteid=")[1];
+			document.location = baseURL + siteid;
+		</script>
+	</body>
+
+</html>

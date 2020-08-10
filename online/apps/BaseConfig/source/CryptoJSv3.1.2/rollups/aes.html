@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>aes测试</title>
+		<script type="text/javascript" src="aes.js"></script>
+		<!--<script type="text/javascript" src="../components/mode-ecb.js"></script>-->
+	</head>
+
+	<body>
+
+	</body>
+
+	<script type="text/javascript">
+		function EncryptFR(word) {
+			var key = CryptoJS.enc.Utf8.parse("12345678!@#$%^&*");
+			var iv = CryptoJS.enc.Utf8.parse('zjzwfwuuser@2016');
+			var srcs = CryptoJS.enc.Utf8.parse(word);
+			var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+				iv: iv,
+				mode: CryptoJS.mode.CBC
+			});
+			return encrypted.toString();
+//			return encodeURIComponent(encrypted).toString();
+		}
+
+        var srt = 'gWWdEVKMRf+Jjz7fXZzNkXg8Emlrvrb0ojd6dywiMo/fLjfV0OTe9ITAWq5KP/SQ=';
+        var sdsa = 'gKIA7M34eUsdn5tcI+I+RA==';
+		function DecryptFR(word) {
+			var key = CryptoJS.enc.Utf8.parse("12345678!@#$%^&*");
+			var iv = CryptoJS.enc.Utf8.parse('zjzwfwuuser@2016');
+			var decrypt = CryptoJS.AES.decrypt(word, key, {
+				iv: iv,
+				mode: CryptoJS.mode.CBC
+			});
+			return CryptoJS.enc.Utf8.stringify(decrypt).toString();
+//			return decodeURIComponent(CryptoJS.enc.Utf8.stringify(decrypt)).toString();
+		}
+		
+		function EncryptGR(word) {
+			var key = CryptoJS.enc.Utf8.parse("1234567812345678");
+			var iv = CryptoJS.enc.Utf8.parse('zjzwfuhanweb2015');
+			var srcs = CryptoJS.enc.Utf8.parse(word);
+			var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+				iv: iv,
+				mode: CryptoJS.mode.CBC
+			});
+			return encrypted.toString();
+//			return encodeURIComponent(encrypted).toString();
+		}
+
+        var srt = 'gWWdEVKMRf+Jjz7fXZzNkXg8Emlrvrb0ojd6dywiMo/fLjfV0OTe9ITAWq5KP/SQ=';
+        var sdsa = 'gKIA7M34eUsdn5tcI+I+RA==';
+		function DecryptGR(word) {
+			var key = CryptoJS.enc.Utf8.parse("1234567812345678");
+			var iv = CryptoJS.enc.Utf8.parse('zjzwfuhanweb2015');
+			var decrypt = CryptoJS.AES.decrypt(word, key, {
+				iv: iv,
+				mode: CryptoJS.mode.CBC
+			});
+			return CryptoJS.enc.Utf8.stringify(decrypt).toString();
+//			return decodeURIComponent(CryptoJS.enc.Utf8.stringify(decrypt)).toString();
+		}
+		
+		function EncryptAdress(word) {
+			var key = CryptoJS.enc.Utf8.parse("1234567812345678");
+			var iv = CryptoJS.enc.Utf8.parse('sdzwfuhanweb2016');
+			var srcs = CryptoJS.enc.Utf8.parse(word);
+			var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+				iv: iv,
+				mode: CryptoJS.mode.CBC
+			});
+			return encrypted.toString();
+//			return encodeURIComponent(encrypted).toString();
+		}
+
+        var srt = 'gWWdEVKMRf+Jjz7fXZzNkXg8Emlrvrb0ojd6dywiMo/fLjfV0OTe9ITAWq5KP/SQ=';
+        var sdsa = 'gKIA7M34eUsdn5tcI+I+RA==';
+		function DecryptAdress(word) {
+			var key = CryptoJS.enc.Utf8.parse("1234567812345678");
+			var iv = CryptoJS.enc.Utf8.parse('sdzwfuhanweb2016');
+			var decrypt = CryptoJS.AES.decrypt(word, key, {
+				iv: iv,
+				mode: CryptoJS.mode.CBC
+			});
+			return CryptoJS.enc.Utf8.stringify(decrypt).toString();
+//			return decodeURIComponent(CryptoJS.enc.Utf8.stringify(decrypt)).toString();
+		}
+
+		console.log(EncryptGR('8afac2ed5a878197015aa79ae2b97bf6_1_13585105811'));
+		console.log(DecryptGR("3xVXxTYFca62BEuh8HXKf8Ic63m5H9VIPRKrXBDu7FU="));
+	</script>
+
+</html>

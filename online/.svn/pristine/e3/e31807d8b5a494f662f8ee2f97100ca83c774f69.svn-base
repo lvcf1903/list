@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			.mui-icon-left-nav:before {
+			    color: white;
+			}
+			.mui-icon-speech:before {
+			    content: "\e301";
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header" class="mui-bar mui-bar-nav" style="background: #232736;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color: white;">输入框</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="mui-content-padded" style="margin: 20px 0px;">
+			  <form class="mui-input-group">
+				<div class="mui-input-row" >
+					<input type="text" class="mui-input-clear" placeholder="带清除按钮的输入框">
+				</div>
+			  </form>
+			  <form class="mui-input-group" style="margin-top: 20px;">
+				<div class="mui-input-row" >
+				    <label>标题</label>
+					<input type="text"  placeholder="暗提示暗提示暗提示暗提示">
+				</div>
+				<div class="mui-input-row" >
+				    <label>标题标题</label>
+					<input type="text"  placeholder="暗提示暗提示暗提示暗提示">
+				</div>
+				<div class="mui-input-row" >
+				    <label>标题一</label>
+					<input type="text"  placeholder="暗提示暗提示暗提示暗提示">
+				</div>
+				<div class="mui-input-row" >
+				    <label>五个字标签</label>
+					<input type="text"  placeholder="暗提示暗提示暗提示暗提示">
+				</div>
+			  </form>
+			  <form class="mui-input-group" style="margin-top: 20px;">
+				<div class="mui-input-row" >
+					<input type="text" class="mui-input-speech"  placeholder="暗提示暗提示暗提示暗提示">
+					
+				</div>
+			  </form>
+			</div>  
+		</div>
+		
+
+        <footer class="mui-bar-footer" style="color: #cccccc;text-align: center;	background-color: #efeff4;vertical-align: middle; position: fixed;line-height: 30px; left: 0;right: 0;font-size: 12px;margin-bottom: 20px;">
+        	———— 本服务有XXX提供 ————	
+        </footer>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+		</script>
+
+	</body>
+
+</html>

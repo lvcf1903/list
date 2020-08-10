@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的办件详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #FFFFFF;
+			}
+			
+			.tr1 {
+				/*border-bottom: 1px solid;
+				border-color: #e9e9e9;*/
+				height: 40px;
+				line-height: 40px;
+				padding-left: 10px;
+				width: 100%;
+			}
+			
+			.lefttd {
+				color: #222222;
+				padding-left: 10px;
+				width: 40%;
+				font-size: 17px;
+			}
+			
+			.righttd {
+				color: #999999;
+				width: 100%;
+				font-size: 16px;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+		</style>
+	</head>
+
+	<body style="background-color: #FFFFFF;">
+		<div id="cont" style="display:none;">
+			<table id="parent" width="100%" align="center" style="background-color: #FFFFFF;line-height:40px; height:50px; font-size:14px; color:#676767;font-family:'微软雅黑';">
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style="color: #222222;">事项编码：</span>{{infoprojid}}
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style="color: #222222;">事项名称：</span>{{servicename}}
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style='color: #222222;'>申报号：</span>{{projid}}
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style='color: #222222;'>查询密码：</span>{{projpwd}}
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style='color: #222222;'>申请人：</span>{{applyname}}
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style='color: #222222;'>收件部门：</span>{{receive_deptname}}
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style='color: #222222;'>申请时间：</span>{{receive_time}}
+					</td>
+				</tr>
+				<!--<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style='color: #222222;'>受理时间：</span>{{accept_time}}
+					</td>
+				</tr>-->
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style='color: #222222;'>办件承诺期限：</span>{{promiseday}}
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style='color: #222222;'>实际办结时间：</span>{{transact_time}}
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td align="left" class="righttd">
+						<span style='color: #222222;'>办理状态：</span>{{handlestate}}
+					</td>
+				</tr>
+			</table>
+
+			<!--<div style="width: 92%;margin-left: 4%;margin-top: 10px;padding: 10px 0;" align="center" id="sureBtn">
+				<button id="evaluate" type="button" class="mui-btn mui-btn-primary mui-btn-block" style="width: 48%;float: left;margin-right: 2%;">评价</button>
+				<button class="mui-btn mui-btn-primary mui-btn-block" style="width: 48%;float: left;margin-left: 2%;" onclick="openEMS()">查询物流状态</button>
+			</div>-->
+		</div>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: fixed; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+		<script type="text/javascript" src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script src="../controller/MyDosList.controller.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script>
+			var thisURL = document.URL;
+			var projid = thisURL.split('projid=')[1];
+			requestDosPic(projid);
+
+			//			$(function click() {
+			//				$("#evaluate").click(function() {
+			//					window.location.href = "http://www.zjzwfw.gov.cn/zjzw/item/runonce/appeval.do?doid=" + itemid + "&source=1";
+			//				})
+			//			})
+			//
+			//			function openEMS() {
+			//				window.location.href = "MyDosEms.html?projid=" + itemid;
+			//			}
+		</script>
+	</body>
+
+</html>

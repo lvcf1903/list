@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+
+		<title></title>
+	</head>
+	<script type="text/javascript" src="https://unibase.zjzwfw.gov.cn/DTHybirdEngine/DtDream/hybridapi.js">
+	</script>
+	<script language="javascript" type="text/javascript">
+		dd.biz.util.selectLocalCity({
+			onSuccess: function(data) {
+				window.location.href = "siteclassify.html?siteid=" + data.webId + "&cityname=";
+			},
+			    onFail: function() {}
+		});
+	</script>
+
+	<body>
+	</body>
+
+</html>

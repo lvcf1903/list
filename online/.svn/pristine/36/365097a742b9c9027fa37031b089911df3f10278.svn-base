@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		
+		
+		<p><img src="http://www.nipic.com/show/3/109/39a392ea9afa1e7b.html" /></p>
+		<!--<div>
+			<ul id="parent" class="mui-table-view " style="margin-top: 0px;font-size: 16px;color: #333333;">
+				<li class="mui-table-view-cell" id="{{item.index}}">
+					<img  src="../source/images/star.png" width="20px"/>
+					在文物保护单位及其保护范围、建设控制地带违规施工的处罚
+					<button style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 150px;margin:0 auto;line-height: 23px;border-width: 0px;">我要预约</button>
+					
+				</li>
+			</ul>
+		</div>-->
+		<div style="border:1px solid #ddd;width:100%;margin:0 auto;margin-top:10px;background-color: #FFFFFF;">
+			<div style="padding:10px 10px 10px 10px;">
+				<img src="../source/images/star.png" width="20px" /> 在文物保护单位及其保护范围、建设控制地带违规施工的处罚在文物保护单位及其保护范围、建设控制地带违规施工的处罚
+			</div>
+			<div style="border-top:1px solid #ddd;text-align:center;padding:10px 0">
+				
+				<table width="100%" style="font-size: 13px;color: #333333;">
+					<tr>
+						<td align="left" width="50%" >
+							&nbsp;&nbsp;办理部门：{{item.department}}
+						</td>
+						<td align="left" width="50%" >
+							&nbsp;&nbsp;承诺期限：15个工作日
+						</td>
+					</tr>
+					<tr>
+						<td align="left" width="50%" >
+							&nbsp;&nbsp;联系电话：75769812368
+						</td>
+						<td align="left" width="50%" >
+							&nbsp;&nbsp;监督电话：78459214
+						</td>
+					</tr>
+				</table>
+				<button style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 150px;line-height: 23px;border-width: 0px;margin-top: 10px;">我要预约</button>
+			</div>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

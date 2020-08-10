@@ -1,0 +1,47 @@
+<html>
+	<meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>
+	<meta charset="UTF-8" />
+	<title>网上查询</title>
+
+	<head>
+		<style type="text/css">
+			body {
+				background-color: #ffffff;
+				font-family: 'LTHYSZK';
+				margin-top: 15px;
+				line-height: 30px;
+				color: #222222;
+				word-wrap: break-word;
+				overflow: hidden;
+				font-weight: normal;
+				font-size: 18px;
+				font-variant: normal;
+				font-style: normal;
+			}
+			
+			.hr1 {
+				height: 1px;
+				border: none;
+				border-top: 1px solid #dcdcdc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="content">
+			<!--<p>
+				<font class="sldd">城中北路16号林业局3楼&nbsp;
+					<a class="tt"><img src="http://www.zjzwfw.gov.cn/picture/8/1407251555488622879.gif" width="64" height="21" zjzwapp="window.location.href='appscheme:{城中北路16号林业局3楼}'" /><span class="tooltip"><span class="top"></span><span class="middle">请到该地址的部门责任处（科）室的办公室办理。</span><span class="bottom"></span></span>
+					</a>
+				</font>&nbsp;&nbsp;
+				<font class="slsj">&nbsp;&nbsp;夏季：上午8:30-11:30，下午14:00-17:30；冬季：上午8:30-11:30，下午13:30-17:00。</font>
+			</p>-->
+		</div>
+		<script>
+			var storage = window.localStorage;
+			var blcx = storage.blcx;
+			document.getElementById("content").innerHTML = blcx;
+		</script>
+	</body>
+
+</html>

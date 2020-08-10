@@ -1,0 +1,600 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网上办事</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.dtpicker.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.picker.min.css" />
+
+		<style type="text/css">
+			.mui-table-view-cell.mui-active>.mui-slider-handle {
+				background-color: #FF0000
+			}
+			
+			.leftLabel {
+				font-size: 15px;
+				color: #333333;
+			}
+			
+			.rightInput {
+				font-size: 15px;
+				color: #333333;
+			}
+			
+			.inputFileWrapper label {
+				display: block;
+				float: left;
+				position: relative;
+				width: 40%;
+			}
+			
+			.inputFileWrapper input[type="file"] {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				clip: rect(0, 0, 0, 0);
+			}
+			
+			.inputFileWrapper .custorm-style {
+				display: block;
+				width: 100%;
+				height: 36px;
+				border-radius: 5px;
+			}
+			
+			.inputFileWrapper .custorm-style .left-button {
+				width: 100%;
+				line-height: 34.5px;
+				background: #FFFFFF;
+				color: #808080;
+				font-size: 14px;
+				display: block;
+				text-align: center;
+				float: left;
+				border-radius: 2px;
+				border: #CCCCCC solid 1px;
+			}
+			
+			.inputFileWrapper .custorm-style .right-text {
+				width: 100%;
+				height: 40px;
+				line-height: 50px;
+				display: block;
+				float: left;
+				padding: 4px;
+				border: 1px solid #008ac7;
+				overflow: hidden;
+				-ms-text-overflow: ellipsis;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			#startvideo {
+				background-color: #FFFFFF;
+				color: #199EFD;
+				height: 36px;
+				width: 96%;
+				margin-left: 2%;
+				margin-right: 2%;
+				border-width: 0px;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				float: left;
+				border: #199EFD solid 1px;
+				font-size: 14px;
+			}
+			
+			#info {
+				padding: 0px 3px;
+				font-size: 14px;
+				color: #808080;
+				text-align: right;
+			}
+			
+			.submitclass {
+				background-color: #338dff;
+				color: #FFFFFF;
+				height: 36px;
+				width: 150px;
+				margin-top: 7px;
+				border-width: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #1c1b1f;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">在线申报
+			</h1>
+		</header>-->
+		<div class="mui-content" style="width: 100%;margin-bottom: 55px;" id="contentArea">
+			<div style="color: #FFFFFF;background-color: #338dff;padding: 12px;font-size: 16px;">基本信息</div>
+			<div style="background-color: #FFFFFF;margin: 0px;color: #333333;font-size: 13px;padding: 7px;line-height: 30px;color: red;padding-left: 15px;border-bottom: #DDDDDD solid;border-width: 1px;">带*号为必填项，请根据实际情况进行填写。</div>
+			<div id="name" style="background-color: #FFFFFF;margin: 0px;color: #333333;font-size: 16px;text-align: center;padding: 7px;line-height: 30px;"></div>
+
+			<form class="mui-input-group">
+				<div class="mui-input-row" id="sbr" style="display: none;">
+					<label class="leftLabel"><span style="color: red;">*</span>申报人</label>
+					<input id="applyname" type="text" class=" rightInput" placeholder="请输入申报人" readonly>
+				</div>
+				<div class="mui-input-row" id="sbdw" style="display: none;">
+					<label class="leftLabel"><span style="color: red;">*</span>申报单位</label>
+					<input id="applyenterprise" type="text" class="mui-input-clear rightInput" placeholder="请输入申报单位">
+				</div>
+				<div class="mui-input-row" id="sfz" style="display: none;">
+					<label class="leftLabel"><span style="color: red;">*</span>身份证</label>
+					<input id="idcard" type="text" class="rightInput" placeholder="请输入身份证号" readonly>
+				</div>
+				<div class="mui-input-row" id="zzjgdm" style="display: none;">
+					<label class="leftLabel">组织机构代码</label>
+					<input id="enterprisecode" type="text" class="mui-input-clear rightInput" placeholder="请输入组织机构代码">
+				</div>
+				<div class="mui-input-row" id="frdb" style="display: none;">
+					<label class="leftLabel">法人代表</label>
+					<input id="legalman" type="text" class="mui-input-clear rightInput" placeholder="请输入法人代表">
+				</div>
+				<div class="mui-input-row">
+					<label class="leftLabel"><span style="color: red;">*</span>联系电话</label>
+					<input id="mobile" type="text" class="rightInput" placeholder="请输入联系人电话">
+				</div>
+				<!--<div class="mui-input-row">-->
+
+				<!--</div>-->
+
+				<!--<div class="mui-input-row">
+						<label class="leftLabel"><span style="color: red;">*</span>收件人姓名</label>
+						<input id="receivename" type="text" class="mui-input-clear rightInput" placeholder="请输入收件人姓名">
+					</div>
+					<div class="mui-input-row">
+						<label class="leftLabel"><span style="color: red;">*</span>收件人手机</label>
+						<input id="receivemobile" type="text" class="mui-input-clear rightInput" placeholder="请输入收件人手机">
+					</div>
+					<div class="mui-input-row">
+						<label class="leftLabel"><span style="color: red;">*</span>收件地址</label>
+						<input id="receiveaddress" type="text" class="mui-input-clear rightInput" placeholder="请输入收件地址">
+					</div>
+					<div class="mui-input-row">
+						<label class="leftLabel"><span style="color: red;">*</span>邮政编号</label>
+						<input id="postnum" type="text" class="mui-input-clear rightInput" placeholder="请输入邮政编号">
+					</div>
+					<div class="mui-input-row">
+						<label class="leftLabel">邮费说明</label>
+					</div>-->
+				<div width="100%" style="padding: 10px;" id="isPost">
+					<label class="leftLabel" style="margin-left: 10px;">证照是否快递</label>
+					<div style="float: right;margin-top: -5px;" class="mui-switch mui-switch-blue mui-switch-mini" id="switch">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</div>
+				<div width="100%" style="padding: 10px;" id="postService">
+					<label class="leftLabel" style="margin-left: 10px;">证照快递</label>
+
+				</div>
+				<div width="100%" style="padding: 10px;font-size: 15px;color: #333333;margin-left: 10px;" id="postExplain">（市/县行政服务中心提供免费快递）</div>
+				<!--<div style="padding: 10px;font-size: 15px;color: #333333;margin-right: 0px;">地址管理</div>-->
+				<div width="100%" id="addressInfo" style="display: none;font-size: 15px;">
+					<ul width="100%" class="mui-table-view  " id="parent1" style="font-size: 15px;color: #333333;">
+						<li width="100%" v-for="item1 in items1" id="{{item1.index}}" class="mui-table-view-cell addresscell" onclick="addressSelected({{item.index}})">
+							<table width="100%">
+								<tr>
+									<td width="80%">
+										<div style="vertical-align: middle;">
+											<div>
+												<span style="" id="name{{item1.index}}">{{item1.name}}</span>
+												<span style="float: right;" id="mobile{{item1.index}}">{{item1.mobile}}</span>
+											</div>
+											<div style="margin-top: 8px;" id="address{{item1.index}}">{{item1.address}}</div>
+											<!--以下参数都是提交时要用的-->
+											<!--postcode-->
+											<div style="display: none;" id="postcode{{item1.index}}">{{item1.postcode}}</div>
+											<!--provinceCode-->
+											<div style="display: none;" id="provinceCode{{item1.index}}">{{item1.provinceCode}}</div>
+											<!--provinceName-->
+											<div style="display: none;" id="provinceName{{item1.index}}">{{item1.provinceName}}</div>
+											<!--cityCode-->
+											<div style="display: none;" id="cityCode{{item1.index}}">{{item1.cityCode}}</div>
+											<!--cityName-->
+											<div style="display: none;" id="cityName{{item1.index}}">{{item1.cityName}}</div>
+											<!--regionCode-->
+											<div style="display: none;" id="regionCode{{item1.index}}">{{item1.regionCode}}</div>
+											<!--regionName-->
+											<div style="display: none;" id="regionName{{item1.index}}">{{item1.regionName}}</div>
+											<!--address-->
+											<div style="display: none;" id="detailaddress{{item1.index}}">{{item1.address}}</div>
+										</div>
+									</td>
+									<td width="20%">
+										<img class="imgs" id="img{{item1.index}}" src="../../mycenter/source/images/default_selected.png" style="width: 20px;float: right;display: none;" />
+									</td>
+								</tr>
+							</table>
+							<!--<div style="vertical-align: middle;">
+								<div>
+									<span style="">{{item.name}}</span>
+									<span style="float: right;">{{item.mobile}}</span>
+								</div>
+								<div style="margin-top: 8px;">{{item.address}}</div>
+							</div>
+							<img src="../../mycenter/source/images/default_selected.png" style="width: 20px;float: right;"/>-->
+							<!--<a style="float: right;vertical-align: middle;" class="mui-navigate-right"></a>-->
+						</li>
+					</ul>
+					<div style="font-size: 14px;color: #333333;padding: 5px;background-color: #FFFFFF;display: none;" id="nocontent">
+						<form class="mui-input-group">
+							<div class="mui-input-row" id="sbr" style="height: 50px;">
+								<label class="leftLabel" style="height: 50px;line-height: 30px;">收件人:</label>
+								<input style="height: 50px;" id="addressname" type="text" class="rightInput">
+							</div>
+							<div class="mui-input-row" id="sbdw" style="height: 50px;">
+								<label class="leftLabel" style="height: 50px;line-height: 30px;">联系电话:</label>
+								<input style="height: 50px;" id="addressmobile" type="text" class="rightInput">
+							</div>
+							<div class="mui-input-row" id="sbdw" style="height: 50px;">
+								<label class="leftLabel" style="height: 50px;line-height: 30px;">省市区</label>
+								<input style="height: 50px;" class="textarea rightInput" type="text" placeholder="请选择所在地区" id="showCityPicker3" value="" />
+							</div>
+							<div class="mui-input-row" id="sbdw" style="height: 50px;">
+								<label class="leftLabel" style="height: 50px;line-height: 30px;">邮政编码</label>
+								<input style="height: 50px;" id="postcode" type="text" class="rightInput" placeholder="请输入邮政编码">
+							</div>
+						</form>
+						<div style="margin: 0px px;border-width: 0px;font-size: 17px;">
+							<textarea id="addressarea" rows="3" style="color: #333333;font-size: 17px;BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid; BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid;" placeholder="请填写详细地址，不少于5个字"></textarea>
+						</div>
+					</div>
+					<div style="font-size: 14px;color: #333333;padding: 10px;background-color: #FFFFFF;display: none;text-align: center;" id="nocontent1">
+						您还没有设置地址，请前往个人中心设置</span>
+					</div>
+				</div>
+			</form>
+
+			<div id="xiangguancailiao" style="color: #FFFFFF;background-color: #338dff;padding: 12px;font-size: 16px;margin-top: 10px;display: none;">相关材料</div>
+			<div id="materialInfo" style="background-color: #FFFFFF;margin: 0px;color: #333333;font-size: 13px;padding: 7px;line-height: 20px;color: red;padding-left: 15px;border-bottom: #DDDDDD solid;border-width: 1px;display: none;">⭐️为必要材料，您必须提交才能申报，如您需要将相关材料递交至窗口，可联系中国邮政为您上门取件，联系电话：11185。</div>
+			<ul id="parent" class="mui-table-view" style="width: 100%;display: none;">
+				<li v-for="item in items" class="mui-table-view-cell" style="color: #333333;font-size: 16px;width: 100%;">
+					<div>{{item.index}}、⭐ {{item.name}}</div>
+					<button style="background-color: #FFFFFF;color: #808080;height: 36px;width: 60%;margin-top: 7px;border-width: 0px;margin-top: 10px;float: left;border: #CCCCCC solid 1px;font-size: 14px;" onclick="onChooseImage('{{item.index}}','{{item.UNID}}','{{item.name}}')">拍照/从手机相册选取</button>
+					<!--<div class="inputFileWrapper" style="margin-top: 10px;">
+						<label for="input{{item.index}}">
+        						<input accept="image/*" type="file" name="file" id="input{{item.index}}" multiple="multiple" onchange="setImagePreviews({{item.index}},'{{item.UNID}}','{{item.name}}')"/>
+							<span class="custorm-style">
+            						<span class="left-button">上传材料</span>
+           					</span>
+   						</label>
+					</div>-->
+					<div id="photo{{item.index}}" style=" float: left;width:100%;"></div>
+				</li>
+			</ul>
+			<div id="videodiv" style="display: none;">
+				<div style="color: #FFFFFF;background-color: #338dff;padding: 12px;font-size: 16px;margin-top: 10px;display: block;">视频咨询</div>
+				<button id="startvideo" onclick="window.location.href = 'http://ywszwfw.yw.gov.cn/jmportal/scheme=yunxinvideo'">开始视频</button>
+				<div style="font-size: 14px;color: #999999;padding: 10px; background-color: #FFFFFF;display: block;text-align: left;">
+					注：点击开始视频，您将开始与工作人员进行视频聊天，并咨询相关问题</span>
+				</div>
+			</div>
+			<div id="advicediv" style="padding-bottom: 10px;background-color: #FFFFFF;display: none;">
+				<div style="color: #FFFFFF;background-color: #338dff;padding: 12px;font-size: 16px;margin-top: 10px;display: block;">其它申请事宜或留言</div>
+				<div id="" class="mui-input-row" style="margin: 10px;">
+					<textarea id="advicecontent" rows="5" placeholder="请输入" style="margin-bottom: 0px;"></textarea>
+				</div>
+				<div id="" style="width: 100%;margin-left: 5px;display: none;">
+					<div class="" style="width: 75%;margin-left: 5px;float: left;">
+						<input id="advicetip" type="text" placeholder="可在此留下您的QQ/邮箱/手机号" style="">
+					</div>
+					<div style="width: 15%;float: right;margin-top: 8px;margin-right: 10px;">
+						<input name="checkbox" id="advicecheck" value="" type="checkbox">
+						<label>公开</label>
+					</div>
+				</div>
+			</div>
+			<div id="" style="margin-top: 10px; padding: 10px 10px 10px 10px;background-color: #FFFFFF;">
+				<label style="font-size: 15px;color: #333333;">
+					<input id="issure" type="checkbox" value="" checked="checked"/> 我承诺填写的信息和提交的材料真实有效。
+				</label>
+			</div>
+		</div>
+		<!--<div style="bottom: 0px; width: 100%;height: 50px;position: fixed; background-color: #FFFFFF;color: #FFFFFF;line-height: 40px;font-size: 18px;" align="center" id="sureBtn">
+			<input type="button" value="提交" id="submitbtn0" style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 150px;margin-top: 7px;border-width: 0px;" onclick="submitItem();" />
+		</div>-->
+		<div style="bottom: 0px; width: 100%;height: 50px;position: fixed; background-color: #FFFFFF;color: #FFFFFF;line-height: 40px;font-size: 18px;display: none;" align="center" id="sureBtn">
+			<input type="button" value="草稿" id="draftbtn0" style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 40%;margin-top: 7px;border-width: 0px;margin-right: 2%;" onclick="draftItem();" />
+			<input type="button" value="提交" id="submitbtn0" style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 40%;margin-top: 7px;border-width: 0px;margin-left: 2%;" onclick="submitItem();" />
+		</div>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+
+		<div style="bottom: 0px; width: 100%;height: 35px;position: fixed;background-color: #FFFFFF;display: none;" id="sourceApp">
+			<p style="margin-top: 8px;margin-bottom: 0px; line-height: 20px;font-size: 12px;text-align: center;">——本服务由浙江政务服务网提供——</p>
+		</div>
+		<script src="../source/js/spin.js"></script>
+		<script src="../source/lrz/dist/lrz.bundle.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../source/js/util.js"></script>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../../js/city.data.js"></script>
+		<script src="../../../js/city.data-3.js"></script>
+		<script src="../../../js/mui.poppicker.js"></script>
+		<script src="../../../js/mui.picker.min.js"></script>
+		<script src="../../../js/mui.dtpicker.js"></script>
+		<!--<script src="../../mycenter/controller/addresslist.js"></script>-->
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../../../source/js/vue.min.js"></script>
+		<!--<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>-->
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../../BaseConfig/source/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../source/js/function.js"></script>
+		<script src="../../mycenter/controller/addAddress.js"></script>
+		<script src="../controller/draftdeclare.js"></script>
+		<script type="text/javascript">
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					var cityPicker3 = new $.PopPicker({
+						layer: 3
+					});
+					cityPicker3.setData(cityData3);
+					var showCityPickerButton = document.getElementById('showCityPicker3');
+					var cityResult3 = document.getElementById('cityResult3');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker3.show(function(items) {
+							doc.getElementById("showCityPicker3").value = (items[0] || {}).text + " " + (items[1] || {}).text + " " +  (((items[2] || {}).text)==undefined || ((items[2] || {}).text)=="undefined" ? "":((items[2] || {}).text));
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+							grprovince = (items[0] || {}).text;
+							grcity = (items[1] || {}).text;
+							grcounty = (items[2] || {}).text;
+							storage.province = grprovince;
+							storage.city = grcity;
+							storage.county = grcounty;
+							queryRegion(grprovince, 0);
+
+							//							storage.provinceCode = (items[0] || {}).value;
+							//							storage.cityCode = (items[1] || {}).value;
+							//							storage.countyCode = (items[2] || {}).value;
+
+						});
+					}, false);
+				});
+			})(mui, document);
+		</script>
+		<script type="text/javascript">
+			//判断容器类型，浏览器还是APP
+			var container = containerT();
+			//是否快递 switch的事件
+			var isManual = false; //标志按钮最后状态
+
+			if(container == "web") { //微信
+				document.getElementById("sourceApp").style.display = "none";
+				document.getElementById("sureBtn").style.marginBottom = "0px";
+				document.getElementById("contentArea").style.marginBottom = "55px";
+				document.getElementById("nocontent").style.display = "block";
+			} else { //浙江政务app
+				document.getElementById("sourceApp").style.display = "none";
+				document.getElementById("sureBtn").style.marginBottom = "0px";
+				document.getElementById("contentArea").style.marginBottom = "55px";
+				document.getElementById("nocontent").style.display = "block";
+			}
+
+			mui.init()
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			var storage = window.localStorage;
+			var userInfo;
+			//判断容器类型，浏览器还是APP
+
+			var containerType = "";
+			if(container == "web") {
+				//				requestToken();
+				userInfo = storage.wxuserInfo;
+				if(userInfo) {
+					userInfo = JSON.parse(userInfo);
+				}
+				containerType = "0"; //微信 
+			} else { //app 使用jssdk获取用户信息
+				userInfo = storage.userInfo;
+				if(userInfo) {
+					userInfo = JSON.parse(userInfo);
+				}
+				containerType = "1"; //浙江app中 URL
+			}
+			var username;
+			var userType;
+			var itemname;
+			var itemcode;
+			var onlinetype = '02';
+			var itemcodeid;
+			var webid;
+			var vsiteid;
+			var validitykey;
+			var cntime;
+			var colid;
+			var needPost;
+			//材料列表
+			var files;
+			//表单列表
+			var form;
+			//vbdcl为表单id(有值代表有表单；无值代表无表单)
+			var vbdcl;
+
+			var mobilebefore = userInfo.mobile;
+			var mobileshow = mobilebefore.replace(mobilebefore.substr(3, 4), "****");
+
+			//判断个人还是法人  传的username参数不一样
+			if(userInfo.appConEntName == "" || typeof(userInfo.appConEntName) == "undefined") { //个人
+				username = userInfo.username;
+				userType = "个人";
+				document.getElementById("sbdw").style.display = "none";
+				document.getElementById("zzjgdm").style.display = "none";
+				document.getElementById("frdb").style.display = "none";
+				document.getElementById("sbr").style.display = "block";
+				document.getElementById("sfz").style.display = "block";
+				document.getElementById("applyname").value = username;
+				document.getElementById("mobile").value = mobileshow;
+				document.getElementById("mobile").readOnly = true;
+			} else { //法人
+				username = userInfo.appConEntName;
+				userType = "法人";
+				document.getElementById("sbr").style.display = "none";
+				document.getElementById("sfz").style.display = "none";
+
+				document.getElementById("sbdw").style.display = "block";
+				document.getElementById("zzjgdm").style.display = "block";
+				document.getElementById("frdb").style.display = "block";
+				document.getElementById("applyenterprise").value = username;
+				document.getElementById("enterprisecode").value = userInfo.appConEntUniCode;
+				document.getElementById("mobile").value = mobilebefore;
+				document.getElementById("mobile").readOnly = "";
+			}
+			var card = userInfo.idnum;
+
+			var idcardShow = card.replace(card.substr(1, 16), "****************");
+			document.getElementById("idcard").value = idcardShow;
+			document.getElementById("draftbtn0").style.display = 'none';
+
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var itemurl = href.split("itemurl=")[1];
+			itemurl = decodeURI(itemurl);
+			requestDraftInfos();
+			
+//			var itemname = href.split("itemname=")[1].split("&")[0];
+//			itemname = decodeURI(itemname);
+//			var itemcode = href.split("itemcode=")[1].split("&")[0];
+//			itemcode = decodeURI(itemcode);
+//			var onlinetype = href.split("onlineType=")[1].split("&")[0];
+//			onlinetype = decodeURI(onlinetype);
+//			var itemcodeid = href.split("itemcodeid=")[1].split("&")[0];
+//			itemcodeid = decodeURI(itemcodeid);
+//			var webid = href.split("webid=")[1].split("&")[0];
+//			webid = decodeURI(webid);
+//			var validitykey = href.split("validitykey=")[1].split("&")[0];
+//			validitykey = decodeURI(validitykey);
+//			//			var cntime = href.split("cntime=")[1].split("&")[0];
+//			//			cntime = decodeURI(cntime);
+//			var cntime = '';
+//			var colid = href.split("colid=")[1].split("&")[0];
+//			var vjson = href.split("itemjson=")[1].split("&")[0];
+//			vjson = decodeURI(vjson);
+//
+//			var zjson = JSON.parse(vjson);
+//			var needPost = zjson.data.needPost;
+
+			if(onlinetype == "04") { //快递申请
+				document.getElementById("isPost").style.display = "none";
+				document.getElementById("postService").style.display = "block";
+				document.getElementById("addressInfo").style.display = "block";
+				document.getElementById("postExplain").style.display = "none";
+			} else {
+				document.getElementById("isPost").style.display = "block";
+				document.getElementById("postService").style.display = "none";
+				document.getElementById("postExplain").style.display = "block";
+			}
+			var material = [];
+			var filesArray = [];
+		</script>
+		<script>
+			mui('.mui-content .mui-switch').each(function() { //循环所有toggle
+
+				this.addEventListener('toggle', function(event) {
+
+					if(event.detail.isActive) {
+						isManual = true;
+						document.getElementById("addressInfo").style.display = "block";
+					} else {
+						isManual = false;
+						document.getElementById("addressInfo").style.display = "none";
+					}
+				});
+			});
+		</script>
+		<script>
+			(function($) {
+				$.fn.limitTextarea = function(opts) {
+					var defaults = {
+						maxNumber: 250, //允许输入的最大字数
+						position: 'top', //提示文字的位置，top：文本框上方，bottom：文本框下方
+						onOk: function() {}, //输入后，字数未超出时调用的函数
+						onOver: function() {} //输入后，字数超出时调用的函数   
+					}
+					var option = $.extend(defaults, opts);
+					this.each(function() {
+						var _this = $(this);
+						var info = '<div id="info">还可以输入<b>' + (option.maxNumber - _this.val().length) + '</b>字</div>';
+						var fn = function() {
+							var $info = $('#info');
+							var extraNumber = option.maxNumber - _this.val().length;
+
+							if(extraNumber >= 0) {
+								$info.html('还可以输入<b>' + extraNumber + '</b>个字');
+								option.onOk();
+							} else {
+								$info.html('已经超出<b style="color:red;">' + (-extraNumber) + '</b>个字');
+								option.onOver();
+							}
+						};
+						switch(option.position) {
+							case 'top':
+								_this.before(info);
+								break;
+							case 'bottom':
+							default:
+								_this.after(info);
+						}
+						//绑定输入事件监听器
+						if(window.addEventListener) { //先执行W3C
+							_this.get(0).addEventListener("input", fn, false);
+						} else {
+							_this.get(0).attachEvent("onpropertychange", fn);
+						}
+						if(window.VBArray && window.addEventListener) { //IE9
+							_this.get(0).attachEvent("onkeydown", function() {
+								var key = window.event.keyCode;
+								(key == 8 || key == 46) && fn(); //处理回退与删除
+							});
+							_this.get(0).attachEvent("oncut", fn); //处理粘贴
+						}
+					});
+				}
+			})(jQuery)
+			//插件调用；
+			$(function() {
+				$('#advicecontent').limitTextarea({
+					maxNumber: 250, //最大字数
+					position: 'bottom', //提示文字的位置，top：文本框上方，bottom：文本框下方
+					onOk: function() {
+						$('#advicecontent').css('background-color', 'white');
+					}, //输入后，字数未超出时调用的函数
+					onOver: function() {
+						$('#advicecontent').css('background-color', 'lightpink');
+					} //输入后，字数超出时调用的函数，这里把文本区域的背景变为粉红色   
+				});
+			});
+		</script>
+	</body>
+
+</html>

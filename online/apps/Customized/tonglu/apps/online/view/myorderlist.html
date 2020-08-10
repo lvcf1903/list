@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title id="title">我的预约</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../source/mui_css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!--去掉<li></li>之间的线-->
+		<style>
+			.mui-table-view-cell:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 15px;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+			}
+			
+			.mui-table-view:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc
+			}
+			
+			.mui-table-view:before {
+				position: absolute;
+				right: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+				top: -1px
+			}
+			
+			.two {
+				-moz-box-shadow: 2px 2px 10px #D0D0D0;
+				-webkit-box-shadow: 2px 2px 10px #D0D0D0;
+				box-shadow: 0px 0px 8px #D0D0D0;
+			}
+			
+			.onlinedeclare {
+				border-radius: 8px 8px 8px 8px;
+				-moz-box-shadow: 2px 2px 10px #D0D0D0;
+				-webkit-box-shadow: 2px 2px 10px #D0D0D0;
+				box-shadow: 0px 0px 8px #D0D0D0;
+			}
+			
+			a:link {
+				color: #333333;
+			}
+		</style>
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #FFFFFF;display: block;margin-bottom: 0px;">
+			<div class="mui-scroll" id="listcontent" style="display: block;">
+				<!--数据列表-->
+				<ul id="parent" class="mui-table-view" style="margin-top: 0px;display: none;font-size: 25px;color: #333333;">
+					<li v-for="item in items" id="{{item.index}}">
+
+						<div style="width:94%;margin:0 auto;margin-top:10px;background-color: #FFFFFF;">
+							<div class="onlineorder two" style="display: block;border:0px solid #ddd;border-radius:6px 6px 6px 6px">
+															<table width="100%">
+									<tr>
+										<td style="background: {{item.color}};width: 2%;border-radius:6px 0px 0px 6px">
+
+										</td>
+
+										<td width="80%">
+											<div class="detaildiv"  style="padding:10px 15px;font-size: 16px;">
+												{{item.groupname}}
+
+											</div>
+											<!--<button class="submitbtn" id="{{item.index}}&" style="color: #199efd;border-width: 0px;border:0.5px solid #199efd;border-radius:6px 6px 6px 6px;padding: 4px 6px 4px 6px;font-size: 12px;margin-left: 15px;margin-bottom: 10px;">立即预约</button>-->
+											<div class="detaildiv"  style="padding:00px 15px 10px 15px;font-size: 14px;color: #abaaa9;">
+												预约日期:{{item.yyrq}}
+
+											</div>
+											<div class="detaildiv"  style="padding:00px 15px 10px 15px;font-size: 14px;color: #abaaa9;">
+											          取号码:{{item.number}}
+
+											</div>
+										</td>
+										<td style="padding: 0px;padding-top: 12%;">
+
+											<button class="submitbtn"  style="line-height: 1.5;color: #199efd;border-width: 0px;border:0.5px solid #199efd;border-radius:6px 6px 6px 6px;padding: 4px 6px 4px 6px;font-size: 12px;margin-left: 15px;margin-right: 10px;margin-top: 10px;" onclick="qxyy({{item.object}})">取消预约</button>
+
+											<!--<img style="padding: 0px;padding-bottom: -20px;margin-bottom: -20px;float: right;" src="../source/images/zaixianyuyue.png" width="30px" />-->
+										</td>
+									</tr>
+
+								</table>
+
+							</div>
+
+						</div>
+						
+					</li>
+				</ul>
+			</div>
+			<div id="badmessage" style="opacity: 0.6;border-radius: 10px;position: absolute;left: 50%;top: 50%;width:160px;height:160px;margin-left:-80px;margin-top:-100px;display: none;">
+				<img style="width: 160px; height: 160px;" src="../source/images/yw_message_bad.png" />
+				<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+			</div>
+			<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+				<img id="food" src="../source/images/loading.gif" style="background-color: #000000; width: 60px; 
+				height: 60px;border-radius: 10px ;
+				margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+				<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+			</div>
+		</div>
+
+		<div style="bottom: 0px; width: 100%;height: 35px;position: fixed;background-color: #FFFFFF;display: none;" id="sourceApp">
+			<p style="margin-top: 8px;margin-bottom: 0px; line-height: 20px;font-size: 12px;text-align: center;">——本服务由浙江政务服务网提供——</p>
+		</div>
+		<script src="../source/mui_widget/mui.min.js"></script>
+		<script src="../source/js/vue.min.js"></script>
+		<script src="../source/js/interface.js"></script>
+		<script src="../source/js/jquery-3.0.0.min.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script type="text/javascript" src="../source/mui_widget/util.js"></script>
+		<script type="text/javascript" src="../../BaseConfig/controller/BaseConfig.js" ></script>
+		<script src="../source/js/function.js"></script>
+		<script src="../controller/myorderlist.controller.js"></script>
+		<!--<script type="text/javascript" src="https://www.jszwfw.gov.cn/jmopen/jssdk/index.js"></script>-->
+	    <!--<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>-->
+	    <script type="text/javascript" src="https://open.zjzwfw.gov.cn/open/jssdk/index.js"></script>
+		<script type="text/javascript">
+			requestOrderList();
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					/*down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}*/
+				}
+			});
+
+//			function pulldownRefresh() {
+//				setTimeout(function() {
+//					requestOrderList(num);
+//				}, 1500);
+//			}
+
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			/*function pullupRefresh() {
+				setTimeout(function() {
+					requestOrderList(num);
+					//					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+				}, 1500);
+			}*/
+
+			//点击li的事件 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）-- 预约事项详情
+			//			if(onlinetype == "01") { //网上预约
+
+	
+			//			}
+			//我要预约
+			/*mui('.mui-table-view').on('tap', '.submitbtn', function() {
+				var index = this.id;
+				index = index.substring(0, index.length - 1);
+				var nameindex = "name" + index;
+				var itemcodeindex = "itemcode" + index;
+				var name = document.getElementById(nameindex).innerHTML;
+				var itemcode = document.getElementById(itemcodeindex).innerHTML;
+				var dttokenIndex = "dttoken" + index;
+				var dttoken = document.getElementById(dttokenIndex).innerHTML;
+				//				alert(dttoken);
+				var url;
+				if(onlinetype == "01") { //网上预约
+					url = "handleorder.html?itemcode=" + itemcode + "&itemname=" + name + "&token=" + dttoken + "&departid=" + departid + "&windowname=" + windowname
+				} else { //网上办证（证明）
+					var cnqxIndex = "cnqx" + index;
+					var cnqx = document.getElementById(cnqxIndex).innerHTML;
+
+					url = "onlinedeclare.html?itemcode=" + itemcode + "&itemname=" + name + "&onlineType=" + onlinetype + "&cnqx=" + cnqx
+				}
+				mui.openWindow({
+					url: url
+				})
+			})*/
+			
+		</script>
+		
+	</body>
+
+</html>

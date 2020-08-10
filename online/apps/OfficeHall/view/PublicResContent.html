@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>公共资源</title>
+	</head>
+
+	<style type="text/css">
+		* {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			font-size: 12px;
+			font-family: "微软雅黑";
+			q
+		}
+		
+		.d1 {
+			height: 44px;
+			width: 100%;
+			background-color: #0a87ff;
+		}
+		
+		.d2 {
+			height: 10px;
+			width: 100%;
+			background-color: #f2f2f2;
+		}
+		
+		td {
+			height: 44px;
+		}
+		
+		.p1 {
+			margin-left: 20px;
+			color: white;
+			font-size: 16px;
+			line-height: 44px;
+		}
+		
+		.table1 {
+			width: 96%;
+			margin: 15px 2%;
+			/*margin: 15px 10px;*/
+			border-collapse: collapse;
+		}
+		
+		.td_left {
+			width: 90px;
+			text-align: center;
+			border: 1px solid #f2f2f2;
+		}
+		
+		.td_right {
+			padding: 10px;
+			border: 1px solid #f2f2f2;
+		}
+		
+		#content {
+			width: 100%;
+		}
+		
+		#main {
+			width: 100%;
+			display: none;
+		}
+	</style>
+
+	<body>
+		<div id="main" class="">
+			<ul id="ul1">
+				<li id="li1" v-for="item in items">
+					<div id="content">
+						<div class="d1">
+							<p class="p1">建设工程招标公告</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>工程名称</b></td>
+								<td class="td_right">{{item.publicname}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>招标编号</b></td>
+								<td class="td_right">{{item.publicnum}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>建设地点</b></td>
+								<td class="td_right">{{item.jsdd}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>概算投资</b></td>
+								<td class="td_right">{{item.tzgs}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>建设规模</b></td>
+								<td class="td_right">{{item.jsgm}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>工程质量</b></td>
+								<td class="td_right">{{item.gczl}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>工期要求</b></td>
+								<td class="td_right">{{item.gqyq}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">招标范围</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td style="padding: 10px;border: 1px solid #F2F2F2;">{{item.zbfw}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">投标人资格要求</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>企业资质</b> </td>
+								<td class="td_right" colspan="2">{{item.qyzz}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>人员要求</b></td>
+								<td class="td_left">{{item.ryzw}}</td>
+								<td class="td_right">{{item.ryyq}}</td>
+							</tr>
+
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">报名时间</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>报名时间</b> </td>
+								<td class="td_right" style="color: #FF0000;">{{item.bmsj}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">招标文件（含清单、图纸）领取</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>领取时间</b> </td>
+								<td class="td_right">{{item.zbwjlqsj}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>领取方式</b></td>
+								<td class="td_right">{{item.zbwjlqfs}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">招标答疑提交</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>提交时间</b> </td>
+								<td class="td_right">{{item.zbdytjsj}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>提交方式</b></td>
+								<td class="td_right">{{item.zbdytjfs}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">招标答疑（补充）文件发放</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>领取方式</b> </td>
+								<td class="td_right">{{item.zbdylqfs}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">资格审查方式</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>审查方式</b> </td>
+								<td class="td_right">{{item.zgscfs}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">评标办法</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>评标办法</b> </td>
+								<td class="td_right">{{item.pbbf}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">其他要求</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>其他说明</b> </td>
+								<td class="td_right">{{item.styq}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">招标人名称及联系方式</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>招标人</b> </td>
+								<td class="td_right">{{item.zbr}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>联系人</b> </td>
+								<td class="td_right">{{item.lxr}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>联系电话</b> </td>
+								<td class="td_right">{{item.lxdh}}</td>
+							</tr>
+						</table>
+					</div>
+					<div id="">
+						<div class="d1">
+							<p class="p1">招标代理机构名称及联系方式</p>
+						</div>
+						<div class="d2"></div>
+						<table class="table1">
+							<tr>
+								<td class="td_left"><b>代理机构</b> </td>
+								<td class="td_right">{{item.dljg}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>联系人</b> </td>
+								<td class="td_right">{{item.dljglxr}}</td>
+							</tr>
+							<tr>
+								<td class="td_left"><b>联系电话</b> </td>
+								<td class="td_right">{{item.dljglxdh}}</td>
+							</tr>
+						</table>
+					</div>
+				</li>
+			</ul>
+			<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+				<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+				<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+			</div>
+		</div>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../controller/PublicResContent.controller.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			getContentData();
+			$(function() {
+				$('.table1').width($('#content').width() - 20);
+			})
+			$(function() {
+				$("td").click(function() {
+					window.location.href = "PublicResList.html";
+				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,65 @@
+<html>
+	<meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>
+	<meta charset="UTF-8" />
+	<title>网上查询</title>
+
+	<head>
+		<link rel='stylesheet' type='text/css' href='http://www.zjzwfw.gov.cn/picture/pic/wzy_xzql.css' />
+		<style type="text/css">
+			* {
+				border: 0;
+				padding: 0;
+				margin: 0;
+				font-family: "微软雅黑";
+			}
+			
+			body {
+				background-color: #ffffff;
+				font-family: 'LTHYSZK';
+				margin-top: 15px;
+				line-height: 30px;
+				color: #222222;
+				word-wrap: break-word;
+				overflow: hidden;
+				font-weight: normal;
+				font-size: 15px;
+				font-variant: normal;
+				font-style: normal;
+			}
+			
+			.hr1 {
+				height: 1px;
+				border: none;
+				border-top: 1px solid #dcdcdc;
+			}
+			
+			td {
+				font-size: 18px;
+				color: #222222;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<table cellspacing="0" cellpadding="0" class="bg_wtjd" id="wtjd">
+			<tbody>
+				<tr class="bg_dan">
+					<td class="wtjdwttd1">问题</td>
+					<td class="wtjdwttd2">1、补偿的范围是哪些？ </td>
+				</tr>
+				<tr class="bg_shuang">
+					<td class="wtjddatd1">答案</td>
+					<td class="wtjddatd2">省级林业行政主管部门为选育林木良种批准建立测定林、试验林、优树收集区、基因库而减少经济收入的单位和个人。 </td>
+				</tr>
+			</tbody>
+		</table>-->
+		<div id="cont6" style="padding: 0px 15px;">
+		</div>
+		<script>
+			var storage = window.localStorage;
+			var cjwt = storage.cjwt;
+			document.getElementById("cont6").innerHTML = cjwt;
+		</script>
+	</body>
+
+</html>

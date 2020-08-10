@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>民族成份变更申请审批表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">变更人基本信息</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="txt_bgrxm" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">性别</span>
+                <input id="txt_bgrxb" class="info_input item_input" type="text" placeholder="请输入性别">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">出生年月日</span>
+                <input id="txt_bgrcsnyr" class="info_input item_input" type="text"  @click='bgrcsnyr' readonly>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">原民族成份</span>
+                <input id="txt_ymzcf" class="info_input item_input" type="text" placeholder="请输入原民族成份">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请变更民族成份</span>
+                <input id="txt_sqbgmzcf" class="info_input item_input" type="text" placeholder="请输入申请变更民族成份">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">家庭住址</span>
+                <input id="txt_jtzz" class="info_input item_input" type="text" placeholder="请输入家庭住址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">户籍所在地派出所</span>
+                <input id="txt_hjszpcs" class="info_input item_input" type="text" placeholder="请输入户籍所在地派出所">
+            </div>
+            <div class="infolist miaoshu" style="height: 80px; line-height: 80px;">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 16px;margin-top: 30px;">申请理由和要求</span>
+                <textarea name="sqlyhyq" placeholder="请输入申请理由和要求" id="txt_sqlyhyq"></textarea>
+            </div>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">父亲基本信息</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="txt_fqxm" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">民族成份</span>
+                <input id="txt_fqmzcf" class="info_input item_input" type="text" placeholder="请输入民族成份">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">工作单位</span>
+                <input id="txt_fqgzdw" class="info_input item_input" type="text" placeholder="请输入工作单位">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_fqlxdh" class="info_input item_input" type="text" placeholder="请输入联系电话"  @blur='sjyz'>
+            </div>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">母亲基本信息</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="txt_mqxm" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">民族成份</span>
+                <input id="txt_mqmzcf" class="info_input item_input" type="text" placeholder="请输入民族成份">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">工作单位</span>
+                <input id="txt_mqgzdw" class="info_input item_input" type="text" placeholder="请输入工作单位">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_mqlxdh" class="info_input item_input" type="text" placeholder="请输入联系电话"  @blur='sjyz'>
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/plugins/mui.picker.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/mzcfbgsqspb.js"></script>
+</body>
+</html>

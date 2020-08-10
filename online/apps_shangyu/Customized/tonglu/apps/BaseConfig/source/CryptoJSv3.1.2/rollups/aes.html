@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>aes测试</title>
+		<script type="text/javascript" src="aes.js"></script>
+		<!--<script type="text/javascript" src="../components/mode-ecb.js"></script>-->
+	</head>
+
+	<body>
+
+	</body>
+
+	<script type="text/javascript">
+		function Encrypt1(word) {
+			var key = CryptoJS.enc.Utf8.parse("12345678!@#$%^&*");
+			var iv = CryptoJS.enc.Utf8.parse('zjzwfwuuser@2016');
+			var srcs = CryptoJS.enc.Utf8.parse(word);
+			var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+				iv: iv,
+				mode: CryptoJS.mode.CBC
+			});
+			return encrypted.toString();
+//			return encodeURIComponent(encrypted).toString();
+		}
+
+        var srt = 'vtfD0bHxYc/Uc8/iexGWPGq7NlzLhwpir4jdQodS2jHCjUBvhnyX9k3ydzsFqHusfk+ZUHFSwun+6B3ijd9ungMTmE/sTX6RORhH1Pf9CHtIKgZVwKC2e5cH5pfEUZrzWxBG+yTjoDA+iaehn/tIX6DovtLroR64wZyBq4Be4+1Hmzk/HzNxI5J9rnGAdB1jd1hTo8RKZf2IcrlEzYCjwtjtADfu0rnTXvLEvPGHJLxhlwLL6JQBauyTSJ/KKo6XqJ2OSl0VQKh2CZh45zXgmfEq4DNFgSX8o9Qw4U4DtpWtXHt+DNueuvLmf+bNhKpZkwfQZQFV/okZHFVRSSaLGK2WVoFIL3DYqoLoQzPPHECs/h1A94EEx1vBgabv5I/sAma1+z0h50SEZ68/fs6LZpYRtmCtzclZEAtAgkR2NwDgM+TRkd9v5LaXDM8RCYw1Yv8HwZjMVB9JAcP2EDe1jg==';
+        var sdsa = 'gKIA7M34eUsdn5tcI+I+RA==';
+		function Decrypt(word) {
+			var key = CryptoJS.enc.Utf8.parse("12345678!@#$%^&*");
+			var iv = CryptoJS.enc.Utf8.parse('zjzwfwuuser@2016');
+			var decrypt = CryptoJS.AES.decrypt(word, key, {
+				iv: iv,
+				mode: CryptoJS.mode.CBC
+			});
+			return CryptoJS.enc.Utf8.stringify(decrypt).toString();
+//			return decodeURIComponent(CryptoJS.enc.Utf8.stringify(decrypt)).toString();
+		}
+
+//		console.log(Encrypt1('zj13585105811'));
+		console.log(Decrypt(srt));
+	</script>
+
+</html>

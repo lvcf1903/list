@@ -1,0 +1,554 @@
+body {
+	background-color: white;
+	font-size: 14px;
+}
+
+.bigdiv {
+	margin-top: 20px;
+	margin-left: 0px;
+	margin-bottom: 50px;
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+.singlelabeldiv {
+	float: left;
+	width: 20%;
+	height: 40px;
+	margin-left: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+.singlelabel {
+	font-size: 14px;
+	text-align: left;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.singlediv {
+	float: left;
+	margin-left: 10px;
+	width: 65%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 40px;
+}
+
+.singleinput {
+	height: 100%;
+	width: 100%;
+	align-content: center;
+	font-size: 14px;
+}
+
+.singletishilable {
+	float: right;
+	line-height: 40px;
+	align-content: center;
+	margin-top: 10px;
+	margin-right: 10px;
+	font-size: 20px;
+	color: red;
+	display: none;
+}
+
+.multilabeldiv {
+	float: left;
+	width: 20%;
+	height: 40px;
+	margin-left: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+.multilabel {
+	font-size: 14px;
+	text-align: left;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.multidiv {
+	float: left;
+	margin-left: 10px;
+	width: 65%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 80px;
+}
+
+.multiinput {
+	width: 65%;
+	height: 80px;
+	align-content: center;
+	font-size: 14px;
+	position: absolute;
+	background: none;
+	overflow: hidden;
+	z-index: 9;
+}
+
+.multiinputnote {
+	position: absolute;
+	line-height: 20px;
+	padding: 10px 10px;
+	font-size: 14px;
+	color: #c5c5c5;
+}
+
+.pilldownlistlabeldiv {
+	float: left;
+	width: 20%;
+	height: 40px;
+	margin-left: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+.pilldownlistlabel {
+	font-size: 14px;
+	text-align: left;
+	vertical-align: middle;
+	/*overflow: hidden;*/
+}
+
+.pilldownlistdiv {
+	background: url(../img/tbarrow.png) right center no-repeat;
+	background-position-x: 98%;
+	float: left;
+	margin-left: 10px;
+	width: 65%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 40px;
+	overflow: hidden;
+	border: solid 1px #CCCCCC;
+}
+
+.pilldownlistdiv select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: transparent;
+	border: none;
+	padding-left: 10px;
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+}
+
+.radiolabeldiv {
+	float: left;
+	width: 20%;
+	height: 40px;
+	margin-left: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.radiolabel {
+	font-size: 14px;
+	text-align: left;
+	line-height: 40px;
+	align-content: center;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.radiodiv {
+	float: left;
+	margin-left: 10px;
+	width: 65%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	line-height: 40px;
+	align-content: center;
+	vertical-align: middle;
+}
+
+.sexdiv {
+	float: left;
+	height: 100%;
+	line-height: 40px;
+	width: 100%;
+}
+
+.radiochildlabel {
+	float: left;
+	/* width: 80px; */
+	height: 100%;
+	margin-left: 3px;
+	font-size: 14px;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+.checklabeldiv {
+	float: left;
+	width: 20%;
+	height: 40px;
+	margin-left: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.checklabel {
+	line-height: 40px;
+	font-size: 14px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.checkdiv {
+	float: left;
+	width: 68%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	line-height: 40px;
+	align-content: center;
+	vertical-align: middle;
+}
+
+.selectdiv {
+	float: left;
+	width: 100%;
+	align-content: center;
+	height: 40px;
+}
+
+.checkchildlabel {
+	width: 80px;
+	line-height: 40px;
+	margin-left: 10px;
+	font-size: 14px;
+	overflow: hidden;
+}
+
+.rdo {
+	float: left;
+	margin-top: 9px;
+	width: 20px;
+	height: 0px;
+	background-color: #000;
+	border-radius: 50%;
+	position: relative;
+}
+
+.rdo:before,
+.rdo:after {
+	content: '';
+	display: block;
+	position: absolute;
+	border-radius: 50%;
+	transition: .3s ease;
+}
+
+.rdo:before {
+	top: 0px;
+	left: 0px;
+	width: 18px;
+	height: 18px;
+	background-color: #fff;
+	border: 1px solid #CCCCCC;
+}
+
+.rdo:after {
+	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	background-color: #fff;
+}
+
+.rdo:checked:after {
+	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	background-color: #000;
+}
+
+.rdo:checked:before {
+	border-color: #000;
+}
+
+input[type=checkbox] {
+	visibility: hidden;
+}
+
+.checkboxFive {
+	/* width: 110px; */
+	height: 40px;
+	margin: 0px 10px;
+	position: relative;
+}
+
+.checkboxFive label {
+	cursor: pointer;
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	top: 7.5px;
+	left: 0;
+	background: #fff;
+	border: 1px solid #C0C0C0;
+}
+
+.checkboxFive label:after {
+	opacity: 0.0;
+	content: '';
+	position: absolute;
+	width: 9px;
+	height: 5px;
+	background: transparent;
+	top: 6px;
+	left: 7px;
+	border: 3px solid #5E5E5E;
+	border-top: none;
+	border-right: none;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.checkboxFive input[type=checkbox]:checked+label:after {
+	opacity: 1;
+}
+
+.bottomdiv {
+	float: left;
+	width: 100%;
+	height: 50px;
+	margin-top: 10px;
+	display: none;
+}
+
+.buttonnxt {
+	text-decoration: none;
+	color: #fff;
+	background: #338dff;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 30%;
+	width: 40%;
+	height: 40px;
+	border-width: 0px;
+}
+
+.bottom_fixed {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 3;
+}
+
+.bottom_fixedone {
+	width: 25%;
+	height: 40px;
+	background: url(../img/prebtnnone.png) center no-repeat;
+	background-size: 25px 25px;
+	border: none;
+	position: fixed;
+	left: 25%;
+	right: 0;
+	bottom: 0;
+	z-index: 3;
+}
+
+.bottom_fixedtwo {
+	width: 25%;
+	height: 40px;
+	background: url(../img/nxtbtn.png) center no-repeat;
+	background-size: 25px 25px;
+	border: none;
+	position: fixed;
+	left: 50%;
+	right: 0;
+	bottom: 0;
+	z-index: 3;
+}
+
+.buttonnxtbottom {
+	text-decoration: none;
+	color: #fff;
+	background: #005789;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	width: 100%;
+	height: 40px;
+}
+
+ul,
+li {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.screen {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	/*border: 1px solid #ccc;*/
+	overflow: hidden;
+}
+
+.list {
+	height: 400px;
+	position: relative;
+	transition: all 1s;
+}
+
+.list li {
+	width: 99%;
+	height: 100%;
+	position: absolute;
+	transition: all 1s;
+	top: 0;
+	overflow-y: scroll;
+}
+
+.list li.pre {
+	transform: scale(0.9)
+}
+
+.list li.current {
+	transform: none
+}
+
+.list li.next {
+	transform: scale(0.9)
+}
+
+
+/*去除input=file的默认样式*/
+
+.input-file {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	left: 0;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	cursor: pointer;
+	background-color: paleturquoise;
+}
+
+
+/*多选图片的样式*/
+
+.mult-pics-ul {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	position: relative;
+	text-decoration: none;
+	box-sizing: border-box;
+	display: none;
+}
+
+.mult-pics-ul div {
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 33.3%;
+	height: 33.3%;
+	line-height: 50px;
+	text-align: center;
+	display: inline-block;
+}
+
+.mult-pics-item {
+	width: 90%;
+	height: 90%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.mult-pics-item-close {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 20px;
+	height: 20px;
+}
+
+.pic-selected-wrapper {
+	position: relative;
+	width: 100%;
+}
+
+.pic-selected {
+	margin-left: 10px;
+	width: 50px;
+	height: 50px;
+}
+
+.upload-pic-ul {
+	float: left;
+	width: 100%;
+	height: 100%;
+	padding: 10px 10px 0px;
+	margin: 0;
+	background: #FFFFFF;
+}
+
+.upload-pic-ul>div {
+	float: left;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	box-sizing: border-box;
+	color: #000000;
+	min-height: 100px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #F1F1F5;
+}
+
+.pic-wrapper-div {
+	position: relative;
+	box-sizing: border-box;
+	float: left;
+	width: 68%;
+	min-height: 100px;
+}
+
+.li-left-div {
+	float: left;
+	padding: 0;
+	margin: 0;
+	width: 22%;
+}
+
+.wrapper-gdbscx {
+	background-color: #EFEFF4;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
+.top-tips {
+	font-size: 14px;
+	color: #C5C5C5;
+	background-color: #FFFFFF;
+	padding: 5px 0px;
+}

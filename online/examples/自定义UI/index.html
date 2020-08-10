@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="./css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			.mui-icon-left-nav:before {
+			    color: white;
+			}
+			.mui-icon-speech:before {
+			    content: "\e301";
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header" class="mui-bar mui-bar-nav" style="background: #232736;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color: white;">主页</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/reminder/reminder.html">一般提示</a>
+			</div> 
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/reminder/icon.html">提示图标</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/reminder/warning.html">警告提示</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/alert/alert.html">弹出框</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/btn/button.html">按钮</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/classify/classify.html">分类</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/error/error.html">错误页面</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/exception/nullpointexception.html">异常页面</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/fontsize/fontsize.html">字体颜色</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/header/header.html">标题栏</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/input/input.html">输入框</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/input/list-with-input.html">圆角列表</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/list/list.html">列表页</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/search/search.html">搜索框1</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/search/search1.html">搜索框2</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/tabchange/tab1.html">Tab切换</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/text/text.html">正文页</a>
+			</div>
+			<div class="mui-content-padded" style="margin: 20px 10px;text-align: center;">
+				<a href="http://192.168.89.184:8080/jmp3.1.8/H5UI/verifycode/verifycode.html">验证码</a>
+			</div>
+			  
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+		</script>
+
+	</body>
+
+</html>

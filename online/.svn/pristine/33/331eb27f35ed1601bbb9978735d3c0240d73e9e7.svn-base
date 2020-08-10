@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<style type="text/css">
+    .radio {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+    }
+    
+    .content {
+        margin-left: 16px;
+        width: 100%;
+        padding: 14px 16px 12px 0;
+        border-bottom: 1px solid #EEEEEE;
+    }
+    
+    .radios {
+        margin-right: 8px;
+    }
+    
+    .checkboxs {
+        display: block;
+    }
+    
+    .checkboxs {
+        padding: 14px 0 15px;
+        display: flex;
+        width: 300px;
+        border-bottom: 1px solid #EEEEEE;
+    }
+    
+    .checkboxs>font {
+        width: 100%;
+        margin-left: 8px;
+        font-size: 14px;
+        color: #333;
+    }
+</style>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">场所名称</span>
+                <input id="txt_sqdwhgr" class="info_input item_input" type="text" v-model="ma">
+            </div>
+            <div class="infolist1">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a1">法定代表人/主要负责人</span>
+                <input id="txt_jgdm" class="info_input item_input1" type="text" v-model="mb">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">地址</span>
+                <input id="txt_frdb" class="info_input item_input" type="text" v-model="mc">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">建筑结构</span>
+                <input id="txt_lxr" class="info_input item_input" type="text" v-model="md">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">场所面积</span>
+                <input id="txt_lxdh" class="info_input item_input" type="text" v-model="me">
+            </div>
+            <div class="infolist2">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a2">使用层数(地上/地下)</span>
+                <input id="txt_txdz" class="info_input item_input2" type="text" v-model="mf">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系人</span>
+                <input id="txt_email" class="info_input item_input" type="text" v-model="mg">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_bkydwwmc" class="info_input item_input" type="text" @blur='sjyz' v-model="mh">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a"> 场所性质</span>
+                <span id="txt_bkydwwdz" class="info_input item_input" @click="show">{{sszt}}</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">建筑高度</span>
+                <input name="bkydwwjbqkjs" id="txt_bkydwwjbqkjs" class="info_input item_input" v-model="mu">
+            </div>
+
+
+
+            <div class="infolist ">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">消防验收/备案情况</span>
+                <span name="yysyq" placeholder="原有所有权、使用权归属或用途" id="txt_yysyq" @click="btn" class="info_input item_input"> {{nowtext}}</span>
+            </div>
+            <div class="infolist" v-if="flag == 1">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">文案</span>
+                <input id="txt_sqdwhgg" class="info_input item_input" type="text" v-model="mp">
+            </div>
+            <div class="infolist" v-if="flag == 2">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">备案号</span>
+                <input id="txt_sq" class="info_input item_input" type="text" v-model="mk">
+            </div>
+            <!-- <div class="infolist ">文号<input type="text" style="border: none;"></div>
+            <div class="infolist ">备案号 <input type="text" style="border:none;"></div> -->
+
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" id="txt_gbhsyq">现有消防措施(可多选)</span>
+            </div>
+            <div class="content">
+                <div class="contents">
+                    <label class="checkboxs">
+		        <input type="checkbox" name="radiocheck" class="radio" value="火灾自动报警系统" id="1" ></input>
+				<font class="radio-text">火灾自动报警系统</font>
+		    </label>
+                    <label class="checkboxs">
+		        <input  type="checkbox" name="radiocheck" class="radio" value="自动喷水灭火系统" id="2">
+		        <font class="radio-text">自动喷水灭火系统</font>
+		    </label>
+                    <label class="checkboxs">
+		        <input  type="checkbox" name="radiocheck" class="radio" value="气体灭火系统" id="3">
+		        <font class="radio-text">气体灭火系统</font>
+		    </label>
+                    <label class="checkboxs">
+		        <input type="checkbox" name="radiocheck" class="radio" value="泡沫灭火系统" id="4">
+		        <font class="radio-text">泡沫灭火系统</font>
+            </label>
+                    <label class="checkboxs">
+		        <input type="checkbox" name="radiocheck" class="radio" value="泡沫灭火系统" id="4">
+		        <font class="radio-text">机械防烟系统</font>
+            </label>
+                    <label class="checkboxs">
+		        <input type="checkbox" name="radiocheck" class="radio" value="泡沫灭火系统" id="4">
+		        <font class="radio-text">机械排烟系统</font>
+            </label>
+                    <label class="checkboxs">
+		        <input type="checkbox" name="radiocheck" class="radio" value="泡沫灭火系统" id="4">
+		        <font class="radio-text">泡沫灭火系统</font>
+		    </label>
+                    <label class="checkboxs">
+		        <input  type="checkbox" name="radiocheck" class="radio" value="消防控制室" id="5">
+		        <font class="radio-text">消防控制室</font>
+		    </label>
+                    <label class="checkboxs">
+		        <input  type="checkbox" name="radiocheck" class="radio" value="室内消火栓" id="6">
+		        <font class="radio-text">室内消火栓</font>
+            </label>
+                    <label class="checkboxs">
+		        <input  type="checkbox" name="radiocheck" class="radio" value="室内消火栓" id="6">
+		        <font class="radio-text">室外消火栓</font>
+		    </label>
+                    <label class="checkboxs">
+			    <input type="checkbox" name="radiocheck" class="radio" value="消防电梯" id="7">
+			    <font class="radio-text">消防电梯</font>
+			</label>
+                    <label class="checkboxs">
+			    <input type="checkbox" name="radiocheck" class="radio" value="应急广播" id="8">
+			    <font class="radio-text">应急广播</font>
+			</label>
+                    <label class="checkboxs">
+			    <input  type="checkbox" name="radiocheck" class="radio" value="应急照明" id="9">
+			    <font class="radio-text">应急照明</font>
+			</label>
+                    <label class="checkboxs">
+			    <input  type="checkbox" name="radiocheck" class="radio" value="疏散指示标志" id="10">
+			    <font class="radio-text">疏散指示标志</font>
+			</label>
+                    <label class="checkboxs">
+			    <input  type="checkbox" name="radiocheck" class="radio" value="其他消防设施" id="11">
+			    <font class="radio-text">其他消防设施</font>
+			</label>
+                    <label class="checkboxs">
+			    <input  type="checkbox" name="radiocheck" class="radio" value="安全出口数量" id="12">
+			    <font class="radio-text">安全出口数量</font>
+			</label>
+                    <label class="checkboxs">
+			    <input type="checkbox" name="radiocheck" class="radio" value="灭火器 种类、型号和数量" id="13">
+			    <font class="radio-text">灭火器 种类、型号和数量</font>
+			</label>
+
+                </div>
+            </div>
+
+            <!-- <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 24px;margin-top: 26px;">转让、抵押或改变用途的原因</span>
+                <textarea name="zryy" placeholder="请输入现标准地名地址" id="txt_zryy"></textarea>
+            </div> -->
+            <div class="infolist miaoshu">
+                <span class="a" style="margin-left: 28px;">其他情况说明</span>
+                <textarea name="qtqksm" id="txt_qtqksm">{{kesd}}</textarea>
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/js/plugins/mui.picker.min.js"></script>
+    <script src="../controller/ggjjcsa.js"></script>
+</body>
+
+</html>

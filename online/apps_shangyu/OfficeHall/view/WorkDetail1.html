@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>网上查询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../../../css/app.css" />
+		<link rel="stylesheet" href="../../../source/css/sm.css">
+		<link rel="stylesheet" href="../../../source/css/sm-extend.css">
+		<script src="../../../source/js/zepto.js"></script>
+	</head>
+
+	<body>
+
+		<style>
+			.mui-control-content {
+				background-color: white;
+				min-height: 620px;
+				/*position:absolute; 
+				width:100%; 
+				bottom:0; 
+				overflow:auto;*/
+			}
+			
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+			
+			.tr1 {
+				border: 1px solid;
+				border-color: #199efd;
+				height: 40px;
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			
+			.lefttd {
+				color: #199efd;
+				font-size: 16px;
+				padding-left: 10px;
+				background-color: #F7F7F7;
+				border-right: 1px solid;
+				border-color: #199efd;
+			}
+			
+			.righttd {
+				color: #222222;
+				width: 65%;
+				font-size: 16px;
+				padding: 0px 10px;
+			}
+			
+			#itemname {
+				margin: 0px;
+				font-family: '微软雅黑';
+				font-size: 21px;
+				text-align: center;
+				padding: 15px;
+				line-height: 30px;
+				color: #199efd;
+			}
+			
+			table {
+				background-color: #FFFFFF;
+				line-height: 30px;
+				height: 40px;
+				font-size: 14px;
+				color: #199efd;
+				font-family: '微软雅黑';
+			}
+			
+			span {
+				color: #fff;
+				line-height: 100px;
+				width: 200px;
+				height: 100px;
+				background-color: #199efd;
+			}
+			
+			table {
+				border-collapse: collapse;
+				margin: 0 auto;
+				width: 90%;
+			}
+			
+			a {}
+		</style>
+		<div class="mui-content">
+			<div>
+				<div id="itemname">标题</div>
+				<table>
+					<tr class="tr1">
+						<td align="center" class="lefttd">材料形式</td>
+						<td class="righttd" id="td1"></td>
+					</tr>
+					<tr class="tr1">
+						<td align="center" class="lefttd">材料详细要求</td>
+						<td class="righttd" id="td2"></td>
+					</tr>
+					<tr class="tr1">
+						<td align="center" class="lefttd">必要性及描述</td>
+						<td class="righttd" id="td3"></td>
+					</tr>
+					<tr class="tr1">
+						<td align="center" class="lefttd">备注</td>
+						<td class="righttd" id="td4"></td>
+					</tr>
+				</table>
+			</div>
+			<!--<div style="width: 96%;text-align: center;">
+				<input align="left" style="" type="submit" value="空表格下载" />
+				<input align="right" style="" type="submit" value="示例下载" />
+			</div>-->
+			<div class="content-block">
+				<div class="row">
+					<div class="col-50">
+						<a href="#" id="href1" class="button button-big button-fill" style="display: none;">空表格下载</a>
+					</div>
+					<div class="col-50">
+						<a href="#" id="href2" class="button button-big button-fill" style="display: none;">示例下载</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="../../BaseConfig/source/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/WorkDetail1.controller.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script>
+			mui.init();
+			var thisURL = document.URL;
+			var getval = thisURL.split('?')[1];
+			var showval1 = getval.split("&")[0];
+			var showval2 = getval.split("&")[1];
+			var showval3 = getval.split("&")[2];
+			var showval4 = getval.split("&")[3];
+			var vname = showval1.split("=")[1];
+			var vid = showval2.split("=")[1];
+			var vitemcode = showval3.split("=")[1];
+			var vitemname = showval4.split("=")[1];
+			vname = decodeURI(vname);
+			vitemname = decodeURI(vitemname);
+			document.getElementById("itemname").innerHTML = vname;
+			getWorkDetailData(vitemcode, vitemname, vid);
+			//						getWorkDetailData(14877, '海域使用金减免审批', 1);
+		</script>
+
+	</body>
+
+</html>

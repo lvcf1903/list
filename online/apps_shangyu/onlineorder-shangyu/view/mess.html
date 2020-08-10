@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .btn {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        label {
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="selectDemo">
+        <p><input type="checkbox" name="item" value="火灾自动报警系统"><label>火灾自动报警系统</label></p>
+        <p><input type="checkbox" name="item"value="自动喷水灭火系统"><label>自动喷水灭火系统</label></p>
+        <p><input type="checkbox" name="item" value="气体灭火系统"><label>气体灭火系统</label></p>
+        <p><input type="checkbox" name="item" value="泡沫灭火系统"><label>泡沫灭火系统</label></p>
+        <p><input type="checkbox" name="item" value="机械防烟系统"><label>机械防烟系统 </label></p>
+        <p><input type="checkbox" name="item" value="机械排烟系统"><label>机械排烟系统</label></p>
+        <p><input type="checkbox" name="item" value="消防控制室"><label>消防控制室</label></p>
+        <p><input type="checkbox" name="item" value="室内消火栓"><label>室内消火栓</label></p>
+
+        <p><input type="checkbox" name="item" value="消防电梯"><label>消防电梯</label></p>
+        <p><input type="checkbox" name="item" value="应急广播"><label>应急广播 </label></p>
+        <p><input type="checkbox" name="item" value="应急照明"><label>应急照明</label></p>
+        <p><input type="checkbox" name="item" value="疏散指示标志"><label>疏散指示标志</label></p>
+        <p><input type="checkbox" name="item" value="其他消防设施"><label>其他消防设施 </label></p>
+        <p><input type="checkbox" name="item" value="安全出口 数量"><label>安全出口 数量</label></p>
+        <p><input type="checkbox" name="item" value="灭火器 种类、型号和数量"><label>灭火器 种类、型号和数量</label></p>
+        <button class="btn" onclick="goNext()">确认</button>
+    </div>
+    <script>
+        function goNext() {
+            obj = document.getElementsByName('item');
+           
+            var checkboxval = [];
+            for (i in obj) {
+                if (obj[i].checked) {
+                    checkboxval.push(obj[i].value)
+                }
+            }
+            var zjlx = checkboxval
+            console.log(zjlx)
+            sessionStorage.setItem('zjlx', zjlx)
+            window.location.href = 'ggjjcsa.html';
+        }
+    </script>
+</body>
+
+</html>

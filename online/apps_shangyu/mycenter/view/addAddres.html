@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>新增地址</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<!--<link rel="stylesheet" type="text/css" href="../../../source/css/bootstrap.css" />-->
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.dtpicker.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/mui.picker.min.css" />
+
+		<style type="text/css">
+			.leftLabel {
+				font-size: 17px;
+				color: #808080;
+			}
+			
+			.rightInput {
+				font-size: 17px;
+				color: #333333;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form class="mui-input-group">
+			<div class="mui-input-row" id="sbr" style="height: 50px;">
+				<label class="leftLabel" style="height: 50px;line-height: 30px;">收件人</label>
+				<input style="height: 50px;" id="name" type="text" class="rightInput" placeholder="请输入收件人的姓名">
+			</div>
+			<div class="mui-input-row" id="sbdw" style="height: 50px;">
+				<label class="leftLabel" style="height: 50px;line-height: 30px;">联系电话</label>
+				<input style="height: 50px;" id="mobile" type="text" class="rightInput" placeholder="请输入收件人的联系电话">
+			</div>
+			<div class="mui-input-row" id="sbdw" style="height: 50px;">
+				<label class="leftLabel" style="height: 50px;line-height: 30px;">省市区</label>
+				<input style="height: 50px;" class="textarea rightInput" type="text" placeholder="请选择所在地区" id="showCityPicker3" value="" />
+			</div>
+			<div class="mui-input-row" id="sbdw" style="height: 50px;">
+				<label class="leftLabel" style="height: 50px;line-height: 30px;">邮政编码</label>
+				<input style="height: 50px;" id="postcode" type="text" class="rightInput" placeholder="请输入邮政编码">
+			</div>
+		</form>
+		<div style="margin: 0px px;border-width: 0px;font-size: 17px;">
+			<textarea id="area" rows="5" style="color: #333333;font-size: 17px;BORDER-BOTTOM: 0px solid; BORDER-LEFT: 0px solid; BORDER-RIGHT: 0px solid; BORDER-TOP: 0px solid;" placeholder="请填写详细地址，不少于5个字"></textarea>
+
+			<div id='cityResult3' class="ui-alert"></div>
+		</div>
+		<div id="queryBtn" style="bottom: 0px; width: 100%;height: 45px;position: fixed; background-color: #338dff;color: #FFFFFF;line-height: 45px;font-size: 17px;" align="center" onclick="saveAddress();">
+			保存
+		</div>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: none;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../../js/city.data.js"></script>
+		<script src="../../../js/city.data-3.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../../BaseConfig/source/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/mui.poppicker.js"></script>
+		<script src="../../../js/mui.picker.min.js"></script>
+		<script src="../../../js/mui.dtpicker.js"></script>
+		<script src="../../../js/util.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script src="../controller/addAddress.js"></script>
+
+		<script type="text/javascript">
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					var cityPicker3 = new $.PopPicker({
+						layer: 3
+					});
+					cityPicker3.setData(cityData3);
+					var showCityPickerButton = document.getElementById('showCityPicker3');
+					var cityResult3 = document.getElementById('cityResult3');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						document.activeElement.blur();
+						cityPicker3.show(function(items) {
+							doc.getElementById("showCityPicker3").value = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+							grprovince = (items[0] || {}).text;
+							grcity = (items[1] || {}).text;
+							grcounty = (items[2] || {}).text;
+							storage.province = grprovince;
+							storage.city = grcity;
+							storage.county = grcounty;
+							queryRegion(grprovince, 0);
+
+							//							storage.provinceCode = (items[0] || {}).value;
+							//							storage.cityCode = (items[1] || {}).value;
+							//							storage.countyCode = (items[2] || {}).value;
+
+						});
+					}, false);
+				});
+			})(mui, document);
+		</script>
+		<script type="text/javascript">
+			var storage = window.localStorage;
+			mui.init()
+
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var isfrom = href.split("isfrom=")[1].split("&")[0];
+			if(isfrom == "edit") {
+				var iid = href.split("iid=")[1].split("&")[0];
+				iid = decodeURI(iid);
+				var name = href.split("name=")[1].split("&")[0];
+				name = decodeURI(name);
+				var mobile = href.split("mobile=")[1].split("&")[0];
+				mobile = decodeURI(mobile);
+				var address = href.split("address=")[1].split("&")[0];
+				address = decodeURI(address);
+				var postcode = href.split("postcode=")[1].split("&")[0];
+				postcode = decodeURI(postcode);
+				document.getElementById("name").value = name;
+				document.getElementById("mobile").value = mobile;
+				document.getElementById("area").value = address;
+				document.getElementById("postcode").value = postcode;
+				document.getElementById("showCityPicker3").value = storage.province + " " + storage.city + " " + storage.county;
+
+			} else {}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			.mui-icon-left-nav:before {
+			    color: white;
+			}
+			.mui-icon-speech:before {
+			    content: "\e301";
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header" class="mui-bar mui-bar-nav" style="background: #232736;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color: white;">验证码</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="mui-content-padded" style="margin: 20px 0px;">
+			  <ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					文本内容文本内容文本内容
+					<div id="Gallery_Toggle" class="mui-switch">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+			  </ul>
+			  
+			  <ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					文本内容文本内容文本内容
+					<div class="mui-switch mui-switch-mini mui-active ">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+			  </ul>
+			  
+			  <div style="background-color: white; margin-top: 20px;">
+				  <table style="text-align: center;width: 90%;font-size: 16px;line-height: 20px;vertical-align: middle;"  border="0">
+			          <tr>
+			               <td style="padding: 5px 15px; text-align: left;width: 100px;">验证码：</td>
+			               <td width="40%" style=""><input type="text" id="code" name="code"  placeholder="输入短信验证码"; style="padding: 0 0;  height: 26px;margin-bottom: 0px;padding-left: 5px; color: #80848C;border: 0;"> </td>
+			               <td  style="text-align:right;vertical-align: middle; padding-left: 10px;"> <a style="border-left:2px solid #cccccc;">&nbsp;&nbsp;发送验证码</a> </td>
+			          </tr>
+		          </table>
+	          </div>
+	          <div style="background-color: white; margin-top: 20px;">
+				  <table style="text-align: center;width: 90%;font-size: 16px;line-height: 20px;vertical-align: middle;"  border="0">
+			          <tr>
+			               <td style="padding: 5px 15px; text-align: left;width: 100px;">验证码：</td>
+			               <td width="40%" style=""><input type="text" id="code" name="code"  placeholder="输入短信验证码"; style="padding: 0 0;  height: 26px;margin-bottom: 0px;padding-left: 5px; color: #80848C;border: 0;"> </td>
+			               <td  style="text-align:right;vertical-align: middle; padding-left: 10px;"> <div style="border-left:2px solid #cccccc;color:#cccccc; ">58秒后重发 </div></td>
+			          </tr>
+		          </table>
+	          </div>
+	          <div style="background-color: white; margin-top: 20px;">
+				  <table style="text-align: center;width: 90%;font-size: 16px;line-height: 20px;vertical-align: middle;"  border="0">
+			          <tr>
+			               <td style="padding: 5px 15px; text-align: left;width: 100px;">验证码：</td>
+			               <td width="40%" style=""><input type="text" id="code" name="code"  placeholder="输入短信验证码"; style="padding: 0 0;  height: 26px;margin-bottom: 0px;padding-left: 5px; color: #80848C;border: 0;"> </td>
+			               <td  style="text-align:right;vertical-align: middle; padding-left: 10px;"> <a style="border-left:2px solid #cccccc;">&nbsp;&nbsp;重发验证码</a> </td>
+			          </tr>
+		          </table>
+	          </div>
+	          <div style="background-color: white; margin-top: 20px;">
+				  <table style="text-align: center;width: 90%;font-size: 16px;line-height: 20px;vertical-align: middle;"  border="0">
+			          <tr>
+			               <td style="padding: 5px 15px; text-align: left;width: 100px;">验证码：</td>
+			               <td width="40%" style=""><input type="text" id="code" name="code"  placeholder="输入右侧验证码"; style="padding: 0 0;  height: 26px;margin-bottom: 0px;padding-left: 5px; color: #80848C;border: 0;"> </td>
+			               <td  style="text-align:center;vertical-align: middle; padding-left: 10px;"> 
+			               		<img src="../images/verifycode.png" style="cursor:pointer;vertical-align: middle;">
+			               </td>
+			          </tr>
+		          </table>
+	          </div>	
+			</div>  
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+		</script>
+
+	</body>
+
+</html>

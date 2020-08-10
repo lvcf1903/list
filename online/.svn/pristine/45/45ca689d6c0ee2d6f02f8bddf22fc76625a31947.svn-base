@@ -1,0 +1,23 @@
+<html>
+	<meta charset="UTF-8"/>
+	<title>证照详情</title>
+
+	<head>
+		<style type="text/css">
+			body {
+				background-color: #ffffff;
+				margin: 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<img id="imgbg" src="" width='100%'>
+		<script>
+			var thisURL = document.URL;
+			var getval1 = thisURL.split('pic=')[1];
+			document.getElementById("imgbg").src = getval1;
+		</script>
+	</body>
+
+</html>

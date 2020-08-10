@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/iconfont.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			.mui-icon-left-nav:before {
+			    color: white;
+			}
+
+			.icon-tishi2:before {
+			   color: white;
+			}
+			.mui-icon {
+			    font-size: 16px;
+			}
+			.mui-icon-close:before {
+			    color: #ffffff;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header" class="mui-bar mui-bar-nav" style="background: #232736; box-shadow:none;">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color: white;">警告提示</h1>
+		</header>
+		<div style="height:auto; font-size: 14px;line-height: 14px; color: #ffffff; background-color: #ff6600; margin-top: 44px;padding: 10px 15px; opacity:0.8;  filter:alpha(opacity=80); ">
+		    <a class="iconfont icon-tishi2"></a>
+		   
+		    <span style="padding-left: 10px;">防欺诈盗号，请勿泄露支付密码</span>
+		     <a class="mui-pull-right mui-icon mui-icon-close" style=""></a>
+		</div>
+		
+		
+		<div class="mui-content">
+			<div class="mui-content-padded" style="margin: 5px;">
+			 
+			</div>  
+		</div>
+		
+
+        <footer class="mui-bar-footer" style="color: #cccccc;text-align: center;	background-color: #efeff4;vertical-align: middle; position: fixed;line-height: 30px; left: 0;right: 0;font-size: 12px;margin-bottom: 20px;">
+        	———— 本服务有XXX提供 ————	
+        </footer>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+		</script>
+
+	</body>
+
+</html>

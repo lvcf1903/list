@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<title>网上查询</title>
+	</head>
+	<style type="text/css">
+		* {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			font-size: 12px;
+			font-family: "微软雅黑";
+		}
+		
+		#d1 {
+			height: 44px;
+			width: 100%;
+			background-color: #0a87ff;
+		}
+		
+		#d2 {
+			height: 10px;
+			background-color: #f2f2f2;
+		}
+		
+		table {
+			width: 100%;
+			margin: 0 auto;
+			border-collapse: collapse;
+		}
+		
+		td {
+			height: 80px;
+		}
+		
+		#p1 {
+			margin-left: 20px;
+			color: white;
+			font-size: 16px;
+			line-height: 44px;
+		}
+		
+		.title {
+			height: 50px;
+			font-size: 14px;
+			padding-left: 20px;
+		}
+		
+		#name {
+			text-align: center;
+		}
+		
+		.right {
+			padding-right: 20px;
+			padding-left: 38px;
+		}
+		
+		.nr {
+			font-size: 13px;
+			color: #333;
+			padding-left: 20px;
+		}
+		
+		.mui-table-view {
+			width: 100%;
+		}
+		
+		.table1 {
+			border-bottom: 1px #0062CC;
+		}
+		
+		#itemdiv {
+			/*margin: 0 auto;
+			padding-top: 10px;
+			padding-left: 10px;
+			padding-right: 40px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			background-image: url('../source/img/item_arrow.png');
+			background-repeat: no-repeat;
+			background-position: right 10px center;
+			background-size: 6px 12px;*/
+		}
+		
+		#badmessage {
+			opacity: 0.6;
+			border-radius: 10px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 160px;
+			height: 160px;
+			margin-left: -80px;
+			margin-top: -120px;
+			display: none;
+		}
+	</style>
+
+	<body>
+		<div class="mui-content">
+			<!--下拉刷新容器-->
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #FFFFFF;">
+				<div id="list" class="mui-scroll">
+					<ul class="mui-table-view" id="worklist" style="float: left;display: none;">
+						<li v-for="item in items" id="{{item.index}}" class="mui-table-view-cell" style="margin-bottom: 1px;">
+							<div class="mui-table" id="itemdiv">
+								<div class="mui-table-cell mui-col-xs-10">
+									<p id="name{{item.index}}" class="mui-ellipsis-2" style="color: #222222;font-size: 17px;">{{item.name}}</p>
+									<p id="id{{item.index}}" style="display: none;">{{item.id}}</p>
+									<p id="deptallname{{item.index}}" class="mui-h6 mui-ellipsis-2" style="margin-top: 5px;color: #999999;font-size: 14px;">{{item.deptallname}}</p>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+					<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+					<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+				</div>
+				<div id="badmessage" style="">
+					<img style="width: 160px; height: 160px;" src="../source/img/yw_message_bad.png" />
+					<p style="width: 160px;margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script>
+			//			$(function() {
+			//				$('.mui-table-view-cell').on('click', function() {
+			//					alert("4545");
+			//					document.getElementById('bm').innerHTML = document.getElementById('bmlisp').innerHTML;
+			//				});
+			//			});
+
+			var thisURL = location.href; //			var resname = thisURL.split('?')[1].split('=')[2];
+			//			resname = decodeURI(resname);
+			//			var resid = thisURL.split('?')[1].split('=')[1].split('&')[0];
+			//			document.getElementById("p1").innerHTML = resname;
+		</script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/WorkChildList.controller.js"></script>
+		<script>
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			var thisURL = document.URL;
+			var getval = thisURL.split('?')[1];
+			var showval1 = getval.split("&")[0];
+			var showval2 = getval.split("&")[1];
+			var showval3 = getval.split("&")[2];
+			var showval4 = getval.split("&")[3];
+			var showval5 = getval.split("&")[4];
+
+			var vtype = showval1.split("=")[1];
+			var vid = showval2.split("=")[1];
+			var vfrom = showval3.split("=")[1];
+			var vmainCode = showval4.split("=")[1];
+			var vdeptid = showval5.split("=")[1];
+
+			//						vtype = decodeURI(vtype);//解决中文乱码
+			//						vid = decodeURI(vid);//解决中文乱码
+			//						vname = decodeURI(vname);//解决中文乱码
+			//						vmainCode = decodeURI(vmainCode);//解决中文乱码
+			//						vdeptid = decodeURI(vdeptid);//解决中文乱码
+			//			console.log(themid + "===" + deptid + "<><><><>" + word);
+
+			//vfrom:1为个人；2为法人
+			getChildWorkListData(vid, vmainCode, vdeptid, vfrom, vtype);
+
+			//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+			mui('.mui-table-view').on('tap', '.mui-table-view-cell', function() {
+				var vnameindex = "name" + this.id;
+				var vdeptallnameindex = "deptallname" + this.id;
+				var vidindex = "id" + this.id;
+
+				var vname = document.getElementById(vnameindex).innerHTML;
+				var vdeptallname = document.getElementById(vdeptallnameindex).innerHTML;
+				var vids = document.getElementById(vidindex).innerHTML;
+				mui.openWindow({
+					url: "WokContent.html?vtype=" + vtype + "&vid=" + vids + "&vname=" + vname + "&webid=66"
+				})
+			})
+		</script>
+	</body>
+
+</html>

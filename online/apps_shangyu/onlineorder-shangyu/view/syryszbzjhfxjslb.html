@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>失业人员丧葬补助金和抚恤金申领表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">失业人员信息</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="txt_syryxm" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">就业创业证</span>
+                <input id="txt_jycyzbh" class="info_input item_input" type="text" placeholder="请输入就业创业证编号">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">出具单位</span>
+                <input id="txt_swzmcjdw" class="info_input item_input" type="text" placeholder="请输入死亡证明出具单位">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">死亡时间</span>
+                <input id="txt_swsj" class="info_input item_input" type="text" @click='deadTime' readonly placeholder="点击选择死亡时间">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">社会保障号</span>
+                <input id="txt_shbzhm" class="info_input item_input" type="text" placeholder="请输入社会保障号码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">银行账号</span>
+                <input id="txt_yhzh" class="info_input item_input" type="text" placeholder="请输入银行账号">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">开户银行</span>
+                <input id="txt_khyh" class="info_input item_input" type="text" placeholder="请输入开户银行">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">户名</span>
+                <input id="txt_hm" class="info_input item_input" type="text" placeholder="请输入户名">
+            </div>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">申请人信息</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="txt_slrxm" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">与失业人员关系</span>
+                <input id="txt_ysyrygx" class="info_input item_input" type="text" placeholder="请输入与失业人员关系">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_lxdh" class="info_input item_input" type="text" placeholder="请输入联系电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">社会保障号</span>
+                <input id="txt_shbzhm2" class="info_input item_input" type="text" placeholder="请输入社会保障号码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">结果告知方式</span>
+                <select name="gaozhifangshi" class="selectStyle info_input item_input" @change="changeFunction">
+                    <option value="1">短信通知</option>
+                    <option value="2">纸质邮寄</option>
+                </select>
+            </div>
+            <div class="infolist" v-show='isFunction==1'>
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">请填写手机号码</span>
+                <input id="txt_jggzfs" class="info_input item_input" type="text" placeholder="请输入手机号码" @blur='sjyz'>
+            </div>
+            <div class="infolist" v-show='isFunction==2'>
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">请填写地址</span>
+                <input id="txt_jggzfs2" class="info_input item_input" type="text" placeholder="请输入地址">
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 以上内容经本人确认无误</label>
+        <div style="font-size: 12px; width: 60%; margin-left: 20%;margin-top: 20px;">备注：同时符合领取基本养老保险丧葬补助金、工伤保险丧葬补助金和失业保险丧葬补助金条件的，遗属只能选择领取其中的一项。</div>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/plugins/mui.picker.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/syryszbzjhfxjslb.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>申请地名证明登记表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">产权人</span>
+                <input id="BYWX0001" class="info_input item_input" type="text" placeholder="请输入产权人姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">承租人</span>
+                <input id="txt_czr" class="info_input item_input" type="text" placeholder="请输入承租人姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系人</span>
+                <input id="txt_lxr" class="info_input item_input" type="text" placeholder="请输入联系人姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">行政区划</span>
+                <input id="ALAA0001" class="info_input item_input" type="text" placeholder="请输入行政区划信息">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="BYWX0015" class="info_input item_input" type="text" placeholder="请输入联系人联系电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">手机</span>
+                <input id="txt_sj" class="info_input item_input" type="text" placeholder="请输入联系人手机" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">原地名地址</span>
+                <input id="BYWX0003" class="info_input item_input" type="text" placeholder="请输入原标准地名地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">现地名地址</span>
+                <input id="BYWX0009" class="info_input item_input" type="text" placeholder="请输入现标准地名地址">
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 所填内容及所提供资料真实，否则愿负相应法律责任。</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+</body>    
+<script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+<script src="../controller/js/plugins/vue.min.js"></script>
+<script src="../controller/js/utils/yanzheng.js"></script>
+<script src="../controller/js/plugins/mui.min.js"></script>
+<script src="../controller/sqdmzmdjb.js"></script>
+</html>

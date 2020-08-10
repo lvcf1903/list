@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title id="title"></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			tr {
+				border-bottom: 1px solid;
+				border-color: #DDDDDD;
+			}
+			
+			.lefttd {
+				color: #333333;
+				margin-left: 10px;
+			}
+			
+			.righttd {
+				color: #808080;
+			}
+			
+			.topdiv {
+				height: 30px;
+				line-height: 30px;
+				background-color: #FFFFFF;
+				color: #333333;
+			}
+			
+			.div1 {
+				color: #333333;
+				font-size: 14px;
+			}
+			
+			.div2 {
+				color: #808080;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #1c1b1f;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" id="title" style="color: #FFFFFF;">
+			</h1>
+		</header>-->
+		<script>
+			var href = location.href;
+			//依据href获得传来的参数截取传来的站点名称
+			var zzbh = href.split("zzbh=")[1].split("&")[0];
+			zzbh = decodeURI(zzbh);
+
+			var tradetypeboundname = href.split("tradetypeboundname=")[1];
+			tradetypeboundname = decodeURI(tradetypeboundname);
+			document.getElementById("title").innerHTML = tradetypeboundname;
+		</script>
+		<div class="mui-content" id="contentbody" style="display: none;">
+			<div class="topdiv div1" style="margin-top: 10px;">&nbsp;&nbsp;企业名称</div>
+			<div class="topdiv div2" id="qymc"></div>
+			<hr style="margin: 0px;border:0px;background-color:#DDDDDD;height: 1px;" />
+
+			<div class="topdiv div1">&nbsp;&nbsp;注册地址</div>
+			<div class="topdiv div2" id="zcdz"></div>
+
+			<table width="100%" align="center" style="line-height:40px; height:40px; font-size:14px; color:#676767;font-family:'微软雅黑';background-color: #FFFFFF;margin-top: 10px;">
+				<tr>
+					<td align="left" class="lefttd">&nbsp;&nbsp;营业执照号</td>
+					<td align="right" width='50%' class="righttd" id="yyzz"></td>
+				</tr>
+				<tr>
+					<td align="left" class="lefttd">&nbsp;&nbsp;法定代表人</td>
+					<td align="right" width='50%' class="righttd" id="frdb"></td>
+				</tr>
+				<tr>
+					<td align="left" class="lefttd">&nbsp;&nbsp;注册资本</td>
+					<td align="right" width='50%' class="righttd" id="zczj"></td>
+				</tr>
+				<tr>
+					<td align="left" class="lefttd">&nbsp;&nbsp;经济性质</td>
+					<td align="right" width='50%' class="righttd" id="jjxz"></td>
+				</tr>
+				<tr>
+					<td align="left" class="lefttd">&nbsp;&nbsp;证书编号</td>
+					<td align="right" width='50%' class="righttd" id="zzbh"></td>
+				</tr>
+				<tr>
+					<td align="left" class="lefttd">&nbsp;&nbsp;有效期</td>
+					<td align="right" width='50%' class="righttd" id="yxqjz"></td>
+				</tr>
+				<tr>
+					<td align="left" class="lefttd">&nbsp;&nbsp;资质类别及等级</td>
+					<td align="right" width='50%' class="righttd" id="zzlbdj"></td>
+				</tr>
+				<tr>
+					<td align="left" class="lefttd">&nbsp;&nbsp;发证机关</td>
+					<td align="right" width='50%' class="righttd" id="bzdw"></td>
+				</tr>
+				<tr style="border-color: #FFFFFF;">
+					<td align="left" class="lefttd">&nbsp;&nbsp;发证时间</td>
+					<td align="right" width='50%' class="righttd" id="yxqqs"></td>
+				</tr>
+			</table>
+		</div>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../source/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/licensearticle.controller.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			//菊花
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+		</script>
+	</body>
+
+</html>

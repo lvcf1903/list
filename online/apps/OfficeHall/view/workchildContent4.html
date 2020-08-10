@@ -1,0 +1,80 @@
+<html>
+	<meta name='viewport' content='width=device-width; initial-scale=1.0; maximum-scale=1.0;'>
+	<meta charset="UTF-8" />
+
+	<head>
+		<style type="text/css">
+			body {
+				background-color: #ffffff;
+				font-family: 'LTHYSZK';
+				margin-top: 15px;
+				line-height: 30px;
+				color: #888888;
+				word-wrap: break-word;
+				overflow: hidden;
+				font-weight: normal;
+				font-size: medium;
+				font-variant: normal;
+				font-style: normal;
+			}
+			
+			.hr1 {
+				height: 1px;
+				border: none;
+				border-top: 1px solid #dcdcdc;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--收费依据：义发改费（2009）6号<br/>收费项目：
+		<table cellspacing="0" cellpadding="0" class="bg_sfxm" id="sfxm">
+			<tbody>
+				<tr class="bg_dan">
+					<th class="sfxmth1"> 收费项目名称 </th>
+					<th class="sfxmth2"> 收费标准 </th>
+					<th class="sfxmth3"> 减免说明 </th>
+				</tr>
+				<tr class="bg_shuang">
+					<td class="sfxmtd1">数字电视安装（入网） </td>
+					<td class="sfxmtd2">300元/户 </td>
+					<td class="sfxmtd3"> </td>
+				</tr>
+				<tr class="bg_dan">
+					<td class="sfxmtd1">数字电视维护费 </td>
+					<td class="sfxmtd2">居民用户主终端基本收视维护费标准19元/月,同一个户第二台副机免维护费,第三台副机3元/月 </td>
+					<td class="sfxmtd3"> </td>
+				</tr>
+				<tr class="bg_shuang">
+					<td class="sfxmtd1">宽带网安装 </td>
+					<td class="sfxmtd2">市场调节价 </td>
+					<td class="sfxmtd3"> </td>
+				</tr>
+				<tr class="bg_dan">
+					<td class="sfxmtd1">宽带网使用维护费 </td>
+					<td class="sfxmtd2">21元/月 </td>
+					<td class="sfxmtd3"> </td>
+				</tr>
+				<tr class="bg_shuang">
+					<td class="sfxmtd1">数字电视材料费 </td>
+					<td class="sfxmtd2">遥控器20元/只 </td>
+					<td class="sfxmtd3"> </td>
+				</tr>
+				<tr class="bg_dan">
+					<td class="sfxmtd1">数字电视搬迁 </td>
+					<td class="sfxmtd2">不收费 </td>
+					<td class="sfxmtd3"> </td>
+				</tr>
+			</tbody>
+		</table>-->
+		<div id="content">
+		</div>
+		<script>
+			var storage = window.localStorage;
+			var sfyj = storage.sfyj;
+			var sfxm = storage.sfxm;
+			document.getElementById("content").innerHTML = "收费依据："+ sfyj + "<br/>收费项目：" + sfxm;
+		</script>
+	</body>
+
+</html>

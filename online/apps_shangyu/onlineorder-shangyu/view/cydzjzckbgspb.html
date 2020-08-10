@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>蚕一代杂交种出口（变更）审批表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请出口蚕品种名称</span>
+                <input id="txt_sqckcpzmc" class="info_input item_input" type="text" placeholder="请输入申请出口蚕品种名称">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请人</span>
+                <input id="txt_sqr" class="info_input item_input" type="text" placeholder="请输入申请人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">出口国家或地区</span>
+                <input id="txt_ckgjhdq" class="info_input item_input" type="text" placeholder="请输入出口国家或地区">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">出口时间</span>
+                <input id="txt_cksj" class="info_input item_input" type="text"  @click='cksj' placeholder="选择出口时间" readonly>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">质量（标准级别）</span>
+                <input id="txt_zl" class="info_input item_input" type="text" placeholder="请输入质量（标准级别）">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">数量</span>
+                <input id="txt_sl" class="info_input item_input" type="text" placeholder="请输入数量">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">协议单价</span>
+                <input id="txt_xydj" class="info_input item_input" type="text" placeholder="请输入协议单价">
+            </div>
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 16px;margin-top: 30px;">申请理由及有关情况说明</span>
+                <textarea name="dwgk" placeholder="请输入申请理由及有关情况说明" id="txt_sqlyjygqksm"></textarea>
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'> 
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/plugins/mui.picker.min.js"></script>
+    <script src="../controller/cydzjzckbgspb.js"></script>
+</body>
+</html>

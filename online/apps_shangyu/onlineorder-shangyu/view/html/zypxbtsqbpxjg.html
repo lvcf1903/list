@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>职业培训（技能鉴定）补贴申请表(培训机构)</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">单位名称</span>
+                <input id="txt_dwmc" class="info_input item_input" type="text" placeholder="请输入单位名称">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">统一社会信用代码</span>
+                <input id="txt_tyshxydm" class="info_input item_input" type="text" placeholder="请输入统一社会信用代码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系人</span>
+                <input id="txt_lxr" class="info_input item_input" type="text" placeholder="请输入联系人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_lxdh" class="info_input item_input" type="text" placeholder="请输入联系电话"  @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">开户名</span>
+                <input id="txt_khm" class="info_input item_input" type="text" placeholder="请输入开户名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">开户行</span>
+                <input id="txt_khh" class="info_input item_input" type="text" placeholder="请输入开户行">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">帐号</span>
+                <input id="txt_zh" class="info_input item_input" type="text" placeholder="请输入帐号">
+            </div>
+
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请培训补贴</span>
+                <input id="txt_sqpxbt" class="info_input item_input" type="text" style="width: 120px;" placeholder="请输入申请人数">&nbsp;人
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请培训补贴金额</span>
+                <input id="txt_sqpxbtje" class="info_input item_input" type="text" style="width: 120px;" placeholder="请输入申请金额">&nbsp;元
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请技能鉴定补贴</span>
+                <input id="txt_sqjnjdbt" class="info_input item_input" type="text" style="width: 120px;" placeholder="请输入申请人数">&nbsp;人
+            </div>  
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请技能鉴定补贴金额</span>
+                <input id="txt_sqjnjdbtje" class="info_input item_input" type="text" style="width: 120px;" placeholder="请输入申请金额">&nbsp;元
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'> 
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../js/plugins/vue.min.js"></script>
+    <script src="../js/plugins/mui.min.js"></script>
+    <script src="../js/utils/yanzheng.js"></script>
+    <script src="../js/zypxbtsqbpxjg.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>网上预约</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../source/mui_css/mui.min.css" rel="stylesheet" />
+	</head>
+	<script>
+		var href = decodeURI(location.href);
+		if(sessionStorage.linkurl == undefined) {
+			sessionStorage.linkurl = decodeURI(href);
+			window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=zjzwfwsb";
+		}
+	</script>
+	<style type="text/css">
+		* {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			font-family: "微软雅黑";
+		}
+		
+		#head {
+			width: 100%;
+		}
+		
+		#vdiv {
+			width: 100%;
+			height: 50px;
+			font-size: 16px;
+			background-color: #FFFFFF;
+			color: #333333;
+			border: 1px solid #e8e8e8;
+			border-radius: 10px;
+		}
+		
+		td {
+			/*text-align: center;*/
+		}
+		
+		.title {
+			height: 50%;
+			font-size: 16px;
+			color: #333333;
+		}
+		
+		.subtext {
+			height: 50%;
+			font-size: 14px;
+			color: #999999;
+		}
+		
+		img {
+			width: 30px;
+			height: 30px;
+			margin-top: 6px;
+		}
+		/*.mui-table-view {
+			display: none;
+			background-color: #EFEFF4;
+			border: 0px;
+			width: 50%;
+			list-style-type: none
+		}
+		
+		.mui-table-view-cell:after {
+			left: 100%;
+		}*/
+		
+		#badmessage {
+			opacity: 0.6;
+			border-radius: 10px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 160px;
+			height: 160px;
+			margin-left: -80px;
+			margin-top: -120px;
+			display: none;
+		}
+		
+		.mui-table-view .mui-media-object {
+			height: 30px;
+		}
+	</style>
+
+	<body style="background-color: #fff;">
+		<div class="mui-content1">
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #FFFFFF;">
+				<div class="mui-scroll" id="listcontent" style="display: none;">
+					<ul class="mui-table-view" id="parent" style="width: 100%;background-color: #FFFFFF;">
+						<li v-for="item in items" id="{{item.index}}" class="mui-table-view-cell mui-media" style="">
+							<a class="mui-navigate-right">
+
+								<div class="mui-media-body">
+									<span id="num{{item.index}}" class="title" style="display: none;">{{item.num}}</span>
+									<span id="colname{{item.index}}" class="title">{{item.name}}</span>
+
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+					<img id="food" src="../source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+					<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+				</div>
+				<div style="bottom: 0px; width: 100%;position: fixed;background-color: #FFFFFF;display: block;" id="sourceApp">
+					<p style="margin-top: 0px;margin-bottom: 0px; line-height: 12px;font-size: 12px;text-align: center;">浙江政务服务网</p>
+					<p style="margin-top: 9px;margin-bottom: 18px; line-height: 12px;font-size: 12px;text-align: center;">本服务由桐庐县行政服务中心提供</p>
+				</div>
+			</div>
+			<div id="badmessage" style="opacity: 0.6;border-radius: 10px;position: absolute;left: 50%;top: 50%;width:160px;height:160px;margin-left:-80px;margin-top:-100px;display: none;">
+				<img style="width: 160px; height: 160px;" src="../source/images/yw_message_bad.png" />
+				<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+			</div>
+
+			<script src="../source/mui_widget/mui.min.js"></script>
+			<script src="../source/js/vue.min.js"></script>
+			<script src="../source/js/interface.js"></script>
+			<script src="../source/js/jquery-3.0.0.min.js"></script>
+			<script src="../source/js/spin.js"></script>
+			<script type="text/javascript" src="../source/mui_widget/util.js"></script>
+			<script src="../source/js/function.js"></script>
+			<script src="../controller/windows.js"></script>
+			<script type="text/javascript">
+				var userInfo = window.localStorage.userInfo;
+				if(userInfo == undefined) {
+					mui.alert("获取用户信息失败！")
+					document.getElementById("badmessage").style.display = "block";
+					document.getElementById("pullrefresh").style.display = "none";
+				} else {
+					localStorage.setItem('tluserinfo', userInfo);
+				}
+				mui.init();
+				getWindows();
+				mui('.mui-table-view').on('tap', '.mui-table-view-cell', function() {
+					var numindex = "num" + this.id;
+					var colnameindex = "colname" + this.id;
+					var num = document.getElementById(numindex).innerHTML;
+					var name = document.getElementById(colnameindex).innerHTML;
+					mui.openWindow({
+						url: "orderlist.html?num=" + num + "&name=" + name
+					})
+				})
+			</script>
+	</body>
+
+</html>

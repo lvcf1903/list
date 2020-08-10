@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar .mui-pull-left .mui-icon {
+				padding-right: 5px;
+				font-size: 28px;
+			}
+			.mui-bar .mui-btn {
+				font-weight: normal;
+				font-size: 17px;
+			}
+			.mui-bar .mui-btn-link {
+				top: 1px;
+			}
+			.mui-icon-left-nav:before {
+			    color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header" class="mui-bar mui-bar-nav" style="background: #232736;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color: white;">字体和颜色</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="mui-content-padded">
+			<!--字    体 -->
+			   <div style="font-size: 20px; background-color:white; color: #333333; line-height: 30px;margin-bottom: 20px;"><span >用于title标题文案的字体大小(20px)</span> </div>
+			   <div style="font-size: 16px; background-color:white; color: #333333; line-height: 26px;margin-bottom: 20px;"><span >用于列表/表单 标签/标题文案的字体大小(16px)</span> </div>
+			   <div style="font-size: 14px; background-color:white; color: #333333; line-height: 24px;margin-bottom: 20px;"><span >用于列表/表单右侧说明文案的字体大小(14px)</span> </div>
+			   <div style="font-size: 13px; background-color:white; color: #333333; line-height: 23px;margin-bottom: 20px;"><span >用于列表/表单等辅助字体的大小(13px)</span> </div>
+			   <div style="font-size: 12px; background-color:white; color: #333333; line-height: 22px;margin-bottom: 20px;"><span >用于标题和表单下方说明文案的字体大小(12px)</span> </div>
+			   
+			<!--颜    色 -->
+			   <div style="width: 20px;height: 20px; background-color: #fff;"></div><span>#ffffff 仅用于标题、按钮和深色的背景中</span>  
+			   <div style="width: 20px;height: 20px; background-color: #000;"></div><span>#000000 标题、输入框标签、输入内容</span>
+			   <div style="width: 20px;height: 20px; background-color: #333;"></div><span>#333333 文本主色</span> 
+			   <div style="width: 20px;height: 20px; background-color: #666;"></div><span>#666666 tab文字</span> 
+			   <div style="width: 20px;height: 20px; background-color: #999;"></div><span>#999999 表单右侧说明文档</span> 
+			   <div style="width: 20px;height: 20px; background-color: #ccc;"></div><span>#cccccc 暗提示</span>
+			   <div style="width: 20px;height: 20px; background-color: #0af;"></div><span>#00aaff 可点链接色</span> 
+			   <div style="width: 20px;height: 20px; background-color: #f60;"></div><span>#ff6600 重点提示色（如金额确认）</span> 
+			      
+			
+			</div>
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			
+		</script>
+
+	</body>
+
+</html>

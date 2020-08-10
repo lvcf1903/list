@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title id="title"></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body style="background-color: #FFFFFF;">
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #1c1b1f;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">网上预约
+			</h1>
+		</header>-->
+
+		<div class="mui-content" style="background-color: #FFFFFF;" align="center">
+			<img src="../source/images/successImage.png" style="margin-top: 50px;width: 130px;" />
+			<div style="margin-top: 30px;font-size: 20px;" id="haveSuccess"><strong></strong></div>
+			<div style="margin-top: 30px;font-size: 20px;display: none;" id="wait"><strong>请耐心等待审核</strong></div>
+			<div id="orderDetail">
+				<div style="margin-top: 20px;font-size: 20px;"><strong id="ordernum"></strong></div>
+				<div style="margin-top: 20px;font-size: 16px;color: #333333;" id="time"></div>
+				<div style="margin-top: 20px;font-size: 16px;color: #333333;margin-left: 15px;margin-right: 15px;" align="center" id="address"></div>
+			</div>
+			<div id="handleDetail" style="margin-top: 20px;padding: 20px;font-size: 16px;color: #808080;" align="left">您本次网上申报的办件，工作人员将在受理之后联系您。</div>
+			<div id="btn" style="padding-bottom: 20px;">
+				<button style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 40%;margin-top: 7px;border-width: 0px;margin-top: 30px;margin-right: 2%;" id="officehall" onclick="orderclassify()">办事大厅</button>
+				<button style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 40%;margin-top: 7px;border-width: 0px;margin-top: 30px;margin-left: 2%;" id="myorder" onclick="myOrderClicked()">我的预约</button>
+			</div>
+		</div>
+		<div style="bottom: 0px; width: 100%;height: 35px;position: fixed;display: none;" id="sourceApp">
+			<p style="margin-top: 8px;margin-bottom: 0px; line-height: 20px;font-size: 12px;text-align: center;">——本服务由浙江政务服务网提供——</p>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../../source/js/util.js"></script>
+		<script src="../source/js/jquery-1.8.3.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script type="text/javascript" src="../controller/odersuccess.controller.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<script>
+			//判断容器类型，浏览器还是APP
+			var container = containerT();
+			if(container == "web") {
+				document.getElementById("btn").style.display = "block";
+				document.getElementById("sourceApp").style.display = "none";
+			} else { //app 使用jssdk获取用户信息
+				document.getElementById("btn").style.display = "block";
+				document.getElementById("sourceApp").style.display = "none";
+			}
+
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var type = href.split("type=")[1].split("&")[0];
+			var vsiteid = href.split("siteid=")[1].split("&")[0];
+			var cityName = href.split("cityname=")[1].split("&")[0];
+			cityName = decodeURI(cityName);
+			type = decodeURI(type);
+			var ordernum;
+			var time;
+			var address;
+			if(type == "03") { //草稿
+				document.getElementById("title").innerHTML = "网上申报";
+				document.getElementById("myorder").innerHTML = "我的草稿";
+				document.getElementById("wait").style.display = "none";
+				document.getElementById("orderDetail").style.display = "none";
+				document.getElementById("handleDetail").innerHTML = "您的草稿已保存成功，可以到我的草稿查看。";
+				document.getElementById("handleDetail").style.display = "block";
+			} else if(type == "01") { //网上预约
+				document.getElementById("title").innerHTML = "网上预约";
+				//				requestSendOrderMsg();
+				ordernum = href.split("ordernum=")[1].split("&")[0];
+				ordernum = decodeURI(ordernum);
+				time = href.split("time=")[1].split("&")[0];
+				time = decodeURI(time);
+				address = href.split("address=")[1].split("&")[0];
+				address = decodeURI(address);
+				document.getElementById("haveSuccess").innerHTML = "<strong>预约已成功!</strong>";
+				document.getElementById("myorder").innerHTML = "我的预约";
+
+				document.getElementById("myorder").style.display = "none";
+				document.getElementById("wait").style.display = "none";
+				document.getElementById("orderDetail").style.display = "block";
+				document.getElementById("handleDetail").style.display = "none";
+			} else { //网上办证、证明
+				document.getElementById("title").innerHTML = "网上申报";
+				document.getElementById("haveSuccess").innerHTML = "<strong>已成功提交，</strong>";
+				document.getElementById("myorder").innerHTML = "个人中心";
+
+				document.getElementById("myorder").style.display = "none";
+				document.getElementById("wait").style.display = "block";
+				document.getElementById("orderDetail").style.display = "none";
+				document.getElementById("handleDetail").style.display = "block";
+			}
+
+//			document.getElementById("ordernum").innerHTML = "预约编号：" + ordernum;
+//			document.getElementById("time").innerHTML = time;
+			document.getElementById("address").innerHTML = "请按时前往大厅取号机取号，进行办理。"
+		</script>
+		<script type="text/javascript">
+			function orderclassify() {
+				if(type == "01") { //网上预约
+					//alert(2)
+					window.location.href = "oderclassify.html?type=01" + "&cityname=" + cityName + "&siteid=" + vsiteid;
+				} else {
+					window.location.href = "http://syydb.syzjjgw.com/jimsy/weixin/workguide/view/workguide_home.html"+ "?cityname=" + cityName + "&siteid=" + vsiteid;
+				}
+			}
+
+			function myOrderClicked() {
+				if(type == "01") { //网上预约
+					window.location.href = '../../OfficeHall/view/MyOderList.html?siteid=' + vsiteid;
+				} else if(type == "03") { //我的草稿
+					window.location.href = '../../OfficeHall/view/MyDraftList.html?siteid=' + vsiteid;
+				} else {
+					window.location.href = '../../mycenter/view/personalcenter.html?siteid=' + vsiteid;
+				}
+			}
+		</script>
+	</body>
+
+</html>

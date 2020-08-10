@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>窗口向导</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.nr {
+				margin: 0 auto;
+				padding-top: 5px;
+				padding-right: 10px;
+				padding-bottom: 5px;
+				border-bottom: thin solid #e8e8e8;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				/*background-color: #007AFF;*/
+			}
+			
+			.mui-table-view {
+				background-color: #ffffff;
+				border: 0px;
+				list-style-type: none
+			}
+			
+			.mui-table-view:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc
+			}
+			
+			.mui-table-view:before {
+				position: absolute;
+				right: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+				top: -1px
+			}
+			
+			.mui-table-view-cell:after {
+				left: 100%;
+			}
+			
+			.mui-table-view-cell {
+				padding: 6px 15px 0px 15px;
+			}
+			
+			.sj {
+				font-size: 14px;
+				color: #999;
+				padding-top: 5px;
+			}
+			
+			.zh {
+				width: 100%;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				font-size: 17px;
+				color: #222222;
+			}
+			
+			.msgbad {
+				opacity: 0.6;
+				border-radius: 10px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 160px;
+				height: 160px;
+				margin-left: -80px;
+				margin-top: -120px;
+				display: none;
+			}
+			
+			.mui-slider .mui-slider-group .mui-slider-item {
+				background-color: #fff;
+			}
+			
+			#scroll0,
+			#scroll1,
+			#scroll2 {
+				padding-bottom: 60px;
+			}
+			
+			.itemdiv {
+				margin: 0 auto;
+				padding-right: 10px;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				background-image: url('../source/images/item_arrow.png');
+				background-repeat: no-repeat;
+				background-position: right 0px center;
+				background-size: 6px 12px;
+			}
+			
+			.mui-control-content {
+				height: 600px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script>
+			var href = location.href;
+			var vsiteid = href.split("siteid=")[1];
+			vsiteid = decodeURI(vsiteid);
+			vsiteid = '6';
+		</script>
+		<div class="mui-content">
+			<div id="slider" class="">
+				<div id="" class="">
+					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					</div>
+				</div>
+				<div id="divlist" class="mui-slider-group">
+				</div>
+				<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+					<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+					<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+				</div>
+			</div>
+		</div>
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="../../BaseConfig/source/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/windowguide.controller.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/mui.pullToRefresh.js"></script>
+		<script src="../../../js/mui.pullToRefresh.material.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../js/mui.pullToRefresh.js"></script>
+		<script src="../../../js/mui.pullToRefresh.material.js"></script>
+		<script>
+			mui.init();
+
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			getDeskData();
+			//			requestListData(0);
+			//			requestListData1(0);
+			//			requestListData2(0);
+			(function($) {
+				//阻尼系数
+				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration: deceleration
+				});
+				//				$.ready(function() {
+				//					//循环初始化所有下拉刷新，上拉加载。
+				//					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+				//						$(pullRefreshEl).pullToRefresh({
+				//							down: {
+				//								callback: function() {
+				//									var self = this;
+				//									setTimeout(function() {
+				//										if(index == 0) {
+				//											requestListData(0);
+				//										} else if(index == 1) {
+				//											requestListData1(0);
+				//										} else if(index == 2) {
+				//											requestListData2(0);
+				//										}
+				//										//var ul = self.element.querySelector('.mui-table-view');
+				//										//ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
+				//										self.endPullDownToRefresh();
+				//									}, 1000);
+				//								}
+				//							},
+				//							up: {
+				//								callback: function() {
+				//									var self = this;
+				//									setTimeout(function() {
+				//										if(index == 0) {
+				//											requestListData(1);
+				//										} else if(index == 1) {
+				//											requestListData1(1);
+				//										} else if(index == 2) {
+				//											requestListData2(1);
+				//										}
+				//										//var ul = self.element.querySelector('.mui-table-view');
+				//										//ul.appendChild(createFragment(ul, index, 5));
+				//										self.endPullUpToRefresh();
+				//									}, 1000);
+				//								}
+				//							}
+				//						});
+				//					});
+				//				});
+			})(mui);
+
+			//				mui('#parent0').on('tap', '.mui-table-view-cell', function() {
+			//				var resourceidindex = "resourceid" + i + this.id;
+			//				var infoidindex = "infoid" + i + this.id;
+			//				var resourceid = document.getElementById(resourceidindex).innerHTML;
+			//				var titleid = document.getElementById(infoidindex).innerHTML;
+			//				mui.openWindow({
+			//					url: "windowguideContent.html?resourceid=" + resourceid + "&titleid=" + titleid
+			//					 + "&siteid=" + vsiteid
+			//				})
+			//			})
+
+			//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+			mui('#parent0').on('tap', '.mui-table-view-cell', function() {
+				var resourceidindex = "resourceid0" + this.id;
+				var infoidindex = "infoid0" + this.id;
+				var listtypeindex = "listtype0" + this.id;
+
+				var resourceid = document.getElementById(resourceidindex).innerHTML;
+				var titleid = document.getElementById(infoidindex).innerHTML;
+				var listtype = document.getElementById(listtypeindex).innerHTML;
+				if(listtype == 101) {
+					//无正文
+				} else { //有正文
+					mui.openWindow({
+						url: "windowguideContent.html?resourceid=" + resourceid + "&titleid=" + titleid +
+							"&siteid=" + vsiteid
+					})
+				}
+
+			})
+			mui('#parent1').on('tap', '.mui-table-view-cell', function() {
+				var resourceidindex = "resourceid1" + this.id;
+				var infoidindex = "infoid1" + this.id;
+				var resourceid = document.getElementById(resourceidindex).innerHTML;
+				var titleid = document.getElementById(infoidindex).innerHTML;
+				mui.openWindow({
+					url: "windowguideContent.html?resourceid=" + resourceid + "&titleid=" + titleid +
+						"&siteid=" + vsiteid
+				})
+			})
+			//			mui('#parent2').on('tap', '.mui-table-view-cell', function() {
+			//				var resourceidindex = "resourceid2" + this.id;
+			//				var infoidindex = "infoid2" + this.id;
+			//				var resourceid = document.getElementById(resourceidindex).innerHTML;
+			//				var titleid = document.getElementById(infoidindex).innerHTML;
+			//				mui.openWindow({
+			//					url: "GovernContent.html?resourceid=" + resourceid + "&titleid=" + titleid
+			//				})
+			//			})
+		</script>
+	</body>
+
+</html>

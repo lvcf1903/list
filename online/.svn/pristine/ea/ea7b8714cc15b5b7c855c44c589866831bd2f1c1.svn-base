@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title>PDFH5</title>
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/pdfh5.css" />
+	<style>
+		.pdfContent {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			background: #fff;
+			position: relative;
+		}
+	</style>
+</head>
+	
+	<body>
+			<div class="pdfContent"></div>
+	<a href="" id="pdf" download="pdf" style="display: none;">下载.</a>
+	
+	</body>
+	 <script src="js/jquery-3.0.0.min.js"></script>
+	 <script src="js/md5.js"></script>
+	 	<script src="js/pdf.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/pdf.worker.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/pdfh5.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+	
+	</script>
+    <script>
+    onefw();
+    	function onefw(){
+ var code= "b795f0c5a2ba4542adb5cfcba988fca2";
+    var username  = "1b984e98e0204dbb804627cfb59d675a";
+        var timestamp=new Date().getTime();
+           console.log(timestamp);  
+        var str1 = hex_md5(code+username+timestamp);
+        var data1={
+        	appKey:code,
+        	sign:str1,
+        	requestTime:timestamp
+        }
+        $.ajax({
+		url: "http://dw.jinhua.gov.cn/gateway/app/refreshTokenByKey.htm",
+		data: data1,
+		success: function(data) {
+			console.log(data)
+			data = JSON.parse(data);
+		var gcode =data.datas.refreshSecret;
+		   twofw(gcode);
+		},
+		fail: function(e) {
+			
+		}
+	});  
+	}
+	function twofw(gcode){
+		 var  code= "b795f0c5a2ba4542adb5cfcba988fca2";
+            var time=new Date().getTime();
+            var str2 = hex_md5(code+gcode+time);
+			var data2={
+				          appKey:code,
+			        	  sign:str2,
+			        	  requestTime:time
+			                                }
+
+			 $.ajax({
+					url: "http://dw.jinhua.gov.cn/gateway/app/refreshTokenBySec.htm",
+					data: data2,
+					success: function(data) {
+									data = JSON.parse(data);
+								var code3 =data.datas.requestSecret;
+								Three2(code3);
+					console.log("--"+JSON.stringify(data));
+		},
+		fail: function(e) {
+			
+		}
+	});  
+	}
+	function Three(code3){/*省公安厅居民户口簿（家庭）*/
+		 var  code= "b795f0c5a2ba4542adb5cfcba988fca2";
+		   var times=new Date().getTime();
+            var str3= hex_md5(code+code3+times);
+              var data3={
+            	
+            	appKey:code,
+            	sign:str3,
+            	requestTime:times,
+           additional:{"powerMatters":"00000","subPowerMatters":"00000","accesscardId":"330727197809260015"},
+            	czrkgmsfhm:'330727197809260015',
+            	searchusername:'陈刚',
+            	additional:'0',
+            	searchdeptname:'县公安局',
+            	token:'Epoint_WebSerivce_**##0601'
+            }
+			 $.ajax({
+					url: "http://dw.jinhua.gov.cn/gateway/api/001008007012032/dataSharing/HebRdm7ddA4X21w2.htm",
+					data: data3,
+					success: function(data) {
+					console.log("--"+JSON.stringify(data));
+		},
+		fail: function(e) {
+			
+		}
+ 
+	});  
+	}
+	
+	
+	function Three1(code3){/*结婚）*/
+		 var  code= "b795f0c5a2ba4542adb5cfcba988fca2";
+		   var times=new Date().getTime();
+            var str3= hex_md5(code+code3+times);
+              var data3={
+            	
+            	appKey:code,
+            	sign:str3,
+            	requestTime:times,
+                additional:{"powerMatters":"其他-05432-000","subPowerMatters":"其他-05432-000","accesscardId":"330727197809260015"},
+            	additional:"0",
+            	token:"Epoint_WebSerivce_**##0601",
+            	sex:'M',
+            	searchusername:'陈刚',
+            	birthday:"1978-09-26",
+            	cadeId:"330727197809260015",
+            	searchdeptname:"县公安局",
+                name:"陈刚"
+            	
+            }
+			 $.ajax({
+					url: "http://dw.jinhua.gov.cn/gateway/api/001008007012032/dataSharing/9NTbx9dQbia4Xa12.htm",
+					data: data3,
+					success: function(data) {
+					console.log("--"+JSON.stringify(data));
+		},
+		fail: function(e) {
+			
+		}
+ 
+	});  
+	}
+	
+	function Three2(code3){/*省公安厅居民身份证（新）*/
+		 var  code= "b795f0c5a2ba4542adb5cfcba988fca2";
+		   var times=new Date().getTime();
+            var str3= hex_md5(code+code3+times);
+              var data3={
+            	appKey:code,
+            	sign:str3,
+            	requestTime:times,
+                additional:{"powerMatters":"其他-05432-000","subPowerMatters":"其他-05432-000","accesscardId":"330727197809260015"},
+            	additional:"0",
+            	token:"Epoint_WebSerivce_**##0601",
+            	searchusername:'陈刚',
+            	czrkgmsfhm:"330727197809260015",
+            	searchdeptname:"县公安局",
+                czrkxm:"陈刚"
+            	
+            }
+			 $.ajax({
+					url: "http://dw.jinhua.gov.cn/gateway/api/001008007012032/dataSharing/bn2Kdk59aC5524ic.htm",
+					data: data3,
+					success: function(data) {
+					data = JSON.parse(JSON.stringify(data));
+                     var   url   = JSON.parse(data.datas);
+                     console.log(JSON.stringify(url))
+					console.log(url.datas[0].file.url)
+					document.getElementById("pdf").href=url.datas[0].file.url;
+	var pdfView = new Pdfh5('.pdfContent', {
+
+			pdfurl: url.datas[0].file.url
+		});
+		pdfView.on("start",function(initTime){
+			console.log("Pdfh5开始初始化")
+		});
+		pdfView.on("complete",function(status,msg,time){
+			console.log("Pdfh5加载完成,总页数："+this.totalNum)
+		});
+		pdfView.on("scroll",function(scrollTop){
+			console.log("Pdfh5滚动监听",scrollTop)
+		});
+		pdfView.on("renderPages",function(currentPageDom){
+			console.log("Pdfh5加载pdf监听",currentPageDom,this.currentNum)
+		});
+		
+					document.getElementById("pdf").style.display="block";
+		},
+		fail: function(e) {
+			
+		}
+ 
+	});  
+	}
+	
+    </script>
+</html>

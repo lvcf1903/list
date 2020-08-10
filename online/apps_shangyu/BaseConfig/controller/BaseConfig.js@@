@@ -1,0 +1,117 @@
+/**
+ * 接口地址
+ */
+//var interfaceurl="https://tzggfwresources.taizhou.gov.cn/v1/";
+
+//浙江政务服务
+//var zjzwurl = "http://www.zjzwfw.gov.cn/zjzw/";
+var zjzwurl = "https://app.zjzwfw.gov.cn/zjzwjkzz/";
+var baseURL = "https://app.zjzwfw.gov.cn/zjwssb/tysb/apps/onlineoder/view/oderhome.html?siteid=";
+
+//预约办事地址
+//var overallInterface = "http://mportal.govapp.cn/zjwssb/";
+//var overallInterface = "http://192.168.88.36:8080/zjwssb/";
+var overallInterface = "https://app.zjzwfw.gov.cn/zjwssb/";
+
+//收货地址
+//var overallInterface = "http://kdsd.zjzwfw.gov.cn";
+
+//var imghttp = "http://192.168.89.142:8080/";
+//var imghttp = "http://mportal.govapp.cn/";
+//var imghttp = "http://118.31.180.117:8080/";
+
+//微门户
+//var wmhurl="http://122.226.66.205:8080/jmportal/";
+var wmhurl = "http://ywszwfw.yw.gov.cn/jmportal/";
+//var wmhurl="http://122.226.66.205:8080/ywht/";
+
+//网上查询正文表格下载
+var loadurl = "http://cms.zjzwfw.gov.cn";
+var wmhhttp = "http://jmp.hanweb.com/jmportalys/";
+//var wmhhttp = "http://jmpotal.hanweb.com/jmp/";
+
+//var overallsiteId = "1";
+var overallsiteId = "6";
+
+//我的证照接口
+var licenseInterface = "http://sp.zjzwfw.gov.cn/egov/ZJSWebAppLicense.action";
+
+//我的支付接口
+var mypayInterface = "http://mpay.zjzwfw.gov.cn/querypaylist.html";
+
+//咨询投诉举报建议
+var consultInterface = "http://zjzxtsjbpt.yyhj.zjzwfw.gov.cn/zhejiang/m/items.json";
+
+//个人中心外链地址域名
+var mycenterInterface = "http://puser.zjzwfw.gov.cn/sso/mobile.do";
+
+//微门户siteID
+var wmhsiteid = 1;
+//公共资源ID
+var publicclassifyid = 11;
+//政务资讯ID
+var governid = 32;
+//政务资讯--综合ID
+var resid1 = 33;
+//政务资讯--通知公告ID
+var resid2 = 34;
+//政务资讯--新闻ID
+var resid3 = 35;
+//办事大厅栏目分类ID
+var officehallid = 1;
+
+//个人登录加密key
+var GRKEY = "1234567812345678";
+var GRIV = "zjzwfuhanweb2015";
+//法人登录加密key
+var FRKEY = "12345678!@#$%^&*";
+var FRIV = "zjzwfwuuser@2016";
+
+//网络请求
+function myRequest(option) {
+	console.log("开始request");
+	var async = false; //同步
+	var type = "post";
+	var dataa;
+	var header;
+	if(option.data == '') {
+		dataa = option.data;
+	} else {
+		dataa = JSON.stringify(option.data);
+	}
+	if(option.header == '') {
+		header = option.header;
+	} else {
+		header = JSON.stringify(option.header);
+	}
+	//	url = 'https://www.jszwfw.gov.cn/jmopen/interfaces/wxTransferPort.do?' + 'requestUrl=' + option.url + '&datas=' + dataa + '&heads=' + header;
+    url = 'https://open.zjzwfw.gov.cn/open/interfaces/wxTransferPort.do?' + 'requestUrl=' + option.url + '&datas=' + dataa + '&heads=' + header;
+	//url = 'http://192.168.88.36:8090/jmopen1.7.0/interfaces/wxTransferPort.do?' + 'requestUrl=' + option.url + '&datas=' + dataa + '&heads=' + header;
+
+	url = url.replace(/{/g, "dhzkh");
+	url = url.replace(/}/g, "dhykh");
+	if(option.dataType == undefined) {
+		option.dataType = 'json';
+	}
+	if(option.async == true) {
+		async = true;
+	}
+	if(option.type == "get") {
+		type = "get";
+	}
+	console.log("开始ajax");
+	$.ajax({
+		url: url,
+		dataType: option.dataType, //服务器返回json格式数据
+		type: type, //HTTP请求类型
+		async: async,
+		timeout: 10000, //超时时间设置为10秒；
+		success: function(data) {
+			option.success(data);
+		},
+		error: function(e) {
+			console.log(e);
+			option.fail('requestcuowu' + JSON.stringify(e));
+		}
+	});
+};

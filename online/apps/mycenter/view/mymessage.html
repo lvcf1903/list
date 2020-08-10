@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的消息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #1c1b1f;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">我的消息
+			</h1>
+		</header>-->
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul id="parent" class="mui-table-view mui-table-view-striped mui-table-view-condensed" style="margin-top: 0px;display: none;">
+					<li v-for="item in items" class="mui-table-view-cell" id="{{item.index}}">
+						<div id="webid{{item.index}}" style="display: none;">{{item.webid}}</div>
+						<div id="columnid{{item.index}}" style="display: none;">{{item.columnid}}</div>
+						<div id="infoid{{item.index}}" style="display: none;">{{item.infoid}}</div>
+						<div class="mui-table">
+							<div class="mui-table-cell mui-col-xs-10">
+								<p class="mui-ellipsis-2" style="color: #333333;font-size: 16px;">{{item.title}}</p>
+								<!--<p class="mui-h6 mui-ellipsis-2" style="margin-top: 5px;">Hi，李明明，申请交行信息卡，100元等你拿，李明明，申请交行信息卡，100元等你拿，Hi，李明明，申请交行信息卡，100元等你拿，李明明，申请交行信息卡，100元等你拿</p>-->
+								<p class="mui-h6 mui-ellipsis" style="margin-top: 5px;float: left;">{{item.time}}</p>
+								<p id="source{{item.index}}" class="mui-h6 mui-ellipsis" style="margin-top: 5px;float: right;">{{item.source}}</p>
+							</div>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+			<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+				<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+				<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+			</div>
+		</div>
+
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../source/js/jquery-1.8.3.min.js"></script>
+		<script src="../source/js/vue.min.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/mymessage.controller.js"></script>
+
+		<script type="text/javascript">
+			//菊花
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			requestMyMessage(0);
+			mui.init({
+
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					requestMyMessage(0);
+				}, 1500);
+			}
+			/**
+			 * 上拉加载具体业务实现
+			 */
+
+			function pullupRefresh() {
+				setTimeout(function() {
+					requestMyMessage(1);
+
+				}, 1500);
+			}
+			//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+			mui('.mui-table-view').on('tap', '.mui-table-view-cell', function() {
+				var webidindex = "webid" + this.id;
+				var columnidindex = "columnid" + this.id;
+				var infoidindex = "infoid" + this.id;
+				var sourceindex = "source" + this.id;
+				var webid = document.getElementById(webidindex).innerHTML;
+				var columnid = document.getElementById(columnidindex).innerHTML;
+				var infoid = document.getElementById(infoidindex).innerHTML;
+				var soucre = document.getElementById(sourceindex).innerHTML;
+				mui.openWindow({
+					url: "mymessagearticle.html?webid=" + webid + "&columnid=" + columnid + "&infoid=" + infoid + "&source=" + soucre
+				})
+			})
+		</script>
+
+	</body>
+
+</html>

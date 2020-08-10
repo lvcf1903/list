@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>职业培训（技能鉴定）补贴申请表(个人)</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">个人信息</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="txt_xm" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">身份证号</span>
+                <input id="txt_sfzh" class="info_input item_input" type="text" placeholder="请输入身份证号" @blur='sfzyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_lxdh" class="info_input item_input" type="text" placeholder="请输入联系电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">户籍地址</span>
+                <input id="txt_hjdz" class="info_input item_input" type="text" placeholder="请输入户籍地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">常住地址</span>
+                <input id="txt_czdz" class="info_input item_input" type="text" placeholder="请输入常住地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">工作单位</span>
+                <input id="txt_gzdw" class="info_input item_input" type="text" placeholder="请输入工作单位">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">就业时间</span>
+                <input id="txt_jysj" class="info_input item_input" type="text"  @click='jysj' placeholder="选择就业时间" readonly>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">开户行</span>
+                <input id="txt_khh" class="info_input item_input" type="text" placeholder="请输入开户行">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">帐号</span>
+                <input id="txt_zh" class="info_input item_input" type="text" placeholder="请输入帐号">
+            </div>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">补贴申请信息</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">培训时间</span>
+                <input id="txt_pxsjbegin" class="info_input item_input" type="text" style="width: 60px;" @click='begin' placeholder="开始时间" readonly>至
+                <input id="txt_pxsjend" class="info_input item_input" type="text" style="width: 60px;" @click="end" placeholder="结束开始时间" readonly>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">培训工种</span>
+                <input id="txt_pxgz" class="info_input item_input" type="text" placeholder="请输入培训工种">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">培训等级</span>
+                <input id="txt_pxdj" class="info_input item_input" type="text" placeholder="请输入培训等级">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">培训机构</span>
+                <input id="txt_pxjg" class="info_input item_input" type="text" placeholder="请输入培训机构">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">获证时间</span>
+                <input id="txt_hzsj" class="info_input item_input" type="text"  @click='hzsj' placeholder="选择获证时间" readonly>
+            </div> 
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">证书编号</span>
+                <input id="txt_zsbh" class="info_input item_input" type="text" placeholder="请输入证书编号">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">证书类型</span>
+                <select name="zslx" class="selectStyle info_input item_input" id="txt_zslx">
+                    <option value="1">培训合格证书</option>
+                    <option value="2">专项职业能力证书</option>
+                    <option value="3">特殊工种上岗证</option>
+                    <option value="4">职业资格证书</option>
+                    <option value="5">其他</option>
+                </select>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请培训补贴金额</span>
+                <input id="txt_sqpxbtje" class="info_input item_input" type="text" placeholder="请输入申请培训补贴金额" style="width: 130px;">&nbsp;(元)
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请技能鉴定补贴金额</span>
+                <input id="txt_sqjnjdbtje" class="info_input item_input" type="text" placeholder="请输入申请技能鉴定补贴金额" style="width: 130px;">&nbsp;(元)
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'> 
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/plugins/mui.picker.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/zypxbtsqbgr.js"></script>
+</body>
+</html>

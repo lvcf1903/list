@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../onlineorder-shangyu/controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script>
+        var token = '';
+        var requestKey = 'df559b869c21455bb50ff778827c00d2'
+        $.ajax({
+            url:'http://ag.sx.gov.cn/shaoxing/interface/authentication.do',
+            data:{
+                requestKey
+            },
+            success:function(data){
+                token = JSON.parse(data).resultmsg;
+            },
+            fail:function(err){
+                console.log(err)
+            }
+        })
+    </script>
+</body>
+</html>

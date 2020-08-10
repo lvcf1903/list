@@ -1,0 +1,27 @@
+<html>
+	<meta charset="UTF-8" />
+	<title>网上查询</title>
+
+	<head>
+		<style type="text/css">
+			body {
+				background-color: #ffffff;
+				margin-top: 15px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<img id="imgbg" src="" width='100%'>
+		<script>
+			var storage = window.localStorage;
+			var bllct = storage.bllct;
+			if(bllct.startsWith("http")) {
+				document.getElementById("imgbg").src = bllct;
+			} else {
+				document.getElementById("imgbg").src = "http://" + bllct;
+			}
+		</script>
+	</body>
+
+</html>

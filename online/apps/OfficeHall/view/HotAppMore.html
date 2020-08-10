@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>更多</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			* {
+				border: 0;
+				padding: 0;
+				margin: 0;
+				font-family: "微软雅黑";
+			}
+			
+			.li_top {
+				margin: 0px;
+				padding-left: 15px;
+				/*width: 100%;*/
+				background: #EEEEEE;
+				height: 40px;
+				line-height: 40px;
+				font-size: 17px;
+				color: #222222;
+			}
+			
+			.div-a {
+				float: left;
+				width: calc(50% - 1px);
+				height: 60px;
+				color: #222222;
+				font-size: 16px;
+				line-height: 60px;
+				border-bottom: solid 1px #EEEEEE;
+				border-right: solid 1px #EEEEEE;
+			}
+			
+			.div-b {
+				float: right;
+				width: calc(50% - 1px);
+				height: 60px;
+				font-size: 16px;
+				color: #333333;
+				line-height: 60px;
+				border-bottom: solid 1px #EEEEEE;
+				border-right: solid 1px #EEEEEE;
+			}
+			
+			.image {
+				width: 30px;
+				height: 30px;
+				margin-left: 15px;
+				margin-right: 10px;
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+<!--v-for="item in items"-->
+	<body style="width: 100%;margin: 0px;padding: 0px;">
+		<!--<ul id="parent" style="width: 100%;margin: 0px;padding: 0px;">
+			<li v-for="item in items" style="list-style-type:none; width: 100%;">-->
+
+				
+				
+				
+				<!--头-->
+				<!--<div class="li_top">{{item.head}}</div>-->
+				<!--下面的表格 id="infotable{{item.index}}"-->
+				<table id="infotable" style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+					<!--<tr style='padding: 0px;margin: 0px;border-bottom:solid 1px #EEEEEE;'>
+					<td class='div-a' onclick="jumpfunction('0');"><img class='image' src="http://zjjcmspublic.oss-cn-hangzhou.aliyuncs.com/jcms_files/jcms1/web1/site/picture/0/sfb6b689fc8e24556a302f29a04abc8c7.png" />天气预报</td>
+					<td class='div-b' onclick="jumpfunction('1');"><img class='image' src="http://zjjcmspublic.oss-cn-hangzhou.aliyuncs.com/jcms_files/jcms1/web1/site/picture/0/sa207c27a593448dda409672b54258350.png" />诊疗挂号</td>
+				</tr>-->
+				</table>
+				
+			<!--</li>
+		</ul>-->
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../controller/HotConfig.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/HotAppMore.controller.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			//数据请求
+			serviceMoreRequest();
+		</script>
+	</body>
+
+</html>

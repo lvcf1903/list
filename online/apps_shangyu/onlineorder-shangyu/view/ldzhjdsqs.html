@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>雷电灾害鉴定申请书</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 16px;margin-top: 10px;">申请人姓名或申请单位名称</span>
+                <input id="txt_sqrxmhsqdwmc" class="info_input item_input" type="text" placeholder="请输入申请人姓名或申请单位名称">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 16px;margin-top: 8px;">身份证或法人代码证号码</span>
+                <input id="txt_sfzhfrdmzhm" class="info_input item_input" type="text" placeholder="请输入身份证或法人代码证号码"  @blur='sfzyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">单位法人姓名</span>
+                <input id="txt_dwfrxm" class="info_input item_input" type="text" placeholder="请输入单位法人姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">法人身份证号码</span> 
+                <input id="txt_frsfzhm" class="info_input item_input" type="text" placeholder="请输入法人身份证号码"  @blur='sfzyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">鉴定的雷灾现场地址</span>
+                <input id="txt_jddlzxcdz" class="info_input item_input" type="text" placeholder="请输入鉴定的雷灾现场地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请日期</span>
+                <input id="txt_sqrq" class="info_input item_input" type="text"  @click='sqrq' readonly>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系地址</span>
+                <input id="txt_lxdz" class="info_input item_input" type="text" placeholder="请输入联系地址">
+            </div>
+        
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系人</span>
+                <input id="txt_lxr" class="info_input item_input" type="text" placeholder="请输入联系人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系方式</span>
+                <input id="txt_lxfs" class="info_input item_input" type="text" placeholder="请输入联系方式" @blur='sjyz'>
+            </div>
+            
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a"  style="line-height: 24px;margin-top: 26px;">雷电灾害发生过程和事故状况描述</span>
+                <textarea name="ldzhfsgchsgzkms" placeholder="请输入雷电灾害发生过程和事故状况描述" id="txt_ldzhfsgchsgzkms"></textarea>
+            </div>
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a" style="line-height: 24px;margin-top: 26px;">造成的主要经济损失和人员伤亡情况</span>
+                <textarea name="zcdzyjjsshryswqk" placeholder="请输入造成的主要经济损失和人员伤亡情况" id="txt_zcdzyjjsshryswqk"></textarea>
+            </div>
+
+            <div style="display: flex; padding-bottom: 5px;margin-top: 20px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">提供雷灾证明资料情况</span>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">直接经济损失证明</span>
+                <input id="txt_zjjjsszm" class="info_input item_input" type="text" placeholder="请输入损失证明数量"  style="width: 130px;">张
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">人员伤亡证明</span>
+                <input id="txt_ryswzm" class="info_input item_input" type="text" placeholder="请输入伤亡证明数量"  style="width: 130px;">张
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">其它材料</span>
+                <input id="txt_qtcl" class="info_input item_input" type="text" placeholder="请输入其它材料数量"  style="width: 130px;">页
+            </div>
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请鉴定的原因</span>
+                <textarea name="sqjddyy" placeholder="请输入申请鉴定的原因" id="txt_sqjddyy"></textarea>
+            </div>
+            <div class="infolist miaoshu">
+                <span class="a" style="margin-left: 28px;">备注</span>
+                <textarea name="bz" placeholder="请输入备注" id="txt_bz"></textarea>
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/plugins/mui.picker.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/ldzhjdsqs.js"></script>
+</body>
+</html>

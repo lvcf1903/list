@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>参保人员基本养老保险视同缴费年限核定表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tishixinxi">请将信息填写完整</div>
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">姓名</span>
+                <input id="txt_xm" class="info_input item_input" type="text" placeholder="请输入姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">性别</span>
+                <input id="txt_xb" class="info_input item_input" type="text" placeholder="请输入性别姓名">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">身份证出生时间</span>
+                <input id="txt_sfzcssj" class="info_input item_input" type="text" @click='sfzcssj' readonly placeholder="点击选择身份证出生时间">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">社会保障号</span>
+                <input id="txt_shbzh" class="info_input item_input" type="text" placeholder="请输入社会保障号">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">档案最早记载出生时间</span>
+                <input id="txt_dazzjzcssj" class="info_input item_input" type="text"  @click='dazzjzcssj' readonly placeholder="点击选择最早出生时间">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">工作单位</span>
+                <input id="txt_gzdw" class="info_input item_input" type="text" placeholder="请输入工作单位">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">参加工作时间</span>
+                <input id="txt_cjgzsj" class="info_input item_input" type="text"  @click='cjgzsj' readonly placeholder="点击选择参加工作时间">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">养老保险缴费年限</span>
+                <input id="txt_ylbxjfnxn" class="info_input item_input" type="text" style="width: 40px;">年
+                <input id="txt_ylbxjfnxy" class="info_input item_input" type="text" style="width: 40px;">个月
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">视同缴费年限</span>
+                <input id="txt_stjfnxn" class="info_input item_input" type="text" style="width: 40px;">年
+                <input id="txt_stjfnxy" class="info_input item_input" type="text" style="width: 40px;">个月
+            </div>
+        </div>
+        <div class="info">
+            <div style="display: flex; padding-bottom: 5px;">
+                <div style="width:7px; height:20px; background-color: #2B89F7; margin-top: 4px;border-radius: 40px;">
+                </div>
+                <span style="color: #383838; font-size:18px;margin-left: 10px; ">工作简历</span>
+            </div>
+            <div class="gzjlList">
+                <div class="gzjl" v-for="(val,index) in noshuju" :key="index">
+                    <div class="infolist">
+                        <div class="img" style="width: 28px;">
+                            <img src="../images/must.png" alt="" v-if='index==0'>
+                        </div>
+                        <span class="a">何年何月~何年何月</span>
+                        <input :id="'txt_ggsjbegin'+index" class="info_input item_input" type="text" style="width: 60px;" @click='begin' readonly placeholder="开始时间">~
+                        <input :id="'txt_ggsjend'+index" class="info_input item_input" type="text" style="width: 60px;" @click="end" readonly placeholder="结束时间">
+                    </div>
+                    <div class="infolist">
+                        <div class="img" style="width: 28px;">
+                            <img src="../images/must.png" alt="" v-if='index==0'>
+                        </div>
+                        <span class="a">在何地何单位</span>
+                        <input :id="'txt_zhdhdw'+index" class="info_input item_input" type="text" placeholder="请输入在何地何单位">
+                    </div>
+                    <div class="infolist">
+                        <div class="img" style="width: 28px;">
+                            <img src="../images/must.png" alt="" v-if='index==0'>
+                        </div>
+                        <span class="a">变动原因</span>
+                        <input :id="'txt_bdyy'+index" class="info_input item_input" type="text" placeholder="请输入变动原因">
+                    </div>
+                    <div class="infolist">
+                        <div class="img" style="width: 28px;">
+                            <img src="../images/must.png" alt="" v-if='index==0'>
+                        </div>
+                        <span class="a">任何职</span>
+                        <input :id="'txt_rhz'+index" class="info_input item_input" type="text" placeholder="请输入任何职">
+                    </div>
+                </div>
+                <div class="footer">
+                    <button class="nextep-right" @click='zjgzjl' style="height: 40px;">
+                        增加工作经历
+                    </button>
+                </div>
+            </div>
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'> 
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/plugins/mui.picker.min.js"></script>
+    <script src="../controller/cbryjbylbxstjfnxhdb.js"></script>
+</body>
+</html>

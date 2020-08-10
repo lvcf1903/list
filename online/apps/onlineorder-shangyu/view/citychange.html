@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<title>地区切换</title>
+		<link href="../source/css/citychange.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 40px;height: 40px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+		<div id="container" style="display: none;">
+			<ul id="nav_bar">
+				<li class="city-hover" v-for="item in items" id="{{item.colid}}" onclick="secondLevelSites('{{item.colid}}');">
+					<span id="colname{{item.index}}" class="title">{{item.colname}}</span>
+				</li>
+			</ul>
+			<ul id="content">
+				<li v-for="list in lists" id="{{list.index}}">
+					<span v-if="(list.colopenState==1)" class="cont-item opened" onclick="changearea('{{list.colid}}','{{list.colname}}');">{{list.colname}}</span>
+					<span v-else id="colname{{list.index}}" class="cont-item unopen">{{list.colname}}（未开通）</span>
+				</li>
+			</ul>
+		</div>
+		<script src="../source/js/jquery-1.8.3.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../controller/firstLevelSites.js"></script>
+		<script src="../controller/secondLevelSites.js"></script>
+		<script type="text/javascript">
+			<!--获取屏幕高度-->
+			var total = $(document).clientHeight;
+			$('#content').attr('height', total + "px");
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var onlinetype = href.split("type=")[1].split("&")[0];
+			var vsiteid = href.split("siteid=")[1].split("&")[0];
+			onlinetype = decodeURI(onlinetype);
+			vsiteid = decodeURI(vsiteid);
+			getFistsiteid();
+			var obj_lis;
+			var liObj;
+			var n;
+			getFirstLevelSites();
+			secondLevelSites(vsiteid);
+			window.onload = function() {
+				obj_lis = document.getElementById("nav_bar").getElementsByTagName("li");
+				for(i = 0; i < obj_lis.length; i++) {
+					var m = obj_lis[i].id;
+					if(m == vsiteid) {
+						liObj = obj_lis[i];
+						liObj.style.color = "#1492ff";
+						liObj.style.background = "#F5F5F5";
+						break;
+					}
+				}
+			}
+
+			function secondLevelSites(siteid) {
+				if(liObj != null) {
+					liObj.style.color = "#000";
+					liObj.style.background = "#fff";
+				}
+				if(n == 1 && vsiteid == siteid) {
+					liObj.style.color = "#1492ff";
+					liObj.style.background = "#F5F5F5";
+				}
+				getSecondLevelSites(siteid);
+				n = 1;
+			};
+
+			function changearea(siteid, name) {
+				window.location.href = "siteclassify.html?siteid=" + siteid + "&cityname=" + name;
+			};
+		</script>
+	</body>
+
+</html>

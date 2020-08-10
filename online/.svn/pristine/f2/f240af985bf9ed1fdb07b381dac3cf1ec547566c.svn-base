@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>提示</title>
+
+</head>	
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+</style>
+<body>
+            
+<div data-role="page" data-theme="s" id="regist-auth-choice">
+	<div data-role="content" style="padding: 0px;">
+		<div style="background: url('img/m_info.png') no-repeat center 1.6em;background-size:64px;height: 8em;text-align: center;padding-top: 4.5em;color: black;line-height: 1.5em; background-color: #f3f3f3;">
+			<div style="margin-top: 1.6em;line-height : 1.8em;">
+				<div style="color: #333333;">您还不是初级实名用户，请您先升级成为初级实名用户，再使用本项服务。</div>
+				<div style="color: #666666;font-size: 0.8em;">访问的资源涉及到个人安全隐私，请确保为本人操作！</div>
+			</div>
+		</div>
+		<div style="background-color: white;padding: 40px 0px 10px 0px;width: 100%;">
+			<div style="font-weight: bold;padding: 10px">如何提升账户认证等级？</div>
+			<div style="padding: 10px">第一步：“义乌政务服务”微信公众号 > 【我的】 > 点击实名等级</div>
+			<img alt="" src="../source/images/realname1.png" style="margin: 0px;padding: 10px;width: 94%;">
+			<div style="padding: 10px">第二步：在“初级实名认证通道”中，选择其中一种通道，完成初级实名认证</div>
+			<img alt="" src="../source/images/realname2.png" style="margin: 0px;padding: 10px;width: 94%;">
+		</div>
+	</div>
+</div>
+<script src="../source/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$('.backapp').click(function(){
+		location.href="back";
+	})
+</script>
+</body>
+
+</html>

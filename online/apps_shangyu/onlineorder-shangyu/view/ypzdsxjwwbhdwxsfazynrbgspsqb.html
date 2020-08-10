@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>已批准的市县级文物保护单位修缮方案重要内容变更审批申请表</title>
+    <link rel="stylesheet" href="../css/mui.min.css">
+    <link rel="stylesheet" href="../css/mui.picker.min.css">
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body style="background-color: white;">
+    <div id="app">
+        <div class="tisibg">
+            <span class="tisitext">带*为必填项，请根据实际情况进行填写</span>
+        </div>
+        <div class="info">
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">申请单位或个人</span>
+                <input id="txt_sqdwhgr" class="info_input item_input" type="text" placeholder="请输入申请单位或个人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">机构代码</span>
+                <input id="txt_jgdm" class="info_input item_input" type="text" placeholder="请输入机构代码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">法人代表</span>
+                <input id="txt_frdb" class="info_input item_input" type="text" placeholder="请输入法人代表">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系人</span>
+                <input id="txt_lxr" class="info_input item_input" type="text" placeholder="请输入联系人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">联系电话</span>
+                <input id="txt_lxdh" class="info_input item_input" type="text" placeholder="请输入联系电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">通讯地址</span>
+                <input id="txt_txdz" class="info_input item_input" type="text" placeholder="请输入通讯地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">E-mail</span>
+                <input id="txt_email" class="info_input item_input" type="text" placeholder="请输入E-mail" @blur='yxyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">设计单位</span>
+                <input id="txt_sjdw" class="info_input item_input" type="text" placeholder="请输入设计单位">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">设计单位机构代码</span>
+                <input id="txt_sjdwjgdm" class="info_input item_input" type="text" placeholder="请输入设计单位机构代码">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">设计负责人</span>
+                <input id="txt_sjfzr" class="info_input item_input" type="text" placeholder="请输入设计负责人">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">设计负责人联系电话</span>
+                <input id="txt_sjfzrlxdh" class="info_input item_input" type="text" placeholder="请输入设计负责人联系电话" @blur='sjyz'>
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">通讯地址</span>
+                <input id="txt_txdz2" class="info_input item_input" type="text" placeholder="请输入通讯地址">
+            </div>
+            <div class="infolist">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">项目名称</span>
+                <input id="txt_xmmc" class="info_input item_input" type="text" placeholder="请输入项目名称">
+            </div>
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">原勘察设计方案概况</span>
+                <textarea name="ykcsjfagk" placeholder="请输入原勘察设计方案概况" id="txt_ykcsjfagk"></textarea>
+            </div>
+            <div class="infolist miaoshu">
+                <div class="img">
+                    <img src="../images/must.png" alt="">
+                </div>
+                <span class="a">变更原因</span>
+                <textarea name="bgyy" placeholder="请输入变更原因" id="txt_bgyy"></textarea>
+            </div>
+            <div class="infolist miaoshu">
+                <span class="a" style="margin-left: 28px;">需补充说明的情况</span>
+                <textarea name="xbcsmdqk" placeholder="请输入现标准地名地址" id="txt_xbcsmdqk"></textarea>
+            </div>
+            
+        </div>
+        <label class="chengruo"> <input type="checkbox"> 我承诺填写的信息和提交的材料真实有效</label>
+        <div class="footer">
+            <button class="nextep-right" @click='saveGo'>
+                下一步
+            </button>
+        </div>
+    </div>
+    <script src="../controller/js/plugins/jquery-3.2.1.min.js"></script>
+    <script src="../controller/js/plugins/vue.min.js"></script>
+    <script src="../controller/js/plugins/mui.min.js"></script>
+    <script src="../controller/js/utils/yanzheng.js"></script>
+    <script src="../controller/ypzdsxjwwbhdwxsfazynrbgspsqb.js"></script>
+</body>
+</html>

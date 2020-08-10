@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的证照</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			ul li {
+				width: 33.3333333333333%;
+				float: left;
+			}
+			
+			.mui-table-view:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc
+			}
+			
+			.mui-table-view:before {
+				position: absolute;
+				right: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+				top: -1px
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #1c1b1f;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">我的证照
+			</h1>
+		</header>-->
+		<div class="mui-content" style="width: 100%;">
+			<ul id="parent" class="mui-table-view" style="width: 94%;margin-left: 3%;display: none;">
+				<li v-for="item in items" class="mui-table-cell" style="margin-bottom:10px" onclick="window.location.href='licensearticle.html?zzbh={{item.zzbh}}&tradetypeboundname={{item.tradetypeboundname}}'">
+					<div class="d1" style="margin: 0 auto;width: 80%; background-image: url('../source/images/pdf.png') ;background-size:100% ;">
+						<div align="center" style="font-size: 14px;color: #333333;padding: 32px 5px 5px 0;">{{item.tradetypeboundname}}</div>
+						<div align="center" style="font-size: 14px;color: #333333;">PDF</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../source/js/vue.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../source/js/jquery-1.8.3.min.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/licenselist.controller.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(".d1").height($(".d1").width() * 4 / 3);
+			});
+		</script>
+		<script type="text/javascript">
+			mui.init()
+			//菊花
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+		</script>
+	</body>
+
+</html>

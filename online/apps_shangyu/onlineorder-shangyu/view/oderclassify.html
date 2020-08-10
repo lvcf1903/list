@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../../css/mui.indexedlist.css" rel="stylesheet" />
+		<link href="../../../css/app.css" rel="stylesheet" />
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<title id="title">网上办事</title>
+	</head>
+	<style type="text/css">
+		* {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			font-family: "微软雅黑";
+			font-size: 14px;
+		}
+		
+		#head {
+			width: 100%;
+		}
+		
+		#vdiv {
+			width: 100%;
+			height: 50px;
+			font-size: 16px;
+			background-color: #FFFFFF;
+			color: #333333;
+			border: 1px solid #e8e8e8;
+			border-radius: 10px;
+		}
+		
+		.title {
+			height: 50%;
+			font-size: 16px;
+			color: #333333;
+		}
+		
+		.subtext {
+			height: 50%;
+			font-size: 14px;
+			color: #999999;
+		}
+		
+		img {
+			width: 30px;
+			height: 30px;
+			margin-top: 6px;
+		}
+		
+		#badmessage {
+			opacity: 0.6;
+			border-radius: 10px;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 160px;
+			height: 160px;
+			margin-left: -80px;
+			margin-top: -120px;
+			display: none;
+		}
+		
+		.mui-table-view .mui-media-object {
+			height: 30px;
+		}
+		
+		#cityName:active {
+			color: #1492ff;
+		}
+	</style>
+	<script>
+		var href = decodeURI(location.href);
+		//依据href获得传来的参数截取传来的事项信息
+		var onlinetype = href.split("type=")[1].split("&")[0];
+		var cityname = href.split("cityname=")[1].split("&")[0];
+		var vsiteid = href.split("siteid=")[1].split("&")[0];
+		onlinetype = decodeURI(onlinetype);
+		vsiteid = decodeURI(vsiteid);
+		var cityName = decodeURI(cityname);
+		//		var nb = 0;
+		//		if(href.indexOf("&nb=") != -1) {
+		//			nb = href.split("nb=")[1].split("&")[0];
+		//			nb = decodeURI(nb);
+		//		}
+		//		if(sessionStorage.linkurl == undefined) {
+		//			sessionStorage.linkurl = decodeURI(href);
+		//			if(nb == 1) {
+		//				window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=nbgr-zjzwfwsb&isfrom=app";
+		//			} else {
+		//				window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=zjzwfwsb&isfrom=app";
+		//			}
+		//
+		//		}
+	</script>
+
+	<body style="background-color: #fff;">
+		<div class="mui-content">
+			<div id="odersearch" style="padding: 5px;background-color: #FFFFFF;">
+
+				<div class="search-container">
+					<input id="searchin" type="search" class="search-input" placeholder="请输入您要查找的事项" name="search" onsearch="mySearch()" />
+					<div id="cityName" class="cities" onclick="changearea();"></div>
+				</div>
+
+			</div>
+
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #FFFFFF;margin-bottom: 35px;margin-top: 50px;">
+				<div class="mui-scroll" id="listcontent" style="display: none;">
+					<ul class="mui-table-view" id="parent" style="width: 100%;display: none;background-color: #FFFFFF;">
+						<li v-for="item in items" id="{{item.index}}" class="mui-table-view-cell mui-media" style="">
+							<a class="mui-navigate-right">
+								<img id="colimgurl{{item.index}}" class="mui-media-object mui-pull-left" src="{{item.colimgurl}}">
+								<div class="mui-media-body">
+									<span id="colid{{item.index}}" class="title" style="display: none;">{{item.colid}}</span>
+									<span id="colname{{item.index}}" class="title">{{item.colname}}</span>
+									<p id="colcount{{item.index}}" class='mui-ellipsis'>{{item.colcount}}个事项</p>
+									<p id="validitykey{{item.index}}" style="display: none;">{{item.validitykey}}</p>
+									<p id="coloutlink{{item.index}}" style="display: none;">{{item.coloutlink}}</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="notOpen" style="display: none;padding: 15px">
+					<p style="color: #000;"><strong>非常抱歉</strong></p>
+					<p>
+						<font style="color: #000;">您当前所在站点暂未提供网上办事服务，您可以在右上角选择已开通的站点</font>
+					</p>
+				</div>
+
+				<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+					<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+					<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+				</div>
+				<div id="badmessage" style="">
+					<img style="width: 170px; height: 160px;" src="../../mycenter/source/images/yw_message_bad.png" />
+					<p style="width: 160px;margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+				</div>
+			</div>
+			<div style="bottom: 0px; width: 100%;height: 35px;position: fixed;background-color: #FFFFFF;display: none;" id="sourceApp">
+				<p style="margin-top: 8px;margin-bottom: 0px; line-height: 20px;font-size: 12px;text-align: center;">——本服务由浙江政务服务网提供——</p>
+			</div>
+			<div id="wodeyuyue" style="z-index: 10000000; display: none ; background-color: #ffffff;font-size: 18px; ;margin-top:10px;height:50px;width:50px;position:fixed;_position:absolute;bottom:50px;right:20px;_bottom:50px;_right:20px;opacity: 0.8;border-radius: 50%;" onclick="window.location.href='../../OfficeHall/view/MyOrderList.html'">
+				<img style="height: 50px;width: 50px ;" src="../source/images/wodeyuyue.png" />
+			</div>
+			<script src="../../BaseConfig/source/js/vue.min.js"></script>
+			<script src="../../../js/mui.min.js"></script>
+			<!--			<script type="text/javascript" src="http://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+-->
+			<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+			<script src="../controller/oderclassify.controller.js"></script>
+			<script type="text/javascript" src="../../../source/js/util.js"></script>
+			<script type="text/javascript">
+				//onlinetype:01 网上预约  02网上办证  03网上证明 04快递申请 
+				if(onlinetype == "01") { //网上预约
+					document.getElementById("title").innerHTML = "网上预约";
+					if(vsiteid != "16") {
+						document.getElementById("wodeyuyue").style.display = "block";
+					}
+				} else if(onlinetype == "02") { //网上办证
+					document.getElementById("title").innerHTML = "网上办事";
+				}
+				var pid = "0";
+				var keyword = "";
+
+				getClassifySeach(onlinetype, "", pid);
+
+				mui.init({
+					pullRefresh: {
+						container: '#pullrefresh',
+						down: {
+							callback: pulldownRefresh
+						}
+					}
+				});
+
+				function pulldownRefresh() {
+					setTimeout(function() {
+						getClassifySeach(onlinetype, "", pid);
+					}, 1500);
+				}
+
+				function mySearch() {
+					var search = $("#searchin").val();
+					window.location.href = "searchorderlist.html?siteid=" + vsiteid + "&cityname=" + cityName + "&type=" + onlinetype + "&search=" + search + "&colid=-1";
+
+				}
+
+				var container = containerT();
+				if(container == "web") {
+
+				} else {
+					document.getElementById("sourceApp").style.display = "block";
+				}
+				//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+				mui('.mui-table-view').on('tap', '.mui-table-view-cell', function() {
+					var colidindex = "colid" + this.id;
+					var colid = document.getElementById(colidindex).innerHTML;
+					var validitykeyindex = "validitykey" + this.id;
+					var validitykey = document.getElementById(validitykeyindex).innerHTML;
+					var coloutlinkindex = "coloutlink" + this.id;
+					var coloutlink = document.getElementById(coloutlinkindex).innerHTML;
+					var oderlisturl = "oderlist.html?colid=" + colid + "&type=" + onlinetype + "&validitykey=" + validitykey +
+						"&siteid=" + vsiteid + "&cityname=" + cityName;
+					if(coloutlink != null && coloutlink != "") {
+						oderlisturl = coloutlink;
+					}
+					mui.openWindow({
+						url: oderlisturl
+					})
+				})
+			</script>
+
+			<script>
+				document.getElementById("cityName").innerHTML = cityName;
+
+				function changearea() {
+					var sUserAgent = navigator.userAgent.toLowerCase();
+					var dtdream = sUserAgent.match(/dtdreamweb/i) == "dtdreamweb";
+					if(dtdream) {
+						window.location.href = "citychange.html?type=" + onlinetype + "&siteid=" + vsiteid;
+					}
+				}
+			</script>
+
+	</body>
+
+</html>

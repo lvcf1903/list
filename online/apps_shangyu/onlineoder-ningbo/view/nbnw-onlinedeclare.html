@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			/*
+			 * 宁波南威跳转中间页
+			 */
+			var param = window.location.search;
+			var gotourl = "http://wssq.ningbo.gov.cn/ycsl_web/appServiceApplyAction.action" + param;
+			
+
+			var href = location.href;
+			var foruser = href.split("dUserType=")[1].split("&")[0];
+			//获取个人用户信息
+			if(foruser == "puser" && href.indexOf("&again=") == -1) { //个人用户
+				sessionStorage.linkurl = decodeURI(gotourl);
+				var areacode = href.split("dRegionCode=")[1].split("&")[0];
+				var sUserAgent = navigator.userAgent.toLowerCase();
+				var dtdream = sUserAgent.match(/dtdreamweb/i) == "dtdreamweb";
+				var hanweb = sUserAgent.match(/hamweb/i) == "hanweb";
+				if(hanweb && !dtdream && areacode == "330201") {
+					window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=nbgr-zjzwfwsb&isfrom=app";
+				} else {
+					window.location.href = "https://puser.zjzwfw.gov.cn/sso/mobile.do?action=oauth&scope=1&servicecode=zjzwfwsb&isfrom=app";
+				}
+			}
+			//获取法人用户信息
+			if(foruser == "uuser" && href.indexOf("&again=") == -1) {
+				window.location.href = "https://esso.zjzwfw.gov.cn/opensso/spsaehandler/metaAlias/sp?spappurl=https://app.zjzwfw.gov.cn/zjwssb/division.jsp?goto=" + gotourl;
+			}
+		</script>
+
+	</body>
+
+</html>

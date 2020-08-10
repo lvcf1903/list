@@ -1,0 +1,419 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title id="title">网上预约</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<link href="../../../css/mui.indexedlist.css" rel="stylesheet" />
+		<link href="../../../css/app.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<!--去掉<li></li>之间的线-->
+		<style>
+			.mui-table-view-cell:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 15px;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+			}
+			
+			.mui-table-view:after {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc
+			}
+			
+			.mui-table-view:before {
+				position: absolute;
+				right: 0;
+				left: 0;
+				height: 0px;
+				content: '';
+				-webkit-transform: scaleY(.5);
+				transform: scaleY(.5);
+				background-color: #c8c7cc;
+				top: -1px
+			}
+			
+			a:link {
+				color: #333333;
+			}
+		</style>
+		<script>
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var colid = href.split("colid=")[1].split("&")[0];
+			var onlinetype = href.split("type=")[1].split("&")[0];
+			var vsiteid = href.split("siteid=")[1].split("&")[0];
+			var cityName = href.split("cityname=")[1].split("&")[0];
+			var validitykey = href.split("validitykey=")[1].split("&")[0];
+			colid = decodeURI(colid);
+			onlinetype = decodeURI(onlinetype);
+			vsiteid = decodeURI(vsiteid);
+			validitykey = decodeURI(validitykey);
+			cityName = decodeURI(cityName);
+			//onlinetype:01 网上预约  02网上办证  03网上证明 04快递申请 
+			if(onlinetype == "01") { //网上预约
+				document.getElementById("title").innerHTML = "网上预约";
+			} else if(onlinetype == "02") { //网上办证
+				document.getElementById("title").innerHTML = "网上办事";
+			} else if(onlinetype == "03") { //网上证明
+				document.getElementById("title").innerHTML = "网上证明";
+			} else if(onlinetype == "04") { //快递申请
+				document.getElementById("title").innerHTML = "快递申请";
+			} else if(onlinetype == "05") { //网上办事
+				document.getElementById("title").innerHTML = "网上办事";
+			} else if(onlinetype == "06") { //网上办事
+				document.getElementById("title").innerHTML = "网上办事";
+			}
+		</script>
+		<div class="mui-content">
+			<!--下拉刷新容器-->
+			<div id="odersearch" style="padding: 5px;background-color: #FFFFFF;">
+				<!--<div class="mui-input-row mui-search" style="">-->
+				<div class="search-container">
+					<input id="searchin" type="search" class="search-input" placeholder="请输入您要查找的事项" style="width: 100%;border: none;" />
+				</div>
+			</div>
+			<div id="pullrefresh" class="mui-content mui-scroll-wrapper" style="background-color: #FFFFFF;margin-bottom: 35px;margin-top: 45px;">
+				<div class="mui-scroll" id="listcontent">
+					<!--数据列表-->
+					<ul id="parent" class="mui-table-view" style="margin-top: 0px;display: none;font-size: 17px;color: #333333;">
+						<li v-for="matter in matters" id="{{matter.index}}">
+							<!--暂时将法人的隐藏-->
+							<div style="border:1px solid #ddd;width:96%;margin:0 auto;margin-top:10px;background-color: #FFFFFF;">
+								<div class="onlineorder" style="display: none;">
+									<table width="100%">
+										<tr>
+											<td width="80%">
+												<div class="detaildiv" id="{{matter.index}}" style="padding:10px 10px;">
+													<img style="margin-bottom: -2px;" src="../source/images/star.png" width="20px" /> {{matter.name}}
+												</div>
+											</td>
+											<td>
+												<button class="submitbtn_order" id="{{matter.index}}&" style="color: #FFFFFF;border-width: 0px;"><img style="vertical-align: middle;" width="60px" src="../source/images/order.png" /></button>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="onlinedeclare" style="display: none;">
+									<div class="detaildiv" id="{{matter.index}}" style="padding:10px 10px;">
+										<img style="margin-bottom: -2px;" src="../source/images/star.png" width="20px" /> {{matter.name}}
+									</div>
+									<div class="order" style="border-top:1px solid #ddd;text-align:center;padding:10px 0;width: 100%;">
+										<table class="detailTable" width="100%" style="font-size: 13px;color: #333333;display: none;margin-bottom: 1px;">
+											<tr>
+												<td align="left" width="400px" style="padding-left: 8px;">
+													<span style="color: #808080;">办理部门：</span>{{matter.department}}
+												</td>
+											</tr>
+											<tr>
+												<td align="left" width="400px" style="padding-left: 8px;">
+													<span id="cntime{{matter.index}}" style="color: #808080;">承诺期限：</span>{{matter.cntime}}
+												</td>
+											</tr>
+										</table>
+
+										<table class="detailTable" width="100%" style="font-size: 13px;color: #333333;display: none;margin-bottom: 10px;">
+
+											<tr>
+												<td align="left" width="100%" style="padding-left: 8px;" class="lxdh">
+													<span style="color: #808080;">联系电话：</span>{{matter.lxmobile}}
+												</td>
+
+											</tr>
+											<tr>
+												<td align="left" width="100%" style="padding-left: 8px;">
+													<span style="color: #808080;">用户类型：</span><span style="color: green;">{{matter.userType}}</span>
+												</td>
+											</tr>
+											<!--<tr style="width: 100%;">
+										<td align="left" width="100%" style="padding-left: 8px;">
+											<span style="color: #808080;">监督电话：</span>{{item.jdmobile}}
+										</td>
+									</tr>-->
+										</table>
+										<!--<div>
+									
+								</div>
+								<div>
+									
+								</div>-->
+										<button class="submitbtn" id="{{matter.index}}&" style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 150px;line-height: 23px;border-width: 0px;">我要预约</button>
+									</div>
+								</div>
+								<div id="name{{matter.index}}" style="display: none;">{{matter.name}}</div>
+								<div id="vid{{matter.index}}" style="display: none;">{{matter.vid}}</div>
+								<div id="bdcl{{matter.index}}" style="display: none;">{{matter.bdcl}}</div>
+								<div id="sfspyzstr{{matter.index}}" style="display: none;">{{matter.sfspyz}}</div>
+								<div id="sflystr{{matter.index}}" style="display: none;">{{matter.sfly}}</div>
+								<div id="itemcode{{matter.index}}" style="display: none;">{{matter.itemcode}}</div>
+								<div id="webid{{matter.index}}" style="display: none;">{{matter.webid}}</div>
+								<div id="addType{{matter.index}}" style="display: none;">{{matter.addType}}</div>
+								<div id="appurl{{matter.index}}" style="display: none;">{{matter.appurl}}</div>
+								<div id="foruser{{matter.index}}" style="display: none;">{{matter.foruser}}</div>
+								<div id="basecode{{matter.index}}" style="display: none;">{{matter.basecode}}</div>
+								<div id="areacode{{matter.index}}" style="display: none;">{{matter.areacode}}</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="badmessage" style="opacity: 0.6;border-radius: 10px;position: absolute;left: 50%;top: 50%;width:160px;height:160px;margin-left:-80px;margin-top:-100px;display: none;">
+					<img style="width: 160px; height: 160px;" src="../source/images/yw_message_bad.png" />
+					<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+				</div>
+				<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+					<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+					<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+				</div>
+			</div>
+			<div style="bottom: 0px; width: 100%;height: 35px;position: fixed;background-color: #FFFFFF;" id="sourceApp">
+				<p style="margin-top: 8px;margin-bottom: 0px; line-height: 20px;font-size: 12px;text-align: center;;">——本服务由浙江政务服务网提供——</p>
+			</div>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../source/js/vue.min.js"></script>
+		<script src="../source/js/jquery-1.8.3.min.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../source/js/function.js"></script>
+		<script type="text/javascript" src="../../../source/js/util.js"></script>
+		<script src="../controller/oderlist.controller.js"></script>
+		<script type="text/javascript">
+			//			var storage = window.localStorage;
+			var keyword = "";
+			//			//用户类型：0个人；1法人；2全部
+			//			var usertype = "0";
+			//
+			//			//判断容器类型，浏览器还是APP
+			//			var container = containerT();
+			//			if(container == "web") {
+			//				//				document.getElementById("listcontent").style.display = "block";
+			//				document.getElementById("sourceApp").style.display = "none";
+			//				document.getElementById("pullrefresh").style.marginBottom = "0px";
+			//
+			//				var wxuserInfo = localStorage.wxuserInfo;
+			//				wxuserInfo = JSON.parse(wxuserInfo);
+			//				if(typeof(wxuserInfo) == "undefined" || wxuserInfo == "") {
+			//					//跳转到登录页
+			//					window.location.href = "../../OfficeHall/view/UserLogin.html?isFrom=01"; //预约
+			//				} else {
+			//					if(wxuserInfo.appConEntName == "" || typeof(wxuserInfo.appConEntName) == "undefined") { //个人
+			//						usertype = "0";
+			//						if(onlinetype == "01" || onlinetype == "04") { //网上预约--初级可预约 快递申请--初级可预约
+			//							if(wxuserInfo.authlevel == "2" || wxuserInfo.authlevel == "3") { //初级或者高级
+			//								document.getElementById("pullrefresh").style.display = "block";
+			//								document.getElementById("listcontent").style.display = "block";
+			//							} else {
+			//								window.location.href = "http://ywszwfw.yw.gov.cn/jmportal/resources/yw/apps/mycenter/view/sm.html";
+			//							}
+			//						} else { //网上办证或者网上证明--高级可办证
+			//							if(wxuserInfo.authlevel == "3") { //高级
+			//								document.getElementById("pullrefresh").style.display = "block";
+			//								document.getElementById("listcontent").style.display = "block";
+			//							} else {
+			//								window.location.href = "http://puser.zjzwfw.gov.cn/sso/mobile.do?action=realname&servicecode";
+			//							}
+			//						}
+			//					} else { //法人
+			//						usertype = "1";
+			//						document.getElementById("pullrefresh").style.display = "block";
+			//						document.getElementById("listcontent").style.display = "block";
+			//					}
+			//
+			//				}
+			requestOrderList(0, colid, keyword);
+			//			} else { //app 使用jssdk获取用户信息
+			//				document.getElementById("sourceApp").style.display = "block";
+			//				document.getElementById("pullrefresh").style.marginBottom = "35px";
+			//				document.getElementById("pullrefresh").style.display = "block";
+			//				document.getElementById("loading").style.display = "block"; //菊花
+			//				var opts = {
+			//					//参数列表    
+			//					lines: 10, // loading小块的数量
+			//					length: 10, // 小块的长度
+			//					width: 4, // 小块的宽度
+			//					radius: 8, // 整个圆形的半径
+			//					corners: 1, // 小块的圆角，越大则越圆
+			//					rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+			//					color: '#ddd', // 颜色
+			//					speed: 1, // 变换速度
+			//					trail: 60, // 余晖的百分比
+			//					shadow: false, // 是否渲染出阴影
+			//					hwaccel: false, // 是否启用硬件加速
+			//					className: 'spinner', // 给loading添加的css样式名
+			//					zIndex: 2e9, // The z-index (defaults to 2000000000)
+			//					top: 'auto', // Top position relative to parent in px
+			//					left: 'auto' // Left position relative to parent in px
+			//				};
+			//				var target = document.getElementById('food');
+			//				var spinner = new Spinner(opts).spin(target);
+			//
+			//				//				onGetUserInfo();
+			//				getUserInfoSuccess(localStorage.wxuserInfo);
+			//			}
+			mui.init({
+
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+
+			function pulldownRefresh() {
+				setTimeout(function() {
+					requestOrderList(1, colid, keyword);
+				}, 1500);
+			}
+
+			/**
+			 * 上拉加载具体业务实现
+			 */
+
+			function pullupRefresh() {
+				setTimeout(function() {
+					requestOrderList(2, colid, keyword);
+					//					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+				}, 1500);
+			}
+
+			$(function getinputstr() {
+				$('#searchin').bind('input propertychange', function() {
+					keyword = $(this).val();
+					requestOrderList(0, colid, keyword);
+					//										console.log($(this).val());
+				});
+			})
+
+			//点击li的事件 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）-- 预约事项详情
+			//			if(onlinetype == "01") { //网上预约
+			mui('.mui-table-view').on('tap', '.detaildiv', function() {
+				var index = this.id;
+				//				index = index.substring(0, index.length - 1);
+				var nameindex = "name" + index;
+				var vidindex = "vid" + index;
+				var itemcodeindex = "itemcode" + index;
+				var webidindex = "webid" + index;
+				var addTypeindex = "addType" + index;
+				var name = document.getElementById(nameindex).innerHTML;
+				var vid = document.getElementById(vidindex).innerHTML;
+				var itemcode = document.getElementById(itemcodeindex).innerHTML;
+				var webid = document.getElementById(webidindex).innerHTML;
+				var addType = document.getElementById(addTypeindex).innerHTML;
+				mui.openWindow({
+					url: "../../OfficeHall/view/WokContent.html?vtype=" + addType + "&vid=" + itemcode + "&vname=" + name + "&webid=" + webid
+				})
+			})
+
+			//网上办事
+			mui('.mui-table-view').on('tap', '.submitbtn', function() {
+				var index = this.id;
+				index = index.substring(0, index.length - 1);
+				var nameindex = "name" + index;
+				var vidindex = "vid" + index;
+				var sfspyzindex = "sfspyzstr" + index;
+				var sflyindex = "sflystr" + index;
+				var bdclindex = "bdcl" + index;
+				var itemcodeindex = "itemcode" + index;
+				var webidindex = "webid" + index;
+				var cntimeindex = "cntime" + index;
+				var appurlindex = "appurl" + index;
+				var foruserindex = "foruser" + index;
+				var basecodeindex = "basecode" + index;
+				var areacodeindex = "areacode" + index;
+				var name = document.getElementById(nameindex).innerHTML;
+				var vid = document.getElementById(vidindex).innerHTML;
+				var sfspyzs = document.getElementById(sfspyzindex).innerHTML;
+				var sflys = document.getElementById(sflyindex).innerHTML;
+				var itemcode = document.getElementById(itemcodeindex).innerHTML;
+				var webid = document.getElementById(webidindex).innerHTML;
+				var cntime = document.getElementById(cntimeindex).innerHTML;
+				var appurl = document.getElementById(appurlindex).innerHTML.trim();
+				foruser = document.getElementById(foruserindex).innerHTML.trim();
+				var dQlBaseCode = document.getElementById(basecodeindex).innerHTML;
+				var dRegionCode = document.getElementById(areacodeindex).innerHTML.trim();
+				//表单id(有值代表有表单；无值代表无表单)
+				var vbdcl = document.getElementById(bdclindex).innerHTML;
+				var dUserType = "puser";
+				
+				
+				 var vids = vid.replace(/\s*/g,"");
+				if(foruser == "2" || foruser == "3" || foruser == "6") { //法人用户
+					dUserType = "uuser";
+				}
+				var url;
+
+				if(appurl == null || appurl == "" || (appurl.indexOf("/zjwssb/zj/apps/") != -1)) {
+					url = "onlinedeclare.html?dUserType=" + dUserType + "&dQlInnerCode=" + vids + "&dQlBaseCode=" + dQlBaseCode + "&dRegionCode=" + dRegionCode + "&dFrom=APP";
+				} else if(appurl.indexOf("/apps/Customized") != -1) {
+					appurl = appurl.split("/apps/")[1];
+					url = "../../" + appurl + "?itemcode=" + vids + "&itemname=" + name + "&onlineType=" + onlinetype + "&sfspyz=" +
+						sfspyzs + "&sfly=" + sflys + "&colid=" + colid + "&siteid=" + vsiteid + "&bdcl=" + vbdcl + "&itemcodeid=" +
+						itemcode + "&validitykey=" + validitykey + "&webid=" + webid + "&cntime=" + cntime + "&cityname=" + cityName + "&foruser=" + foruser
+				} else {
+					url = appurl;
+				}
+				mui.openWindow({
+					url: url
+				})
+
+			})
+			//网上预约
+			mui('.mui-table-view').on('tap', '.submitbtn_order', function() {
+				var index = this.id;
+				index = index.substring(0, index.length - 1);
+				var nameindex = "name" + index;
+				var vidindex = "vid" + index;
+				var sfspyzindex = "sfspyzstr" + index;
+				var sflyindex = "sflystr" + index;
+				var bdclindex = "bdcl" + index;
+				var itemcodeindex = "itemcode" + index;
+				var webidindex = "webid" + index;
+				var foruserindex = "foruser" + index;
+				var name = document.getElementById(nameindex).innerHTML;
+				var vid = document.getElementById(vidindex).innerHTML;
+				var sfspyzs = document.getElementById(sfspyzindex).innerHTML;
+				var sflys = document.getElementById(sflyindex).innerHTML;
+				var itemcode = document.getElementById(itemcodeindex).innerHTML;
+				var webid = document.getElementById(webidindex).innerHTML;
+				foruser = document.getElementById(foruserindex).innerHTML.trim();
+				var url;
+				var dUserType = "puser";
+				 var vids = vid.replace(/\s*/g,"");
+				if(foruser == "2" || foruser == "3" || foruser == "6") { //法人用户
+					dUserType = "uuser";
+				}
+				url = "handleoder.html?dUserType=puser&dQlInnerCode=" + vids;
+				mui.openWindow({
+					url: url
+				})
+				//				} else { //法人
+				//					mui.toast("预约服务仅限个人用户使用，请切换个人用户登录");
+				//					//					alert("预约服务仅限个人用户使用，请切换个人用户登录");
+				//				}
+			})
+		</script>
+	</body>
+
+</html>

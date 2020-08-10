@@ -1,0 +1,45 @@
+/**
+ * 接口地址
+ */
+//var interfaceurl="https://tzggfwresources.taizhou.gov.cn/v1/";
+
+//浙江政务服务
+var zjzwurl="http://www.zjzwfw.gov.cn/zjzw/";
+//微门户
+//var wmhurl="http://ywszwfw.yw.gov.cn/jmportal/";
+//var wmhurl="http://jmpotal.hanweb.com/jmportal/";
+//var wmhurl = "http://220.191.238.214:8080/jmportal/";
+var wmhurl = "ydd2.service.gov.cn/zhongzhuan/zz/interface/";
+
+//预约
+//var orderurl="http://ywszwfw.yw.gov.cn/yyxt/";
+var orderurl = "http://220.191.238.214:8090/quzhou/";
+var orderurlInterface = "ydd2.service.gov.cn/zhongzhuan/zz/interface/";
+//网上查询正文表格下载
+var loadurl = "http://cms.zjzwfw.gov.cn";
+
+
+//微门户siteID
+var wmhsiteid= 1;
+//公共资源ID
+var publicclassifyid= 11;
+//政务资讯ID
+var governid= 1;
+//政务资讯--综合ID
+var resid1= 2;
+//政务资讯--通知公告ID
+var resid2= 5;
+//政务资讯--新闻ID
+var resid3= 6;
+//办事大厅栏目分类ID
+var officehallid= 7;
+
+
+//个人登录加密key
+var GRKEY = "1234567812345678";
+var GRIV = "zjzwfuhanweb2015";
+//法人登录加密key
+var FRKEY = "12345678!@#$%^&*";
+var FRIV = "zjzwfwuuser@2016";
+		            
+

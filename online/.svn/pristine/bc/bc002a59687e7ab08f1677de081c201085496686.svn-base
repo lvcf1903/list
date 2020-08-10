@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<title>办事大厅</title>
+	</head>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
+		
+		.mui-table-view {
+			background-color: #EFEFF4;
+			border: 0px;
+			list-style-type: none
+		}
+		
+		.mui-table-view:after {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: 0px;
+			content: '';
+			-webkit-transform: scaleY(.5);
+			transform: scaleY(.5);
+			background-color: #c8c7cc
+		}
+		
+		.mui-table-view:before {
+			position: absolute;
+			right: 0;
+			left: 0;
+			height: 0px;
+			content: '';
+			-webkit-transform: scaleY(.5);
+			transform: scaleY(.5);
+			background-color: #c8c7cc;
+			top: -1px
+		}
+		
+		.mui-table-view-cell:after {
+			left: 100%;
+		}
+		
+		.mui-table-view-cell {
+			padding: 11px 5px;
+		}
+		
+		.nr {
+			margin: 0 auto;
+			border-bottom: thin solid #e8e8e8;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			/*background-image: url('../source/img/item_arrow.png');
+				background-repeat: no-repeat;
+				background-position: right 20px center;
+				background-size: 6px 12px;*/
+			/*background-color: #007AFF;*/
+		}
+		
+		.sj {
+			font-size: 14px;
+			color: #999999;
+			padding-top: 5px;
+			padding-bottom: 10px;
+		}
+		
+		.zh {
+			width: 100%;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			font-size: 17px;
+			color: #222222;
+		}
+		
+		.cont {
+			margin-top: 10px;
+			background: #fff;
+			float: left;
+			width: 100%;
+		}
+		
+		.nav_bar {
+			width：50%;
+			height: 40px;
+			border-bottom: 1px solid #e8e8e8;
+			display: block;
+			padding: 10px;
+			padding-left: 15px;
+		}
+		
+		.hotappli {
+			float: left;
+			width: 25%;
+			padding: 11px 0px;
+			border-right: 1px solid #e8e8e8;
+			border-bottom: 1px solid #e8e8e8;
+		}
+		.borderli {
+			height: 60px;
+			border-right: 1px solid #e8e8e8;
+			border-bottom: 1px solid #e8e8e8;
+		}
+	</style>
+
+	<body style="background-color:#e8e8e8; ">
+		<div class="mui-content" style="background-color: #fff;width: 100%;">
+			<div id="slider" class="mui-slider" style="height: 180px;">
+				<div id="slider1" class="mui-slider-group mui-slider-loop">
+
+				</div>
+				<div id="slider2" class="mui-slider-indicator">
+
+				</div>
+			</div>
+			<div class="cont" style="margin-top: 0px;">
+				<ul class="mui-table-view" id="parent" style="width: 100%;">
+					<li v-for="item in items" class="mui-table-view-cell" style="float: left;width: 33%;" id="{{item.index}}">
+						<div style="text-align: center;">
+							<img style="width: 40px;height: 40px;" class="img" src='{{item.imgurl}}' /></br>
+							<p style="font-size: 16px;color: #222222;">{{item.columnname}}</p>
+							<span id="lightappurl{{item.index}}" style="display: none;">{{item.lightappurl}}</span>
+						</div>
+					</li>
+					<!--<li v-for="item in items" class="mui-table-view-cell borderli" style="float: left;width: 50%;" id="{{item.index}}">
+						<table>
+							<tr>
+								<span id="lightappurl{{item.index}}" style="display: none;">{{item.lightappurl}}</span>
+								<td style="padding-left: 10px;">
+									<img style="width: 40px;height: 40px;" src='{{item.imgurl}}' />
+								</td>
+								<td>
+									<span style="font-size: 16px;color: #222222;padding-left: 15px;">{{item.columnname}}</span>
+								</td>
+							</tr>
+						</table>-->
+					</li>
+				</ul>
+			</div>
+			<div class="cont">
+				<div id="" class="nav_bar">
+					<span style="display: inline-block;float: left;font-size: 17px;">热点应用</span>
+					<span style="display: block;float: right;font-size: 14px;" onclick="window.location.href = 'HotAppMore.html'">更多></span>
+				</div>
+				<ul class="mui-table-view" id="parent1" style="width: 100%;">
+					<li v-for="item1 in items1" class="mui-table-view-cell hotappli" style="" id="{{item1.index}}">
+						<div style="text-align: center;width: 100% ;">
+							<img style="width: 30px;height: 30px;" class="img" src='{{item1.imageurl}}' /></br>
+							<span style="font-size: 13px;">{{item1.title}}</span>
+							<p id="openurl{{item1.index}}" style="display: none;">{{item1.openurl}}</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div class="cont">
+				<div id="" class="nav_bar">
+					<span style="display: inline-block;float: left;font-size: 17px;">政务资讯</span>
+					<span style="display: inline-block;float: right;font-size: 14px;" onclick="window.location.href = 'GovernInfo.html'">更多></span>
+				</div>
+				<ul class="mui-table-view" id="parent2" style="width: 100%;">
+					<li v-for="item2 in items2" class="mui-table-view-cell" id="{{item2.index}}" style="background-color: #fff;padding: 11px 15px 0px 15px;">
+						<div id="infoid{{item2.index}}" style="display: none;">{{item2.infoid}}</div>
+						<div id="resourceid{{item2.index}}" style="display: none;">{{item2.resourceid}}</div>
+						<div class="nr">
+							<p class="zh">{{item2.title}}</p>
+							<span class="sj" style="float: left;">{{item2.source}}</span>
+							<span class="sj" style="float: right;">{{item2.time}}</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../source/js/OfficeWebservice.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../../BaseConfig/source/js/md5.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/OfficeHallHome.controller.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			getBannerData(36);
+			getClassifyData();
+			getHotApplyData();
+			requestInfoListData();
+
+			//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+			mui('#parent').on('tap', '.mui-table-view-cell', function() {
+				var lightappurlindex = "lightappurl" + this.id;
+				var lightappurl = document.getElementById(lightappurlindex).innerHTML;
+				mui.openWindow({
+					url: lightappurl
+				})
+			})
+
+			//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+			mui('#parent1').on('tap', '.mui-table-view-cell', function() {
+				var openurlindex = "openurl" + this.id;
+				var openurl = document.getElementById(openurlindex).innerHTML;
+				mui.openWindow({
+					url: openurl
+				})
+			})
+
+			//点击li的时间 （使用mui的刷新组件onclick时间无法响应，必须使用此方法）
+			mui('#parent2').on('tap', '.mui-table-view-cell', function() {
+				var resourceidindex = "resourceid" + this.id;
+				var infoidindex = "infoid" + this.id;
+				var resourceid = document.getElementById(resourceidindex).innerHTML;
+				var titleid = document.getElementById(infoidindex).innerHTML;
+				mui.openWindow({
+					url: "GovernContent.html?resourceid=" + resourceid + "&titleid=" + titleid
+				})
+			})
+		</script>
+	</body>
+
+</html>

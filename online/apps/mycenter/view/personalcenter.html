@@ -1,0 +1,368 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var vsiteid = href.split("siteid=")[1].split("&")[0];
+			vsiteid = decodeURI(vsiteid);
+		</script>
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #1c1b1f;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">我
+			</h1>
+		</header>-->
+		<div class="mui-content" id="personContent" style="display: none;">
+			<div style="background-color: #1493ff;height: 120px;margin-top: 0px;display： inline-block;color: #333333;">
+				<img id="headImage" width="70px" style="margin-left: 10px;margin-top: 25px;float: left;" />
+				<div style="float: left;margin-left: 10px;margin-top: 35px;width: 40%;display: none;" id="GRNameInfo">
+					<div style="color: #FFFFFF;font-size: 17px;height: 30px;line-height: 25px;" id="username"></div>
+					<div style="color: #FFFFFF;font-size: 17px;height: 30px;line-height: 25px;" id="count"></div>
+				</div>
+				<div id="frnamearea" style="margin-left: 100px;color: #FFFFFF;font-size: 20px;width: 65%;height: 120px;padding-left: -100px;">
+					<table style="width: 100%;">
+						<tr>
+							<td style="vertical-align:middle;" id="FRName" height="120px"></td>
+						</tr>
+					</table>
+
+				</div>
+				<div style="float: right;" id="userLevel">
+					<div style="text-align: center;line-height: 30px;background-color: #f6b527;color: #FFFFFF;width: 85px;height: 30px;font-size: 12px;display: inline-block;margin-top: 45px;border-radius: 3px;margin-right: 5%;" id="authlevel" onclick="userLevelClicked()"></div>
+					<img style="float: right;margin-top: -22px;" width="14px" src="../source/images/whiteArrow.png" />
+				</div>
+			</div>
+			<!--<ul class="mui-table-view" style="color: #333333;">
+				<li class="mui-table-view-cell" onclick="window.location.href='mymessage.html'">
+					<tr>
+						<td><img align="absmiddle" src="../source/images/message.png" width="20px" style="float: left;margin-top: -2px;" /></td>
+						<td>&nbsp;&nbsp;我的消息</td>
+						<td><img align="absmiddle" src="../source/images/rightarrow.png" width="13px" style="float: right;margin-top: 4px;" /></td>
+					</tr>
+
+				</li>
+				<li class="mui-table-view-cell" onclick="window.location.href='CollectList.html'">
+					<tr>
+						<td><img align="absmiddle" src="../source/images/collection.png" width="20px" style="float: left;margin-top: -2px;" /></td>
+						<td>&nbsp;&nbsp;我的收藏</td>
+						<td><img align="absmiddle" src="../source/images/rightarrow.png" width="13px" style="float: right;margin-top: 4px;" /></td>
+					</tr>
+				</li>
+			</ul>-->
+			<ul class="mui-table-view" style="color: #333333;font-size: 17px;">
+				<li class="mui-table-view-cell" style="display: none;" onclick="window.location.href='../../OfficeHall/view/MyDosList.html'">
+					<tr>
+						<td><img align="absmiddle" src="../source/images/document.png" width="20px" style="float: left;margin-top: -2px;" /></td>
+						<td>&nbsp;&nbsp;我的办件</td>
+						<td><img align="absmiddle" src="../source/images/rightarrow.png" width="13px" style="float: right;margin-top: 4px;" /></td>
+					</tr>
+				</li>
+				<li class="mui-table-view-cell" onclick="window.location.href='../../OfficeHall/view/MyOderList.html?siteid=' + vsiteid">
+					<tr>
+						<td><img align="absmiddle" src="../source/images/order.png" width="20px" style="float: left;margin-top: -2px;" /></td>
+						<td>&nbsp;&nbsp;我的预约</td>
+						<td><img align="absmiddle" src="../source/images/rightarrow.png" width="13px" style="float: right;margin-top: 4px;" /></td>
+					</tr>
+				</li>
+				<li class="mui-table-view-cell" onclick="window.location.href= mypayInterface +'?payersfz=&name='+username+'&mobile='+mobile+'&email='+email">
+					<tr>
+						<td><img align="absmiddle" src="../source/images/pay.png" width="20px" style="float: left;margin-top: -2px;" /></td>
+						<td>&nbsp;&nbsp;我的支付</td>
+						<td><img align="absmiddle" src="../source/images/rightarrow.png" width="13px" style="float: right;margin-top: 4px;" /></td>
+					</tr>
+				</li>
+				<li class="mui-table-view-cell" onclick="window.location.href= consultInterface+'?item=7&user_id='+userid">
+					<tr>
+						<td><img align="absmiddle" src="../source/images/consult.png" width="22px" style="float: left;margin-top: -2px;" /></td>
+						<td>&nbsp;&nbsp;咨询投诉举报建议</td>
+						<td><img align="absmiddle" src="../source/images/rightarrow.png" width="13px" style="float: right;margin-top: 4px;" /></td>
+					</tr>
+				</li>
+
+				<!--<li id="mylicense" class="mui-table-view-cell" onclick="window.location.href='licenselist.html'">
+					<tr>
+						<td><img align="absmiddle" src="../source/images/idcard.png" width="20px" style="float: left;margin-top: -2px;" /></td>
+						<td>&nbsp;&nbsp;我的证照</td>
+						<td><img align="absmiddle" src="../source/images/rightarrow.png" width="13px" style="float: right;margin-top: 4px;" /></td>
+					</tr>
+				</li>-->
+			</ul>
+
+			<ul class="mui-table-view" style="color: #333333;margin-top: 10px;font-size: 17px;">
+				<li class="mui-table-view-cell" onclick="window.location.href='addresslist.html?siteid='+vsiteid">
+					<tr>
+						<td><img align="absmiddle" src="../source/images/address.png" width="20px" style="float: left;margin-top: -2px;" /></td>
+						<td>&nbsp;&nbsp;我的收件地址</td>
+						<td><img align="absmiddle" src="../source/images/rightarrow.png" width="13px" style="float: right;margin-top: 4px;" /></td>
+					</tr>
+				</li>
+			</ul>
+
+			<ul class="mui-table-view" style="color: #333333;margin-top: 10px;font-size: 17px;">
+				<li class="mui-table-view-cell" onclick="Logouts();">
+					<tr>
+						<td><img align="absmiddle" src="../source/images/logout.png" width="22px" style="float: left;margin-top: -2px;" /></td>
+						<td>&nbsp;&nbsp;退出登录</td>
+						<td><img align="absmiddle" src="../source/images/rightarrow.png" width="13px" style="float: right;margin-top: 4px;" /></td>
+					</tr>
+				</li>
+			</ul>
+		</div>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: none;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../../../source/js/md5.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../source/js/jquery-1.8.3.min.js"></script>
+		<script src="../source/js/function.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script type="text/javascript" src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script type="text/javascript" src="../../BaseConfig/source/CryptoJSv3.1.2/rollups/aes.js"></script>
+		<script type="text/javascript" src="../../../source/js/util.js"></script>
+		<script type="text/javascript">
+			//判断容器类型，浏览器还是APP
+			var container = containerT();
+			var storage = window.localStorage;
+			var userInfo;
+			var userType;
+			var userid;
+			if(container == "web") {
+				userInfo = storage.wxuserInfo;
+				if(typeof(userInfo) == "undefined" || userInfo == "") {
+					//跳转到登录页
+					window.location.href = "../../OfficeHall/view/UserLogin.html?siteid=" + vsiteid;
+				} else {
+					userType = storage.wxuserType;
+					var obj = JSON.parse(userInfo);
+					userid = obj.userid;
+					var username = obj.username;
+					var mobile = obj.mobile;
+					var email = obj.email;
+					var password = storage.wxpassword;
+				}
+			} else {
+				onGetUserInfo2();
+			}
+
+			//展现用户信息
+			function showUserInfo() {
+				var obj = JSON.parse(userInfo);
+				if(typeof(obj) == "undefined" || obj == "") {
+					document.getElementById("personContent").style.display = "none";
+					return;
+				} else {
+					document.getElementById("personContent").style.display = "block";
+				}
+				if(userType == "GR") { //个人
+					document.getElementById("GRNameInfo").style.display = "block";
+					document.getElementById("userLevel").style.display = "block";
+					if(obj.username) {
+						document.getElementById("username").innerHTML = obj.username;
+					} else {
+						document.getElementById("username").innerHTML = obj.loginname;
+					}
+					document.getElementById("count").innerHTML = "积分：" + obj.totalcount;
+
+					if(obj.authlevel == "2") { //初级实名用户
+						document.getElementById("authlevel").innerHTML = "初级实名用户";
+						document.getElementById("authlevel").style.backgroundColor = "#f6b527";
+						document.getElementById("authlevel").style.color = "#FFFFFF";
+
+					} else if(obj.authlevel == "3") { //高级实名用户
+						document.getElementById("authlevel").innerHTML = "高级实名用户";
+						document.getElementById("authlevel").style.backgroundColor = "#f6b527";
+						document.getElementById("authlevel").style.color = "#FFFFFF";
+
+					} else { //非实名用户
+						document.getElementById("authlevel").innerHTML = "非实名用户";
+						document.getElementById("authlevel").style.backgroundColor = "#1493FF";
+						document.getElementById("authlevel").style.color = "#FFFFFF";
+						document.getElementById("authlevel").style.border = "solid 1px white";
+					}
+					var img = document.getElementById("headImage");
+					img.src = "../source/images/headimage.png";
+					document.getElementById("frnamearea").style.display = "none";
+
+				} else { //法人
+					//					document.getElementById("frnamearea").style.display = "block";
+					document.getElementById("GRNameInfo").style.display = "none";
+					document.getElementById("userLevel").style.display = "none";
+					var img = document.getElementById("headImage");
+					img.src = "../source/images/FRHeadimage.png";
+					document.getElementById("authlevel").style.display = "none";
+					document.getElementById("FRName").innerHTML = obj.appConEntName;
+
+				}
+			}
+		</script>
+
+		<script type="text/javascript">
+			//验证用户信息
+			function checkGR() {
+				document.getElementById('loading').style.display = 'block';
+				var opts = {
+					//参数列表    
+					lines: 10, // loading小块的数量
+					length: 10, // 小块的长度
+					width: 4, // 小块的宽度
+					radius: 8, // 整个圆形的半径
+					corners: 1, // 小块的圆角，越大则越圆
+					rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+					color: '#ddd', // 颜色
+					speed: 1, // 变换速度
+					trail: 60, // 余晖的百分比
+					shadow: false, // 是否渲染出阴影
+					hwaccel: false, // 是否启用硬件加速
+					className: 'spinner', // 给loading添加的css样式名
+					zIndex: 2e9, // The z-index (defaults to 2000000000)
+					top: 'auto', // Top position relative to parent in px
+					left: 'auto' // Left position relative to parent in px
+				};
+				var target = document.getElementById('food');
+				var spinner = new Spinner(opts).spin(target);
+
+				var obj = JSON.parse(userInfo);
+
+				if(container == "web") {
+					var password = window.localStorage.wxpassword;
+					var userpwds = Encrypt(password, GRKEY, GRIV);
+				} else {
+					var userpwds = obj.password;
+				}
+				var username = obj.mobile;
+				var now = new Date(); //	var nowtime = 1900 + now.getYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "-" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+				var nowtime = now.getTime();
+				var tokenuuid = hex_md5(nowtime + "318qwe" + '863151027391249');
+				var usernames = Encrypt(username, GRKEY, GRIV);
+				var date = {
+					loginname: usernames,
+					password: userpwds,
+					siteid: '1',
+					clienttype: '2',
+					version: '312',
+					uuid: '863151027391249',
+					uniquecode: nowtime,
+					tokenuuid: tokenuuid
+				}
+
+				myRequest({
+					url: zjzwurl + "app/interface/new/loginperson.do",
+					data: date,
+					header: '',
+					success: function(data) {
+						document.getElementById('loading').style.display = 'none';
+						var obj = data;
+						data = JSON.stringify(data);
+						if(obj.result == 0) { //登录成功
+
+							//第一步：将法人用户的字段整合进来
+							var addFRData = {
+								"realLevel": "",
+								"appConEntName": "",
+								"appConRegNo": "",
+								"appConEntUniCode": "",
+								"orgType": "",
+								"appConEntType": "",
+								"appConLoc": "",
+								"uniscid": "",
+								"nbxh": "",
+								"appConMgrScope": "",
+								"xzqh": ""
+							}
+							var addFRDataJson = JSON.stringify(addFRData);
+							addFRDataJson = addFRDataJson.substring(1, addFRDataJson.length);
+							data = data.substring(0, data.length - 1);
+							data = data + "," + addFRDataJson;
+							//第二步：用户信息存本地
+							storage.wxuserInfo = data;
+							storage.wxuserType = "GR";
+							storage.wxpassword = password;
+							showUserInfo();
+						} else { //登录失败
+							window.location.href = "../../OfficeHall/view/UserLogin.html";
+							alert("用户信息失效，请重新登录");
+						}
+					},
+					fail: function(data) {
+						document.getElementById('loading').style.display = 'none';
+						window.location.href = "../../OfficeHall/view/UserLogin.html";
+						alert("用户信息失效，请重新登录");
+					}
+				});
+			}
+		</script>
+
+		<script type="text/javascript">
+			mui.init()
+			if(userType == "GR") { //调个人登录接口，查看用户信息是否失效
+				//				checkGR();
+			} else {
+
+			}
+			showUserInfo();
+		</script>
+		<script type="text/javascript">
+			//退出登录
+			function Logouts() {
+				//删除用户信息
+				var storage = window.localStorage;
+				storage.removeItem("wxuserInfo");
+				storage.removeItem("wxuserType");
+
+				window.location.href = "../../OfficeHall/view/UserLogin.html?siteid=" + vsiteid;
+
+				onLogout();
+			}
+			//进入个人中心页面
+			function userLevelClicked() {
+				var loginname = JSON.parse(userInfo).loginname;
+				if(container == "web") {
+					var password = window.localStorage.wxpassword;
+					var userpwds = Encrypt(password, GRKEY, GRIV);
+				} else {
+					var userpwds = obj.password;
+				}
+				loginname = Encrypt(loginname, GRKEY, GRIV);
+				var date = {
+					loginname: loginname,
+					password: userpwds
+				}
+				var now = new Date();
+				//请求票据
+				myRequest({
+					url: zjzwurl + "app/bmfw/getTicketForAppWebChat.do",
+					data: date,
+					header: '',
+					success: function(data) {
+
+						var obj = data;
+						//将票据信息存本地
+						if(obj.errmsg == "成功") {
+							window.location.href = mycenterInterface + "?action=user&type=2&ticket=" + obj.result + "&time=" + now.getTime();
+						} else {
+							alert("请求个人中心失败");
+						}
+
+					},
+					fail: function(data) {
+						alert("请求个人中心失败");
+
+					}
+				});
+			}
+		</script>
+
+	</body>
+
+</html>

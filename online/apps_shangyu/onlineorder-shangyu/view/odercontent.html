@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>网上查询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<!--App自定义的css-->
+		<!--<link rel="stylesheet" type="text/css" href="../../../css/app.css" />-->
+	</head>
+
+	<body>
+
+		<style>
+			.mui-control-content {
+				background-color: white;
+				min-height: 800px;
+				/*height: 500px;
+				line-height: 500px;*/
+				/*position:absolute; 
+				width:100%; 
+				bottom:0; 
+				overflow:auto;*/
+			}
+			
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+			
+			.tr1 {
+				border-bottom: 1px solid;
+				border-color: #DDDDDD;
+				height: 40px;
+				width: 100%;
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			
+			.lefttd {
+				color: #222222;
+				width: 30%;
+				padding-left: 10px;
+				font-size: 17px;
+			}
+			
+			.righttd {
+				color: #222222;
+				width: 65%;
+				font-size: 17px;
+				padding-right: 10px;
+			}
+			
+			#detail {
+				float: right;
+				background-color: #94B7EC;
+				color: #fff;
+				padding: 3px;
+				text-align: center;
+				margin-left: 10px;
+				vertical-align: middle;
+			}
+			
+			.bgtr {
+				background-image: url('../source/images/yw_locate.png');
+				background-repeat: no-repeat;
+				background-position: left 5px center;
+				background-size: 20px 20px;
+			}
+			
+			.bgtrleft {
+				background-image: url('../source/images/yw_tel.png');
+				background-repeat: no-repeat;
+				background-position: left 5px center;
+				background-size: 20px 20px;
+			}
+			
+			.bgright {
+				background-image: url('../source/images/item_arrow.png');
+				background-repeat: no-repeat;
+				background-position: right 10px center;
+				background-size: 11px 20px;
+			}
+			
+			.mui-control-item {
+				font-size: 17px;
+				/*color: #199efd;*/
+			}
+			
+			.mui-segmented-control.mui-segmented-control-inverted~.mui-slider-progress-bar {
+				background-color: #199efd;
+			}
+			
+			p {
+				color: #222222;
+				font-size: 18px;
+			}
+			
+			#badmessage,
+			#badmessage0,
+			#badmessage1 {
+				opacity: 0.6;
+				border-radius: 10px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 160px;
+				height: 160px;
+				margin-left: -80px;
+				margin-top: -120px;
+				display: none;
+			}
+			
+			#material {
+				background-color: translation;
+				margin-top: 15px;
+				margin-left: 20px;
+				margin-right: 20px;
+				line-height: 25px;
+				color: #222222;
+				font-size: 18px;
+				word-wrap: break-word;
+				overflow: hidden;
+			}
+		</style>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background-color: #FFFFFF;position: fixed;top:0px;height: 40px;z-index: 1000;">
+					<a class="mui-control-item" id="bt1" href="#item1mobile">
+						基本信息
+					</a>
+					<a class="mui-control-item" id="bt2" href="#item2mobile">
+						申报材料
+					</a>
+					<a class="mui-control-item" id="bt3" href="#item3mobile">
+						受理条件
+					</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4" style="position: fixed;top:40px;z-index: 1000"></div>
+				<div class="mui-slider-group" style="margin-top: 40px;">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div id="basicinfodiv" class="mui-scroll">
+								<div style="background-color: #FFFFFF;margin: 0px;color: #222222;font-size: 21px;text-align: center;padding: 7px;line-height: 30px;" id="itemname"></div>
+								<table width="98%" align="center" style="background-color: #FFFFFF;line-height:30px; height:40px; font-size:14px; color:#676767;font-family:'微软雅黑';">
+									<hr style="margin: 0px;border:0px;background-color:#DDDDDD;height: 1px;" />
+									<hr style="margin: 0px;border:0px;background-color:#EFEFF4;height: 10px;" />
+									<tr class="tr1" id="ssjgtr">
+										<td align="left" class="lefttd">实施机关</td>
+										<td align="right" class="righttd" id="ssjg"></td>
+									</tr>
+									<tr class="tr1" id="bsdxtr">
+										<td align="left" class="lefttd">办事对象</td>
+										<td align="right" class="righttd" id="bsdx"></td>
+									</tr>
+									<tr class="tr1" id="sfqktr">
+										<td align="left" class="lefttd">收费情况</td>
+										<td align="right" class="righttd" id="sfqk"></td>
+									</tr>
+									<tr class="tr1" id="fdqxtr">
+										<td align="left" class="lefttd">法定期限</td>
+										<td align="right" class="righttd" id="fdqx"></td>
+									</tr>
+									<tr class="tr1" id="cnqxtr">
+										<td align="left" class="lefttd">承诺期限</td>
+										<td align="right" class="righttd" id="cnqx"></td>
+									</tr>
+									<tr class="tr1" id="zrcstr">
+										<td align="left" class="lefttd">责任处(科)室</td>
+										<td align="right" class="righttd" id="zrcs"></td>
+									</tr>
+									<tr class="tr1" id="qlsxlxtr">
+										<td align="left" class="lefttd">权力事项类型</td>
+										<td align="right" class="righttd" id="qlsxlx"></td>
+									</tr>
+									<tr class="tr1" id="qllytr">
+										<td align="left" class="lefttd">权力来源</td>
+										<td align="right" class="righttd" id="qlly"></td>
+									</tr>
+									<tr class="tr1" id="bjlxtr">
+										<td align="left" class="lefttd">办件类型</td>
+										<td align="right" class="righttd" id="bjlx"></td>
+									</tr>
+									<tr class="tr1" id="bztr" style="display: none;">
+										<td align="left" class="lefttd">备注</td>
+										<td align="right" class="righttd" id="bz"></td>
+									</tr>
+								</table>
+								<table id="content1" width="98%" align="center" style="line-height:40px; height:40px; border-bottom: 1px solid #e7e7e7;">
+									<tr onclick="window.location.href = 'workchildContent1.html'">
+										<td width="150px;" height="40px" class="bgtr" style="padding-left: 30px;font-size: 17px;color: #222222;">受理地点/时间</td>
+										<td align="right" style="padding-right: 25px;" class="bgright"></td>
+									</tr>
+								</table>
+								<table id="content2" width="98%" align="center" style="line-height:40px; height:40px; border-bottom: 1px solid #e7e7e7;display: none;">
+									<tr onclick="window.location.href = 'workchildContent1.html'">
+										<td width="150px;" height="40px" class="bgtr" style="padding-left: 30px;font-size: 17px;color: #222222;">受理地点信息</td>
+										<td align="right" style="padding-right: 25px;" class="bgright"></td>
+									</tr>
+								</table>
+								<table id="content3" width="98%" align="center" style="line-height:40px; height:40px; border-bottom: 1px solid #e7e7e7;display: none;">
+									<tr onclick="window.location.href = 'workchildContent7.html'">
+										<td width="150px;" height="40px" class="bgtr" style="padding-left: 30px;font-size: 17px;color: #222222;">受理接待时间</td>
+										<td align="right" style="padding-right: 25px;" class="bgright"></td>
+									</tr>
+								</table>
+								<table id="content4" width="98%" align="center" style="line-height:40px; height:40px; border-bottom: 1px solid #e7e7e7; color:#676767; ">
+									<tr>
+										<td width="120px;" height="40px" class="bgtrleft" style="padding-left: 30px;font-size: 17px;color: #222222;">咨询电话</td>
+										<td>
+											<table width="100%">
+												<tr>
+													<td align="right" onclick="funzxdh();">
+														<span id="zxdh" style="color: #199efd;padding-right: 25px;font-size: 17px;" class="bgright"></span><br>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+								<table id="content5" width="98%" align="center" style="line-height:40px; height:40px; border-bottom: 1px solid#e7e7e7;color:#676767;">
+									<tr style="right: 10px;">
+										<td width="150px;" height="40px" class="bgtrleft" style="padding-left: 30px;font-size: 17px;color: #222222;">监督投诉电话</td>
+										<td>
+											<table width="100%">
+												<tr>
+													<td align="right" onclick="funjdtsdh();">
+														<span id="jdtsdh" style="color: #199efd;padding-right: 25px;font-size: 17px;" class="bgright"></span><br>
+													</td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+								<table id="content6" width="98%" align="center" style="line-height:40px; height:40px; font-size:17px; font-family:'微软雅黑';  border-bottom: 1px solid#e7e7e7;display: none;">
+									<tr onclick="window.location.href = 'workchildContent5.html'" class="bgright" style="">
+										<td width="120px;" height="40px" style="text-align:left;padding-left: 10px;font-size: 17px;color: #222222;">网上查询</td>
+									</tr>
+								</table>
+								<table id="content7" width="98%" align="center" style="line-height:40px; height:40px; font-size:17px; font-family:'微软雅黑';  border-bottom: 1px solid#e7e7e7;display: none;">
+									<tr onclick="window.location.href = 'workchildContent5.html'" class="bgright" style="">
+										<td width="120px;" height="40px" style="text-align:left;padding-left: 10px;font-size: 17px;color: #222222;">办理程序</td>
+									</tr>
+								</table>
+								<table id="content8" width="98%" align="center" style="line-height:40px; height:40px;border-bottom: 1px solid #e7e7e7;">
+									<tr class="bgright" onclick="window.location.href = 'workchildContent3.html'">
+										<td width="120px;" height="40px" style="text-align:left;padding-left: 10px;font-size: 17px;color: #222222;">办理流程图</td>
+									</tr>
+								</table>
+								<table id="content9" width="98%" align="center" style="line-height:40px; height:40px;border-bottom: 1px solid #e7e7e7;">
+									<tr onclick="window.location.href = 'workchildContent6.html'" class="bgright">
+										<td width="120px;" height="40px" style="text-align:left;padding-left: 10px;font-size: 17px;color: #222222;">常见问题解答</td>
+									</tr>
+								</table>
+							</div>
+							<div id="badmessage1" style="">
+								<img style="width: 160px; height: 160px;" src="../source/images/yw_message_bad.png" />
+								<p style="width: 160px;margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll2" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="parent" style="background-color: #EFEFF4;">
+									<li width="96%" v-for="item in items" class="" id="" style="background-color: #EFEFF4;padding: 5px;">
+										<div width="96%" style="padding: 10px;background-color: #fff;margin: 5px 5px 0px 5px;">
+											<table width="96%" align="center" style="">
+												<tr width="96%">
+													<td align="left" width="85%" height="50px" style="color: #222222;font-size: 17px;">
+														<span style="">{{item.name}}</span>
+													</td>
+													<td align="right" width="15%" onclick="window.location.href ='WorkDetail1.html?name={{item.name}}&id={{item.id}}&itemcode='+ vid +'&itemname='+ vname">
+														<span width='40px' id="detail">详细</span>
+													</td>
+												</tr>
+											</table>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div id="badmessage0" style="">
+								<img style="width: 160px; height: 160px;" src="../source/images/yw_message_bad.png" />
+								<p style="width: 160px;margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+							</div>
+						</div>
+					</div>
+					<div id="item3mobile" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<!--办理材料-->
+								<div id="material" style="">
+								</div>
+							</div>
+							<div id="badmessage" style="">
+								<img style="width: 160px; height: 160px;" src="../source/images/yw_message_bad.png" />
+								<p style="width: 160px;margin: 0px; line-height: 25px;font-size: 14px;text-align: center;">暂无数据</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+					<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+					<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+				</div>
+			</div>
+		</div>
+		<script src="../../BaseConfig/source/js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="../../BaseConfig/source/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../../BaseConfig/source/js/jquery-3.0.0.min.js"></script>
+		<script src="../../BaseConfig/source/js/vue.min.js"></script>
+		<script src="../../BaseConfig/source/js/spin.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+
+		<script src="../../BaseConfig/source/js/base64.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../controller/odercontent.controller.js"></script>
+		<script src="../../../js/mui.min.js"></script>
+		<script>
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+
+			mui.init({
+				swipeBack: false
+			});
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var vtype = href.split("vtype=")[1].split("&")[0];
+			var vid = href.split("vid=")[1].split("&")[0];
+			var vname = href.split("vname=")[1].split("&")[0];
+			var webid = href.split("webid=")[1].split("&")[0];
+			vname = decodeURI(vname);
+			$(function() {
+				if(vtype == 01 || vtype == 02 || vtype == 04 || vtype == 05 || vtype == 13) {
+					document.getElementById("bt2").innerHTML = "办理材料";
+				} else if(vtype == 06 || vtype == 07 || vtype == 08 || vtype == 09 || vtype == 10) {
+					document.getElementById("bt2").innerHTML = "申报材料";
+				} else if(vtype == 03) {
+					document.getElementById("bt2").innerHTML = "处罚简易程序";
+				} else if(vtype == 14 || vtype == 99) {
+					document.getElementById("bt2").innerHTML = "所需材料";
+				}
+
+				if(vtype == 01 || vtype == 02 || vtype == 13) {
+					document.getElementById("bt3").innerHTML = "申报条件";
+				} else if(vtype == 03) {
+					document.getElementById("bt3").innerHTML = "法定依据";
+				} else if(vtype == 04 || vtype == 05) {
+					document.getElementById("bt3").innerHTML = "办理条件";
+				} else if(vtype == 06 || vtype == 07 || vtype == 08 || vtype == 09 || vtype == 10 || vtype == 14 || vtype == 99) {
+					document.getElementById("bt3").innerHTML = "受理条件";
+				}
+			})
+			requestWorkContent1(vid, vname, webid);
+			requestWorkContent3(vid, vname, webid);
+			requestWorkContent2(vid, vname, webid);
+
+			function funjdtsdh() {
+				window.location.href = 'tel:' + document.getElementById("jdtsdh").innerHTML;
+			};
+
+			function funzxdh() {
+				window.location.href = 'tel:' + document.getElementById("zxdh").innerHTML;
+			};
+		</script>
+
+	</body>
+
+</html>

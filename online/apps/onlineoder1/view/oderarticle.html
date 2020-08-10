@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>事项详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			.tr1 {
+				border-bottom: 1px solid;
+				border-color: #DDDDDD;
+				height: 40px;
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			
+			.lefttd {
+				color: #808080;
+				padding-left: 10px;
+			}
+			
+			.righttd {
+				color: #333333;
+				width: 65%;
+				padding-right: 10px;
+			}
+			
+			.namediv {
+				height: 40px;
+				line-height: 40px;
+				font-size: 14px;
+				color: #808080;
+				background-color: #FFFFFF;
+				font-family: '微软雅黑';
+				padding-left: 10px;
+			}
+			
+			.contentdiv {
+				color: #333333;
+				font-family: '微软雅黑';
+				font-size: 14px;
+				padding: 8px;
+				background-color: #FFFFFF;
+			}
+			
+			p {
+				color: #333333;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #1c1b1f;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #FFFFFF;"></a>
+			<h1 class="mui-title" style="color: #FFFFFF;">网上预约正文
+			</h1>
+		</header>-->
+
+		<div class="mui-content" style="margin-bottom: 55px;" id="contentArea">
+			<div style="height: 40px;width: 100%; background-color: #EAEAEA;">
+				<span id="basicinfoTitle" onclick="basicClicked()" style="width: 33.33333%;text-align: center; line-height: 40px;float: left;font-size: 16px;color: #FFFFFF;background-color: #338dff;">基本信息</span>
+				<span id="processTitle" onclick="processClicked()" style="width: 33.33333%;text-align: center; line-height: 40px;float: left;font-size: 16px;color: #333333;">办理材料</span>
+				<span id="materialTitle" onclick="materialClicked()" style="width: 33.33333%;text-align: center; line-height: 40px;float: right;font-size: 16px;color: #333333;">办理流程</span>
+			</div>
+			<div id="maincontent" style="display: none;">
+				<!--基本信息-->
+				<div id="basicinfo">
+					<div style="background-color: #FFFFFF;margin: 0px;color: #2f2f93;font-size: 16px;text-align: center;padding: 7px;line-height: 30px;" id="itemname"></div>
+					<table width="100%" align="center" style="background-color: #FFFFFF;line-height:30px; height:40px; font-size:14px; color:#676767;font-family:'微软雅黑';margin-top: 10px;">
+						<hr style="margin: 0px;border:0px;background-color:#DDDDDD;height: 1px;" />
+						<tr class="tr1">
+							<td align="left" class="lefttd" style="">事项分类</td>
+							<td align="right" class="righttd" id="sxfl"></td>
+						</tr>
+						<tr class="tr1">
+							<td align="left" class="lefttd">办理部门</td>
+							<td align="right" class="righttd" id="blbm"></td>
+						</tr>
+						<tr class="tr1">
+							<td align="left" class="lefttd">法定期限</td>
+							<td align="right" class="righttd" id="fdqx"></td>
+						</tr>
+						<tr class="tr1">
+							<td align="left" class="lefttd">承诺期限</td>
+							<td align="right" class="righttd" id="cnqx"></td>
+						</tr>
+						<tr class="tr1">
+							<td align="left" class="lefttd">联系电话</td>
+							<td align="right" class="righttd" id="lxdh"></td>
+						</tr>
+						<tr class="tr1">
+							<td align="left" class="lefttd">监督电话</td>
+							<td align="right" class="righttd" id="jddh"></td>
+						</tr>
+						<tr class="tr1">
+							<td align="left" class="lefttd">收费依据与标准</td>
+							<td align="right" class="righttd" id="sfbz"></td>
+						</tr>
+					</table>
+					<div class="namediv">办理地点</div>
+					<div class="contentdiv" id="bldd"></div>
+					<hr style="margin: 0px;border:0px;background-color:#DDDDDD;height: 1px;" />
+					<div class="namediv">受理条件</div>
+					<div class="contentdiv" id="sltj">
+					</div>
+					<hr style="margin: 0px;border:0px;background-color:#DDDDDD;height: 1px;" />
+					<div class="namediv">法定依据</div>
+					<div class="contentdiv" id="fdyj">
+					</div>
+				</div>
+
+				<!--办理流程-->
+				<div id="process" style="display: none;">
+					<ul id="parent" class="mui-table-view" style="font-size: 14px;color: #333333;display: none;">
+						<li v-for="item in items" style="padding: 10px;border-bottom: 1px solid #EEEEEE;">
+							{{item.name}}
+						</li>
+					</ul>
+					<div style="font-size: 14px;color: #333333;padding: 10px;background-color: #FFFFFF;display: none;text-align: center;" id="nocontent">
+						暂无材料
+					</div>
+				</div>
+
+				<!--办理材料-->
+				<div id="material" style="font-size: 14px;color: #333333;padding: 10px;background-color: #FFFFFF;display: none;">
+
+				</div>
+			</div>
+		</div>
+		<div style="bottom: 0px; width: 100%;height: 50px;position: fixed; background-color: #FFFFFF;color: #FFFFFF;line-height: 40px;font-size: 18px;margin-bottom: 0px;" align="center" id="submitBtn">
+			<button style='background-color: #338dff;color: #FFFFFF;height: 36px;width: 150px;margin-top: 7px;border-width: 0px;' id="submitBtn2"></button>
+
+		</div>
+		<div id="loading" style="background-color: #000000; opacity: 0.6;  border-radius: 10px ;position: absolute; left: 50%; top: 50%; width:120px; height:120px; margin-left:-60px; margin-top:-60px;text-align: center; display: block;">
+			<img id="food" src="../../BaseConfig/source/images/loading.gif" style="background-color: #000000; width: 60px;height: 60px;border-radius: 10px ;margin: 0 auto;margin-top:10px;padding: 10px;"></img>
+			<p style="margin: 0px; line-height: 25px;font-size: 14px;text-align: center;color: #F2F2F2;">努力加载中...</p>
+		</div>
+		<div style="bottom: 0px; width: 100%;height: 35px;position: fixed;background-color: #FFFFFF;display: none;" id="sourceApp">
+			<p style="margin-top: 8px;margin-bottom: 0px; line-height: 20px;font-size: 12px;text-align: center;">——本服务由浙江政务服务网提供——</p>
+		</div>
+		<script src="../../../js/mui.min.js"></script>
+		<script src="../source/js/vue.min.js"></script>
+		<script src="../../BaseConfig/controller/BaseConfig.js"></script>
+		<script src="../source/js/jquery-1.8.3.min.js"></script>
+		<script src="../../../source/js/util.js"></script>
+		<script type="text/javascript" src="https://app.zjzwfw.gov.cn/open/jssdk/writejs/index.js"></script>
+		<script src="../controller/oderarticle.controller.js"></script>
+		<script src="../source/js/spin.js"></script>
+		<script>
+			//判断容器类型，浏览器还是APP
+			var container = containerT();
+			if(container == "web") { //微信
+				document.getElementById("sourceApp").style.display = "none";
+				document.getElementById("submitBtn").style.marginBottom = "0px";
+				document.getElementById("contentArea").style.marginBottom = "55px";
+			} else { //浙江政务app
+				document.getElementById("sourceApp").style.display = "none";
+				document.getElementById("submitBtn").style.marginBottom = "0px";
+				document.getElementById("contentArea").style.marginBottom = "55px";
+			}
+
+			var href = location.href;
+			//依据href获得传来的参数截取传来的事项信息
+			var itemname = href.split("name=")[1].split("&")[0];
+			itemname = decodeURI(itemname);
+			var itemcode = href.split("itemcode=")[1].split("&")[0];
+			itemcode = decodeURI(itemcode);
+			var onlinetype = href.split("onlinetype=")[1].split("&")[0];
+			onlinetype = decodeURI(onlinetype);
+			var vsiteid = href.split("siteid=")[1].split("&")[0];
+			var btn = document.getElementById("submitBtn2");
+			if(onlinetype == "01") { //网上预约
+				btn.innerHTML = "预约办理";
+				btn.onclick = function() {
+					window.location.href = "handleoder.html?itemcode=" + itemcode + "&itemname=" + itemname + "&siteid=" + vsiteid;
+				}
+			} else { //网上办证（证明）
+				btn.innerHTML = "在线办理";
+				btn.onclick = function() {
+					window.location.href = "onlinedeclare.html?itemcode=" + itemcode + "&itemname=" + itemname + "&siteid=" + vsiteid;
+				}
+			}
+		</script>
+
+		<script type="text/javascript">
+			requestOrderArticle();
+			mui.init()
+			//菊花
+			var opts = {
+				//参数列表    
+				lines: 10, // loading小块的数量
+				length: 10, // 小块的长度
+				width: 4, // 小块的宽度
+				radius: 8, // 整个圆形的半径
+				corners: 1, // 小块的圆角，越大则越圆
+				rotate: 0, // loading动画的旋转度数，貌似没什么实际作用
+				color: '#ddd', // 颜色
+				speed: 1, // 变换速度
+				trail: 60, // 余晖的百分比
+				shadow: false, // 是否渲染出阴影
+				hwaccel: false, // 是否启用硬件加速
+				className: 'spinner', // 给loading添加的css样式名
+				zIndex: 2e9, // The z-index (defaults to 2000000000)
+				top: 'auto', // Top position relative to parent in px
+				left: 'auto' // Left position relative to parent in px
+			};
+			var target = document.getElementById('food');
+			var spinner = new Spinner(opts).spin(target);
+		</script>
+	</body>
+
+</html>

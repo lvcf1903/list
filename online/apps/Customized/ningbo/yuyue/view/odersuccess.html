@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title id="title"></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body style="background-color: #FFFFFF;">
+		<div class="mui-content" style="background-color: #FFFFFF;" align="center">
+			<img src="../source/images/successImage.png" style="margin-top: 50px;width: 130px;" />
+			<div id="handleDetail" style="margin-top: 20px;padding: 20px;font-size: 16px;color: #808080;" align="center"></div>
+			<div id="btn" style="padding-bottom: 20px;">
+				<button style="background-color: #338dff;color: #FFFFFF;height: 36px;width: 40%;margin-top: 7px;border-width: 0px;margin-top: 30px;margin-right: 2%;" id="officehall" onclick="orderclassify()">办事大厅</button>
+			</div>
+		</div>
+		<div style="bottom: 0px; width: 100%;height: 35px;position: fixed;display: none;" id="sourceApp">
+			<p style="margin-top: 8px;margin-bottom: 0px; line-height: 20px;font-size: 12px;text-align: center;">——本服务由浙江政务服务网提供——</p>
+		</div>
+
+		<script type="text/javascript">
+			var href = location.href;
+			var bookno = href.split("bookno=")[1].split("&")[0];
+			var siteid = href.split("siteid=")[1].split("&")[0];
+			var cityname = decodeURI(href.split("sitename=")[1].split("&")[0]);
+			document.getElementById("handleDetail").innerText = "预约成功，预约号为：" + bookno;
+
+			function orderclassify() {
+				window.location.href = "oderclassify.html?type=01&cityname=" + cityname + "&siteid=" + siteid;
+			}
+		</script>
+	</body>
+
+</html>
